@@ -931,7 +931,14 @@
                 processQuizSubmission();
             }
         }
-
+        function loadPreviousQuestion() {
+            if (currentQuestionIndex > 0) {
+                // Save current work before going backward unless we are just reviewing
+                if (!isReviewed) saveCurrentInputs();
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
         function evaluateAndDisplayExplanation() {
             const q = quizData[currentQuestionIndex];
             const uAns = userAnswers[currentQuestionIndex];
