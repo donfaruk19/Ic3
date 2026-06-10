@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IC3 GS6 Level 2 Exam Prep Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-slate-900 text-white shadow-md py-4 px-6 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 p-2 rounded-lg text-white font-bold tracking-wider text-sm">IC3</div>
+                <h1 class="text-xl font-bold tracking-tight">GS6 Level 2 Exam Simulator</h1>
+            </div>
+            <div id="quiz-status-bar" class="hidden flex items-center gap-6 text-sm">
+                <div id="timer-container" class="hidden flex items-center gap-2 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
+                    <span class="text-rose-400 font-mono font-bold animate-pulse">⏱</span>
+                    <span id="timer-display" class="font-mono font-bold text-slate-100">50:00</span>
+                </div>
+                <span id="mode-badge" class="px-3 py-1 rounded-full font-semibold"></span>
+                <span id="progress-text" class="text-slate-300 font-medium">Question 1 of 45</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <main class="flex-grow max-w-4xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+        
+        <!-- Welcome & Mode Selector Screen -->
+        <div id="setup-screen" class="bg-white rounded-2xl shadow-xl p-6 sm:p-10 border border-slate-100 max-w-xl mx-auto w-full text-center my-8">
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">Select Practice Environment</h2>
+            <p class="text-slate-500 text-sm mb-8">Choose a practice format matching your current preparation requirements.</p>
+            
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 text-left mb-8">
+                <!-- Training Mode Card -->
+                <label class="relative border-2 border-slate-200 rounded-xl p-5 cursor-pointer hover:border-blue-500 transition-all flex flex-col justify-between group">
+                    <input type="radio" name="mode-select" value="training" checked class="sr-only peer">
+                    <div class="peer-checked:text-blue-600 absolute top-4 right-4 text-slate-300">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+                    </div>
+                    <div>
+                        <span class="block font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Training Mode</span>
+                        <span class="block text-xs text-slate-500 mt-1">Provides immediate answers and detailed reference breakdowns after clicking next. No time pressure.</span>
+                    </div>
+                </label>
+
+                <!-- Testing Mode Card -->
+                <label class="relative border-2 border-slate-200 rounded-xl p-5 cursor-pointer hover:border-blue-500 transition-all flex flex-col justify-between group">
+                    <input type="radio" name="mode-select" value="testing" class="sr-only peer">
+                    <div class="peer-checked:text-blue-600 absolute top-4 right-4 text-slate-300">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+                    </div>
+                    <div>
+                        <span class="block font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Testing Mode</span>
+                        <span class="block text-xs text-slate-500 mt-1">Enforces a strict 50-minute exam countdown timer. Completely hides accuracy results until the entire test is graded.</span>
+                    </div>
+                </label>
+            </div>
+
+            <button id="start-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors shadow-lg shadow-blue-500/20 text-lg">
+                Launch Assessment
+            </button>
+        </div>
+
+        <!-- Testing Frame Viewport -->
+        <div id="quiz-screen" class="hidden flex flex-col gap-6 my-4">
+            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden shadow-inner">
+                <div id="progress-bar" class="bg-blue-600 h-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+
+            <!-- Focus Content Block Container -->
+            <div class="bg-white rounded-2xl shadow-md border border-slate-100 p-6 sm:p-8 min-h-[320px] flex flex-col justify-between">
+                <div id="question-container">
+                    <!-- Target questions dynamically loaded via app data structures -->
+                </div>
+
+                <!-- Live Training Context Explanations -->
+                <div id="explanation-box" class="hidden mt-6 p-4 bg-slate-50 rounded-xl border border-slate-200 transition-all duration-300">
+                    <div class="flex items-start gap-3">
+                        <div id="feedback-icon" class="mt-0.5"></div>
+                        <div>
+                            <h4 id="explanation-title" class="font-bold text-sm"></h4>
+                            <p id="explanation-text" class="text-sm text-slate-600 mt-1"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interface Navigation Options -->
+            <div class="flex justify-between items-center gap-4">
+                <button id="prev-btn" class="invisible bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium py-2.5 px-5 rounded-xl transition-colors flex items-center gap-2">
+                    &larr; Previous
+                </button>
+                <button id="action-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-xl transition-colors shadow-sm ml-auto">
+                    Next
+                </button>
+            </div>
+        </div>
+
+        <!-- Final Performance Evaluation Screen -->
+        <div id="results-screen" class="hidden bg-white rounded-2xl shadow-xl p-6 sm:p-10 border border-slate-100 text-center my-8 max-w-2xl mx-auto w-full">
+            <div id="results-icon-frame" class="inline-flex items-center justify-center w-20 h-20 bg-blue-50 rounded-full mb-4 text-blue-600">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h2 id="results-headline" class="text-3xl font-extrabold text-slate-900">Exam Complete!</h2>
+            <p id="results-subtext" class="text-slate-500 mt-2">Evaluation results breakdown parameters</p>
+            
+            <div class="my-8 p-6 bg-slate-50 rounded-2xl border border-slate-100 inline-block min-w-[220px]">
+                <div id="score-percentage" class="text-5xl font-black text-blue-600">0%</div>
+                <div id="score-fraction" class="text-sm font-medium text-slate-500 mt-1">0 out of 45 answers correct</div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <button id="review-btn" class="bg-slate-800 hover:bg-slate-900 text-white font-medium py-2.5 px-6 rounded-xl transition-colors">
+                    Review Item Responses
+                </button>
+                <button id="restart-btn" class="bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium py-2.5 px-6 rounded-xl transition-colors">
+                    Restart Simulation
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scaled Dataset Array Engine mapping out 45 Items -->
+    <script>
+        const quizData = [
+            {
+                type: "single",
+                topic: "AI Copyright",
+                question: "Who owns the copyright to content that is generated solely by Artificial Intelligence (AI)?[cite: 1]",
+                options: [
+                    "The developer who wrote the code for the AI model that generated the content.[cite: 1]",
+                    "The company that publishes and maintains the AI model servers.[cite: 1]",
+                    "The person who wrote the prompt used to generate the content.[cite: 1]",
+                    "No one - all AI-generated content is automatically in the public domain.[cite: 1]"
+                ],
+                answer: [3],
+                explanation: "Copyright law generally requires human authorship; work created completely by an AI without human intervention cannot be copyrighted and falls into the public domain.[cite: 1]"
+            },
+            {
+                type: "matrix",
+                topic: "Digital Feedback Etiquette",
+                question: "A team of people are digitally collaborating on a project and need to provide feedback digitally. Select Yes if the behavior follows digital etiquette standards or No if it does not.[cite: 1]",
+                subquestions: [
+                    "Correct other people whenever their opinions and ideas are wrong.[cite: 1]",
+                    "Give fair criticism and constructive feedback, but phrase it respectfully.[cite: 1]",
+                    "Use abbreviations, slang, and emojis to give your comments more personality.[cite: 1]",
+                    "Use good grammar and spelling so your comments are clear and easy to understand.[cite: 1]"
+                ],
+                options: ["Yes", "No"],
+                answer: [1, 0, 1, 0], // Indexes mapping option choice index array configurations
+                explanation: "Professional digital feedback typically requires clear, formal communication rather than informal slang, confrontational corrections, or overused emojis.[cite: 1]"
+            },
+            {
+                type: "single",
+                topic: "Software Macros",
+                question: "What is one advantage of using macros in software programs?[cite: 1]",
+                options: [
+                    "They provide cloud storage services.[cite: 1]",
+                    "They automate repetitive tasks.[cite: 1]",
+                    "They automatically correct spelling errors.[cite: 1]",
+                    "They store files online automatically.[cite: 1]"
+                ],
+                answer: [1],
+                explanation: "Macros are pre-recorded sequences of tasks or commands that allow users to run complex or highly repetitive sequences instantly with one click.[cite: 1]"
+            },
+            {
+                type: "single",
+                topic: "Audio Settings",
+                question: "You are in a loud room. You connect headphones to your computer so you can hear the audio better, but sound still comes through the computer speakers instead of the headphones. You need the computer audio to come through the headphones instead of the speakers. What should you do?[cite: 1]",
+                options: [
+                    "Manage input devices.[cite: 1]",
+                    "Mute your computer speakers.[cite: 1]",
+                    "Manage output devices.[cite: 1]",
+                    "Configure Ease of Access audio settings.[cite: 1]"
+                ],
+                answer: [2],
+                explanation: "To route system audio feeds dynamically to external peripherals like headphones, you must manage and select the appropriate hardware within the Output Device properties workspace.[cite: 1]"
+            },
+            {
+                type: "multiple",
+                topic: "Keyboard Home Row",
+                question: "Which two keys are part of the \"home row\" on a standard keyboard? (Choose 2.)[cite: 1]",
+                options: ["B[cite: 1]", "D[cite: 1]", "K[cite: 1]", "Q[cite: 1]", "X[cite: 1]", "Y[cite: 1]"],
+                answer: [1, 2],
+                explanation: "On a standard alphanumeric QWERTY layout, the resting home row keys are A, S, D, F, G, H, J, K, L, and ;.[cite: 1]"
+            },
+            {
+                type: "single",
+                topic: "File Versioning",
+                question: "What is a primary purpose of file versioning?[cite: 1]",
+                options: [
+                    "To identify the date the file was created.[cite: 1]",
+                    "To identify the file as a non-final release, or draft.[cite: 1]",
+                    "To enable users to recover earlier copies of the file.[cite: 1]",
+                    "To enable multiple users to collaborate on the file content.[cite: 1]"
+                ],
+                answer: [2],
+                explanation: "File versioning archives historically timestamped iterative logs, making it simple to restore or roll back to historical states if revisions break functionality.[cite: 1]"
+            },
+            {
+                type: "single",
+                topic: "Email Bcc Field",
+                question: "What is the purpose of the Bcc field of an email message?[cite: 1]",
+                options: [
+                    "To indicate that a reply is optional.[cite: 1]",
+                    "To collect information about someone without them knowing.[cite: 1]",
+                    "To keep multiple recipients' email addresses private from each other.[cite: 1]",
+                    "To indicate that the message is personal.[cite: 1]"
+                ],
+                answer: [2],
+                explanation: "The Blind Carbon Copy (Bcc) structure completely hides the explicit identities and emails of listed recipients from each other to enforce privacy.[cite: 1]"
+            },
+            {
+                type: "single",
+                topic: "Digital Wallet Advantage",
+                question: "What is an advantage of using a digital wallet such as Apple Pay or Google Pay?[cite: 1]",
+                options: [
+                    "Encourages you to shop around for the best price.[cite: 1]",
+                    "Builds your credit history.[cite: 1]",
+                    "Gives you free access to Apple TV or YouTube Premium.[cite: 1]",
+                    "Requires you to authorize every transaction.[cite: 1]"
+                ],
+                answer: [3],
+                explanation: "Digital wallets demand discrete verification tokens (e.g., biometric thumbprints or entry codes) before processing localized payments safely.[cite: 1]"
+            },
+            {
+                type: "multiple",
+                topic: "Internet Challenges",
+                question: "You learn about a potentially fun new internet challenge. For which two reasons should teenagers avoid participating in the challenge? (Choose 2.)[cite: 1]",
+                options: [
+                    "Even seemingly harmless challenges, like the sunburn tattoo or cinnamon challenges, can cause serious harm that requires medical attention.[cite: 1]",
+                    "During puberty, the teen brain is flooded with hormones that make it seek out rewards, such as \"likes\" or followers.[cite: 1]",
+                    "The teen brain isn't finished developing yet, so teens often have a hard time thinking through all the possible consequences of their actions.[cite: 1]",
+                    "Their friends all want them to participate in the challenge.[cite: 1]"
+                ],
+                answer: [0, 2],
+                explanation: "Seemingly non-threatening digital trends can hide severe physical hazards; developmental stages require teenagers to exercise caution, as risk-assessment pathways are still maturing.[cite: 1]"
+            },
+            {
+                type: "single",
+                topic: "Document Management",
+                question: "What is the best way to monitor edits made in a document?[cite: 1]",
+                options: [
+                    "Keep a separate document to note all changes made.[cite: 1]",
+                    "Manually highlight all changes after editing.[cite: 1]",
+                    "Use a different color for every edit.[cite: 1]",
+                    "Turn on Track Changes before you start editing the document.[cite: 1]"
+                ],
+                answer: [3],
+                explanation: "Enabling standard 'Track Changes' protocols builds persistent markup streams tracking all additions and adjustments inside the document workspace natively.[cite: 1]"
+            },
+            {
+                type: "matrix",
+                topic: "Evaluating Source Bias",
+                question: "You need to assess whether the content of an online article is biased. Select Yes if the aspect helps check bias, or No if it does not.[cite: 1]",
+                subquestions: [
+                    "Article funding source[cite: 1]",
+                    "Article publication date[cite: 1]",
+                    "Education level of the author[cite: 1]",
+                    "Connections of the author to political organizations[cite: 1]"
+                ],
+                options: ["Yes", "No"],
+                answer: [0, 1, 1, 0],
+                explanation: "Funding sources and external political affiliations directly flag ideological bias. Conversely, timeline checks or specific academic credentials assess validity and domain authority, not direct functional slant.[cite: 1]"
+            },
+            {
+                type: "single",
+                topic: "Content Distribution Rights",
+                question: "When is it appropriate to post someone else's content online?[cite: 1]",
+                options: [
+                    "If it has already been shared by others[cite: 1]",
+                    "When it is a positive message[cite: 1]",
+                    "With permission, or if posted publicly[cite: 1]",
+                    "Anytime, because it's already online[cite: 1]"
+                ],
+                answer: [2],
+                explanation: "You must secure clear licensing rights, explicitly verified permission vectors, or confirm the asset resides transparently inside public domain listings before republishing.[cite: 1]"
+            },
+            {
+                type: "multiple",
+                topic: "Remote Meeting Etiquette",
+                question: "You lead a team of people of differing beliefs, backgrounds, and ages. You plan to host a remote meeting using a videoconferencing tool to brainstorm ideas for a new project. You need to demonstrate good digital etiquette. Which two actions should you take? (Choose 2.)[cite: 1]",
+                options: [
+                    "Use features such as Raise Hand to provide opportunities for all team members to participate[cite: 1]",
+                    "Keep the team focused and avoid conflicts by limiting discussion to a list of only your own ideas.[cite: 1]",
+                    "Privately offer to help a team member with no videoconferencing experience become familiar with the controls before the meeting[cite: 1]",
+                    "Ask a team member with a strong accent to respond through the chat box so they can be clearly understood by the rest of the team.[cite: 1]"
+                ],
+                answer: [0, 2],
+                explanation: "Digital meeting etiquette relies on open, interactive features like 'Raise Hand' and resolving technological or experience differences through private onboarding before calls.[cite: 1]"
+            },
+            {
+                type: "matching",
+                topic: "Hardware Profiles: Printers",
+                question: "Move each advantage from the list on the left to the corresponding printer type on the right.[cite: 1]",
+                subquestions: [
+                    "Documents are dry to the touch when printed[cite: 1]",
+                    "Environmentally friendly[cite: 1]",
+                    "Good for printing high-quality photographs[cite: 1]",
+                    "Suitable for mass-printing documents at a low cost[cite: 1]"
+                ],
+                options: ["Inkjet Printer", "Laser Printer", "General Unassigned Benefit"],
+                answer: [1, 2, 0, 1],
+                explanation: "Laser printers leverage heated fusion to secure instantly dry powder outputs for high-volume text. Inkjet printer variants run fine fluid ink streams ideal for photograph color replication accuracy.[cite: 1]"
+            },
+            {
+                type: "multiple",
+                topic: "File Naming Conventions",
+                question: "You are designing a poster for a client. As you work, you periodically save new versions of your file to keep track of your changes and design ideas. Which two groups of files demonstrate good file naming conventions? (Choose 2.)[cite: 1]",
+                options: [
+                    "poster_original.psd, poster_cropped.psd, poster_grayscale.psd[cite: 1]",
+                    "poster_draft1.psd, poster_draft2.psd, poster_FINAL.psd[cite: 1]",
+                    "myposter.psd, newposter.psd, poster.psd[cite: 1]",
+                    "poster.psd, poster copy.psd, poster copy 2.psd[cite: 1]"
+                ],
+                answer: [0, 1],
+                explanation: "Professional taxonomy structures use precise descriptive context tags (Group A) or clearly ordered numerical sequences tracking progress iterations logically (Group B).[cite: 1]"
+            },
+            {
+                type: "matching",
+                topic: "Security & File Management Terms",
+                question: "Move each term from the list to its correct description match.[cite: 1]",
+                subquestions: [
+                    "The ability to view the contents of a file but not modify it[cite: 1]",
+                    "Settings that determine who can read, write, or execute a file[cite: 1]",
+                    "The process of encoding data to prevent unauthorized access[cite: 1]",
+                    "A file that can be viewed and modified by users with the appropriate permissions[cite: 1]",
+                    "A security feature that restricts file access to users who enter the correct access code[cite: 1]"
+                ],
+                options: ["Read-Only File", "File Permission", "Encryption", "Read-Write File", "Password Protection"],
+                answer: [0, 1, 2, 3, 4],
+                explanation: "These variables determine specific object privileges, cryptographic protection limits, and identity tracking workflows across file systems.[cite: 1]"
+            },
+            {
+                type: "single",
+                topic: "Display Hardware Configuration",
+                question: "You are working on your laptop computer in a sunny outside area. You need to minimize eyestrain. Which monitor setting should you adjust?[cite: 1]",
+                options: ["Contrast[cite: 1]", "Sharpness[cite: 1]", "Scale[cite: 1]", "Brightness[cite: 1]"],
+                answer: [3],
+                explanation: "Upregging output brightness allows the display backlight to overcome ambient solar glare, significantly decreasing visual strain on the user.[cite: 1]"
+            },
+            {
+                type: "matrix",
+                topic: "Digital Collaboration Core Concepts",
+                question: "You have become part of a team that uses collaboration. For each statement about collaboration, select True or False.[cite: 1]",
+                subquestions: [
+                    "Individual input and creative decision-making will be limited.[cite: 1]",
+                    "Members share ideas to come up with solutions.[cite: 1]",
+                    "Everyone in the group will have the same perspectives for the project.[cite: 1]"
+                ],
+                options: ["True", "False"],
+                answer: [1, 0, 1],
+                explanation: "Collaboration connects varied backgrounds and ideas to find cross-functional answers, supporting individual input instead of limiting it.[cite: 1]"
+            },
+            {
+                type: "single",
+                topic: "Evaluating Information Sources",
+                question: "You enter the search term \"Do snakes make good pets?\" into the search box of your web browser and get the four results shown. Which search result presents a different perspective from the other three?[cite: 1]",
+                options: [
+                    "11 Best Pet Snakes for Beginners / www.petchronicles.com / One of the best pet snakes for young pet owners is the corn snake...[cite: 1]",
+                    "Do Snakes Make Good Pets? / www.snakerights.org / Snakes are wild animals and should never be kept as pets. Even if they are not poisonous, they are dangerous and cannot be tamed.[cite: 1]",
+                    "Snakes as Pets / www.petshop.com / Ball pythons and corn snakes make great pets that are easy to care for, but larger species like boas should be kept only...[cite: 1]",
+                    "How to Choose the Best Pet Snake For You / www.vetmed.famu.edu/ Before choosing a pet snake, consider how much space you have to keep your snake...[cite: 1]"
+                ],
+                answer: [1],
+                explanation: "Options A, C, and D offer advice assuming that ownership is viable, whereas option B explicitly argues that they should never be kept as pets.[cite: 1]"
+            },
+            {
+                type: "single",
+                topic: "AI Business Integration Capabilities",
+                question: "A growing content agency is looking for ways to enhance the accuracy and consistency of their content while also wanting to stand out from their competitors. How can AI potentially help content creators achieve their goals at TechTrends?[cite: 1]",
+                options: [
+                    "By providing biased data inputs, resulting in content focused on only specific perspectives.[cite: 1]",
+                    "By analyzing data and generating insights to help make content.[cite: 1]",
+                    "By analyzing competitors' content and replicating their style, TechTrends would be consistent with the popular trends.[cite: 1]",
+                    "By replacing human creativity and unique writing styles with standardized and formulaic AI-generated content.[cite: 1]"
+                ],
+                answer: [1],
+                explanation: "AI serves as a powerful analysis tool, finding hidden data insights that humans can use to build high-quality content quickly.[cite: 1]"
+            },
+            {
+                type: "multiple",
+                topic: "Software Application Mastery",
+                question: "Your class is learning to use a new software application. Each student has been assigned to master a different feature of the application. What are two ways students can improve their ability to use the assigned features? (Choose 2.)[cite: 1]",
+                options: [
+                    "Teach someone else to use it.[cite: 1]",
+                    "Read an online review of a similar application.[cite: 1]",
+                    "Read the release notes for the latest version of the application.[cite: 1]",
+                    "Consult the application Help resources.[cite: 1]"
+                ],
+                answer: [0, 3],
+                explanation: "Teaching others helps you remember technical structures, while official system Help files provide clear steps for complex workflows.[cite: 1]"
+            },
+            {
+                type: "multiple",
+                topic: "Digital Identity Matrix",
+                question: "You maintain personal and professional social media accounts. Which two items should you post to your professional social media account? (Choose 2.)[cite: 1]",
+                options: [
+                    "Your formal profile picture[cite: 1]",
+                    "A technical certification that you possess[cite: 1]",
+                    "A complaint about a current coworker[cite: 1]",
+                    "A picture of your family playing a game[cite: 1]"
+                ],
+                answer: [0, 1],
+                explanation: "Professional feeds should focus on your credentials, skills, and industry status, while keeping private activities and personal workplace arguments separate.[cite: 1]"
+            },
+            {
+                type: "multiple",
+                topic: "Auditorium Digital Etiquette",
+                question: "Your teacher invites a guest speaker to present to your class. You need to demonstrate good digital etiquette and show the speaker you are listening. Which two actions are appropriate to take during the speaker's presentation? (Choose 2.)[cite: 1]",
+                options: [
+                    "Use your tablet or laptop to research the speaker's credentials and hobbies.[cite: 1]",
+                    "Use your tablet or laptop to take notes during the presentation, while still making eye contact with the speaker.[cite: 1]",
+                    "Use your smartphone to take photos of the speaker's slides that you want to keep for future reference.[cite: 1]",
+                    "Use your smartphone to take photos of yourself and other participants to document your experience.[cite: 1]"
+                ],
+                answer: [1, 2],
+                explanation: "Using tools to capture slides and take notes supports the presentation, while personal photos or distraction browsing disrupts the session.[cite: 1]"
+            },
+            {
+                type: "matching",
+                topic: "Operating System File Formats",
+                question: "Move each file extension from the list on the left to the corresponding scenario on the right.[cite: 1]",
+                subquestions: [
+                    "A file that contains unformatted text[cite: 1]",
+                    "A logo with a transparent background[cite: 1]",
+                    "A photo that you will display on a webpage[cite: 1]",
+                    "A file that you will email to a printing company[cite: 1]"
+                ],
+                options: ["txt", "png", "jpg", "pdf"],
+                answer: [0, 1, 2, 3],
+                explanation: ".txt files hold raw text, .png files support background layers, .jpg optimizes images for the web, and .pdf keeps formats stable for commercial printing.[cite: 1]"
+            },
+            {
+                type: "matrix",
+                topic: "Hardware Profiles: Central Processing Units",
+                question: "For each statement about central processing units (CPUs), select True or False.[cite: 1]",
+                subquestions: [
+                    "Most modern CPUs are built to support 64-bit systems.[cite: 1]",
+                    "When properly used, CPUs typically have an attached air cooler or liquid cooler.[cite: 1]",
+                    "The CPU speed affects the frames per second (fps) rendered in a 3D game.[cite: 1]"
+                ],
+                options: ["True", "False"],
+                answer: [0, 0, 0],
+                explanation: "Modern CPUs support high-capacity 64-bit systems, generate significant heat that requires cooling, and run physics calculations that affect real-time 3D game performance.[cite: 1]"
+            },
+            {
+                type: "single",
+                topic: "Identity Access Isolation",
+                question: "You have separate Google accounts for school and personal use. You are logged into your personal account. You need to access a file that was shared with you through your school account's Google Drive. What should you do?[cite: 1]",
+                options: [
+                    "In your personal Google account settings, unblock your school account.[cite: 1]",
+                    "Switch from your personal Google account to your school account.[cite: 1]",
+                    "Link your personal account and school account Google Drives.[cite: 1]",
+                    "Configure both accounts to use the same password.[cite: 1]"
+                ],
+                answer: [1],
+                explanation: "Switching profiles separates personal and institutional data, ensuring you have the correct file access rights.[cite: 1]"
+            },
+            {
+                type: "matching",
+                topic: "Media Production: Video Editing",
+                question: "Sindi records a video for a school project. She only wants to use certain parts of the video. Move each basic video editing technique to its correct definition.[cite: 1]",
+                subquestions: [
+                    "Join two video clips together[cite: 1]",
+                    "Hide portions of a video frame[cite: 1]",
+                    "Cut a video clip into two segments[cite: 1]",
+                    "Remove the beginning and end of the clip[cite: 1]"
+                ],
+                options: ["Splice", "Crop", "Split", "Trim"],
+                answer: [0, 1, 2, 3],
+                explanation: "Splicing links clips, cropping changes the visible frame boundaries, splitting divides single tracks, and trimming cuts out excess starting or ending footage.[cite: 1]"
+            },
+            {
+                type: "single",
+                topic: "Data Systems Automation",
+                question: "Mrs. Wilkins is working in a spreadsheet. Partway through the list she notices that as she types the letter \"Y,\" the word \"Yes\" appears in the cell. Which feature caused this change?[cite: 1]",
+                options: ["AutoFormat[cite: 1]", "AutoComplete[cite: 1]", "AutoFill[cite: 1]", "AutoFit[cite: 1]"],
+                answer: [1],
+                explanation: "AutoComplete checks previous entries in a column and finishes typing match text to speed up data input.[cite: 1]"
+            },
+            {
+                type: "matching",
+                topic: "Digital Productivity Tools",
+                question: "Move each digital collaboration tool from the list on the left to its description on the right.[cite: 1]",
+                subquestions: [
+                    "Collaborators can edit files at the same time and automatically save their changes.[cite: 1]",
+                    "Collaborators can simultaneously brainstorm, review, and edit visual information by writing, drawing, and inserting images.[cite: 1]",
+                    "Collaborators participate in learning activities and immediately share reactions, interpretations, and ideas for application of the ideas presented.[cite: 1]"
+                ],
+                options: ["Cloud file sharing", "Online whiteboard", "Webinar"],
+                answer: [0, 1, 2],
+                explanation: "Cloud storage tracks file changes live, whiteboards give a visual canvas for sketches, and webinars act as online learning broadcasts.[cite: 1]"
+            },
+            {
+                type: "single",
+                topic: "Public Dialogue Protocols",
+                question: "What is a good rule to follow when responding to online comments?[cite: 1]",
+                options: [
+                    "Ignore all comments, even if they are aggressive.[cite: 1]",
+                    "Respond with respect, even if you disagree.[cite: 1]",
+                    "Delete comments that you don't agree with.[cite: 1]",
+                    "Only reply if you agree with the comment.[cite: 1]"
+                ],
+                answer: [1],
+                explanation: "Professional online etiquette relies on keeping discussions respectful, even when team members disagree on goals.[cite: 1]"
+            },
+            {
+                type: "single",
+                topic: "Form Collection Platforms",
+                question: "Which statement about filling out online forms is true?[cite: 1]",
+                options: [
+                    "Filling out Microsoft Forms requires an Office 365 license.[cite: 1]",
+                    "Google Forms always require that you provide an email address.[cite: 1]",
+                    "Filling out an online PDF form requires an Adobe Acrobat license.[cite: 1]",
+                    "Microsoft Forms can be filled out by people outside of the creator's organization.[cite: 1]"
+                ],
+                answer: [3],
+                explanation: "Forms engines can collect feedback publicly, allowing outside users to reply without needing internal software access.[cite: 1]"
+            },
+            {
+                type: "multiple",
+                topic: "Network Communication Modalities",
+                question: "Which two communication methods are asynchronous? (Choose 2.)[cite: 1]",
+                options: ["Text messaging[cite: 1]", "Telephoning[cite: 1]", "Emailing[cite: 1]", "Videoconferencing[cite: 1]"],
+                answer: [0, 2],
+                explanation: "Asynchronous modes like text messages and email do not require both users to be online at once, separating sending from reading times.[cite: 1]"
+            },
+            // EXTRAS SCALED HERE TO EXACTLY FULFILL REQS RETURNING 45 UNIQUE OBJECT OBJECTIVES
+            {
+                type: "single",
+                topic: "Cloud Computing Models",
+                question: "Which cloud service delivery model provides users with a fully functional online software application without requiring installation?",
+                options: [
+                    "Infrastructure as a Service (IaaS)",
+                    "Platform as a Service (PaaS)",
+                    "Software as a Service (SaaS)",
+                    "Storage as a Service (STaaS)"
+                ],
+                answer: [2],
+                explanation: "Software as a Service (SaaS) delivers applications over the web, removing the need to manage local file installations or manual updates."
+            },
+            {
+                type: "single",
+                topic: "Network Troubleshooting",
+                question: "A user cannot connect to local network shares or external web servers. They check their network adapter configuration and see an IP address of 169.254.12.89. What is the cause of this issue?",
+                options: [
+                    "The local DNS query path cache has become corrupted.",
+                    "The client could not reach the local DHCP server to receive an IP address allocation.",
+                    "The gateway router has completely blocked all outward data transmissions.",
+                    "The client network hardware interface card has suffered a complete operational failure."
+                ],
+                answer: [1],
+                explanation: "An IP address starting with 169.254.x.x indicates an Automatic Private IP Addressing (APIPA) assignment, which occurs when a machine cannot find a DHCP server."
+            },
+            {
+                type: "single",
+                topic: "Information Privacy & Cookies",
+                question: "What is the primary technical function of a tracking cookie saved in a web browser?",
+                options: [
+                    "To speed up media rendering by storing image files locally.",
+                    "To record user browsing habits across different websites to build an advertising profile.",
+                    "To scan file downloads for malware before they run.",
+                    "To back up user settings and passwords to an online cloud vault."
+                ],
+                answer: [1],
+                explanation: "Tracking cookies log browsing history across multiple sites, allowing ad networks to monitor preferences and deliver targeted marketing."
+            },
+            {
+                type: "multiple",
+                topic: "Multi-Factor Authentication",
+                question: "Which two validation mechanisms are examples of something you INHERENTLY possess in multi-factor security frameworks? (Choose 2.)",
+                options: [
+                    "An alpha-numeric account access PIN code.",
+                    "A high-resolution facial recognition layout match.",
+                    "A randomized security token sent to an authenticator application.",
+                    "An automated cryptographic certificate saved on a hardware key.",
+                    "A custom biometric fingerprint scanner check."
+                ],
+                answer: [1, 4],
+                explanation: "Authentication factors depend on something you know (PIN), something you have (token), or something you are/inherently possess (biometric indicators like fingerprints or facial maps)."
+            },
+            {
+                type: "matrix",
+                topic: "Malware Classification Traits",
+                question: "For each description concerning malicious software threats, select the correct malware classification type.",
+                subquestions: [
+                    "Malware that encrypts user storage volumes and demands payments to unlock them.",
+                    "A program that hides within legitimate software installations to establish unauthorized remote access backdoors.",
+                    "Self-replicating malicious code that spreads across network connections without requiring user action."
+                ],
+                options: ["Ransomware", "Trojan", "Worm"],
+                answer: [0, 1, 2],
+                explanation: "Ransomware locks down files for payment, Trojans use deceptive attachments to hide backdoors, and worms spread over networks automatically."
+            },
+            {
+                type: "single",
+                topic: "Browser Security Features",
+                question: "What safety benefit does a web browser's Private or Incognito viewing window provide?",
+                options: [
+                    "It hides your public IP address from destination host web servers.",
+                    "It encrypts all internet traffic to block tracking by your internet service provider.",
+                    "It prevents the browser from saving cookies, browsing history, or form inputs locally.",
+                    "It blocks all malicious scripts and drive-by malware downloads."
+                ],
+                answer: [2],
+                explanation: "Incognito modes prevent your local device from saving history, cookies, or temporary files, but they do not hide traffic from your network router or ISP."
+            },
+            {
+                type: "single",
+                topic: "Intellectual Property Protections",
+                question: "Which legal mechanism protects unique inventions, mechanical processes, and new hardware items from unauthorized production?",
+                options: ["Copyright", "Trademark", "Patent", "Trade Secret Protection"],
+                answer: [2],
+                explanation: "Patents protect functional inventions and structural designs, copyrights cover artistic works, and trademarks protect branding elements."
+            },
+            {
+                type: "single",
+                topic: "Data Backup Methodologies",
+                question: "An organization runs an incremental backup plan every evening. What strategy is used to capture data during this backup?",
+                options: [
+                    "Every file on the target system is backed up completely.",
+                    "Only files that have changed since the last full or incremental backup are archived.",
+                    "Only structural system configurations and operating system state maps are saved.",
+                    "Only files that have changed since the last full backup are saved."
+                ],
+                answer: [1],
+                explanation: "Incremental backups capture only modifications made since the most recent backup, reducing daily storage needs and saving network bandwidth."
+            },
+            {
+                type: "multiple",
+                topic: "Password Lifecycle Security",
+                question: "Which two configurations make an access password more secure? (Choose 2.)",
+                options: [
+                    "Reusing the same strong password across all personal accounts.",
+                    "Including mixed case letters, numbers, and special symbol characters.",
+                    "Using a passphrase built from random dictionary words instead of single terms.",
+                    "Storing your password list in a plain text file on your local desktop.",
+                    "Using simple sequences like your date of birth or pet's name."
+                ],
+                answer: [1, 2],
+                explanation: "Strong passwords use varied character types and extended passphrases to resist automated guessing attacks. Avoid reusing passwords across different services."
+            },
+            {
+                type: "matching",
+                topic: "Hardware Profiles: Infrastructure",
+                question: "Match each physical computer hardware part to its correct function description.",
+                subquestions: [
+                    "Main system board that connects components and coordinates data paths.",
+                    "High-speed volatile memory that holds active application data for the CPU.",
+                    "Persistent non-volatile storage chip that holds the system BIOS firmware."
+                ],
+                options: ["Motherboard", "RAM", "ROM"],
+                answer: [0, 1, 2],
+                explanation: "The motherboard links system components, RAM handles active volatile app space, and ROM chips hold permanent boot instructions."
+            },
+            {
+                type: "single",
+                topic: "Cloud Data Sovereignty",
+                question: "What is the primary compliance concern regarding cloud data sovereignty regulations?",
+                options: [
+                    "The specific geographical country where data servers physically host and store data assets.",
+                    "The total storage capacity allocated to cloud storage volumes.",
+                    "The encryption algorithm used to secure network transmissions.",
+                    "The file access permissions granted to standard enterprise users."
+                ],
+                answer: [0],
+                explanation: "Data sovereignty requires that digital information complies with the legal privacy frameworks of the specific nation where the data center servers are physically located."
+            },
+            {
+                type: "single",
+                topic: "Operating System Maintenance",
+                question: "What is the main security reason to install operating system software updates regularly?",
+                options: [
+                    "To delete temporary browser files and free up drive space.",
+                    "To fix system vulnerabilities that attackers could use to compromise the machine.",
+                    "To reorganize disk space and improve file lookup speeds.",
+                    "To upgrade the system's physical display adapter drivers automatically."
+                ],
+                answer: [1],
+                explanation: "Regular software updates fix known security vulnerabilities, preventing malware from exploiting unpatched system flaws."
+            },
+            {
+                type: "matrix",
+                topic: "E-Safety and Phishing Defense",
+                question: "Identify whether each listed event indicates a Phishing attempt (Yes) or a legitimate message (No).",
+                subquestions: [
+                    "An urgent email claiming your bank account is locked, directing you to click an unofficial link to log in.",
+                    "An official update notification inside your OS settings pane requiring a system restart.",
+                    "A message from an unknown sender offering prize money in exchange for your social security number or credit card information."
+                ],
+                options: ["Yes", "No"],
+                answer: [0, 1, 0],
+                explanation: "Phishing attacks use fake emergency access requests or unexpected prizes to trick users into sharing private account credentials or financial details."
+            }
+        ];
+
+        // Central Application Engine Properties
+        let currentMode = 'training'; 
+        let currentQuestionIndex = 0;
+        let userAnswers = {}; 
+        let isReviewed = false;
+
+        // Countdowns Timer Tracking Metrics
+        let timeRemaining = 50 * 60; // 50 Minutes converted to absolute seconds tracking
+        let timerIntervalId = null;
+
+        // Core Document Elements Hook Variables
+        const setupScreen = document.getElementById('setup-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        const startBtn = document.getElementById('start-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const actionBtn = document.getElementById('action-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const modeBadge = document.getElementById('mode-badge');
+        const questionContainer = document.getElementById('question-container');
+        const explanationBox = document.getElementById('explanation-box');
+        const feedbackIcon = document.getElementById('feedback-icon');
+        const explanationTitle = document.getElementById('explanation-title');
+        const explanationText = document.getElementById('explanation-text');
+        const scorePercentage = document.getElementById('score-percentage');
+        const scoreFraction = document.getElementById('score-fraction');
+        const reviewBtn = document.getElementById('review-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const timerContainer = document.getElementById('timer-container');
+        const timerDisplay = document.getElementById('timer-display');
+
+        // Functional Entry Declarations
+        startBtn.addEventListener('click', initQuizSession);
+        prevBtn.addEventListener('click', loadPreviousQuestion);
+        actionBtn.addEventListener('click', handleActionButtonAction);
+        reviewBtn.addEventListener('click', startReviewMode);
+        restartBtn.addEventListener('click', resetQuizEnvironment);
+
+        function initQuizSession() {
+            const selectedMode = document.querySelector('input[name="mode-select"]:checked').value;
+            currentMode = selectedMode;
+            userAnswers = {};
+            currentQuestionIndex = 0;
+            isReviewed = false;
+            clearInterval(timerIntervalId);
+
+            // Interface Toggle Adjustments
+            modeBadge.textContent = currentMode === 'training' ? 'Training Mode' : 'Testing Mode';
+            modeBadge.className = currentMode === 'training' 
+                ? 'px-3 py-1 rounded-full font-semibold bg-emerald-500 text-white text-xs' 
+                : 'px-3 py-1 rounded-full font-semibold bg-blue-600 text-white text-xs';
+
+            setupScreen.classList.add('hidden');
+            resultsScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            document.getElementById('quiz-status-bar').classList.remove('hidden');
+
+            if (currentMode === 'testing') {
+                timerContainer.classList.remove('hidden');
+                timeRemaining = 50 * 60; // 50 Minutes set limit reset parameter
+                updateTimerDisplay();
+                timerIntervalId = setInterval(countdownTick, 1000);
+            } else {
+                timerContainer.classList.add('hidden');
+            }
+
+            renderQuestion();
+        }
+
+        function countdownTick() {
+            if (timeRemaining > 0) {
+                timeRemaining--;
+                updateTimerDisplay();
+            } else {
+                clearInterval(timerIntervalId);
+                alert("Testing timeline completed! Grading input configurations now.");
+                saveCurrentInputs();
+                processQuizSubmission(true); // Forced exit trigger parameter
+            }
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function renderQuestion() {
+            explanationBox.classList.add('hidden');
+            const q = quizData[currentQuestionIndex];
+            
+            prevBtn.classList.toggle('invisible', currentQuestionIndex === 0);
+            
+            // Text adjustments based on test states
+            if (currentMode === 'testing' && currentQuestionIndex === quizData.length - 1) {
+                actionBtn.textContent = 'Submit Quiz';
+                actionBtn.className = "bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 px-6 rounded-xl transition-colors shadow-sm ml-auto";
+            } else if (currentMode === 'training') {
+                actionBtn.textContent = 'Verify & Next';
+                actionBtn.className = "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-xl transition-colors shadow-sm ml-auto";
+            } else {
+                actionBtn.textContent = 'Next';
+                actionBtn.className = "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-xl transition-colors shadow-sm ml-auto";
+            }
+
+            if (isReviewed) {
+                actionBtn.textContent = currentQuestionIndex === quizData.length - 1 ? 'Finish Review' : 'Next';
+            }
+
+            const progressPercent = ((currentQuestionIndex) / quizData.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            progressText.textContent = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
+
+            let html = `
+                <div class="mb-2 text-xs font-bold text-blue-600 uppercase tracking-widest">${q.topic}</div>
+                <h3 class="text-lg font-bold text-slate-900 mb-6 leading-snug">${q.question}</h3>
+                <div class="space-y-3">
+            `;
+
+            if (q.type === 'single' || q.type === 'multiple') {
+                q.options.forEach((opt, idx) => {
+                    const letter = String.fromCharCode(65 + idx);
+                    const isChecked = userAnswers[currentQuestionIndex]?.includes(idx);
+                    const inputType = q.type === 'single' ? 'radio' : 'checkbox';
+                    
+                    html += `
+                        <label class="flex items-start gap-4 border border-slate-200 rounded-xl p-4 cursor-pointer hover:bg-slate-50 hover:border-slate-300 transition-all relative group option-wrapper" data-idx="${idx}">
+                            <input type="${inputType}" name="quiz-opt" value="${idx}" ${isChecked ? 'checked' : ''} ${isReviewed ? 'disabled' : ''} class="mt-1 text-blue-600 focus:ring-blue-500 rounded border-slate-300 h-4 w-4">
+                            <div class="text-sm">
+                                <span class="font-bold text-slate-900 mr-1">${letter}.</span> 
+                                <span class="text-slate-700 font-medium">${opt}</span>
+                            </div>
+                        </label>
+                    `;
+                });
+            } else if (q.type === 'matrix' || q.type === 'matching') {
+                html += `<div class="overflow-x-auto custom-scrollbar"><table class="w-full text-left text-sm border-collapse min-w-[420px]"><thead><tr class="border-b border-slate-200"><th class="py-2 text-slate-500 font-semibold max-w-sm">Scenario Targets</th><th class="py-2 text-slate-500 font-semibold w-52 text-right">Parameter Matches</th></tr></thead><tbody class="divide-y divide-slate-100">`;
+                
+                q.subquestions.forEach((subQ, subIdx) => {
+                    const savedVal = userAnswers[currentQuestionIndex]?.[subIdx];
+                    html += `
+                        <tr class="matrix-row" data-subidx="${subIdx}">
+                            <td class="py-3.5 pr-4 text-slate-800 font-medium leading-normal">${subQ}</td>
+                            <td class="py-3.5 text-right">
+                                <select ${isReviewed ? 'disabled' : ''} class="matrix-select bg-slate-50 border border-slate-200 text-slate-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 w-full max-w-[200px] font-medium shadow-sm">
+                                    <option value="-1" ${savedVal === undefined || savedVal === -1 ? 'selected' : ''}>-- Select Match --</option>
+                                    ${q.options.map((opt, optIdx) => `<option value="${optIdx}" ${savedVal === optIdx ? 'selected' : ''}>${opt}</option>`).join('')}
+                                </select>
+                            </td>
+                        </tr>
+                    `;
+                });
+                html += `</tbody></table></div>`;
+            }
+
+            html += `</div>`;
+            questionContainer.innerHTML = html;
+
+            if (isReviewed || (currentMode === 'training' && userAnswers[currentQuestionIndex] !== undefined)) {
+                evaluateAndDisplayExplanation();
+            }
+        }
+
+        function saveCurrentInputs() {
+            const q = quizData[currentQuestionIndex];
+            if (q.type === 'single') {
+                const selected = document.querySelector('input[name="quiz-opt"]:checked');
+                if (selected) userAnswers[currentQuestionIndex] = [parseInt(selected.value)];
+            } else if (q.type === 'multiple') {
+                const checkedArr = Array.from(document.querySelectorAll('input[name="quiz-opt"]:checked')).map(el => parseInt(el.value));
+                if (checkedArr.length > 0) userAnswers[currentQuestionIndex] = checkedArr;
+            } else if (q.type === 'matrix' || q.type === 'matching') {
+                const rowSelects = document.querySelectorAll('.matrix-select');
+                let answers = [];
+                rowSelects.forEach((select) => {
+                    answers.push(parseInt(select.value));
+                });
+                if(answers.some(v => v !== -1)) {
+                    userAnswers[currentQuestionIndex] = answers;
+                }
+            }
+        }
+
+        function handleActionButtonAction() {
+            if (isReviewed) {
+                if (currentQuestionIndex < quizData.length - 1) {
+                    currentQuestionIndex++;
+                    renderQuestion();
+                } else {
+                    exitReviewMode();
+                }
+                return;
+            }
+
+            if (!isReviewed) saveCurrentInputs();
+
+            if (currentMode === 'training') {
+                const hasAnswered = userAnswers[currentQuestionIndex] !== undefined;
+                if (!hasAnswered) {
+                    alert("Please provide an answer choice parameter to continue.");
+                    return;
+                }
+
+                const isBoxVisible = !explanationBox.classList.contains('hidden');
+                if (!isBoxVisible) {
+                    evaluateAndDisplayExplanation();
+                    actionBtn.textContent = currentQuestionIndex === quizData.length - 1 ? "Finish and Score" : "Next Question";
+                    actionBtn.className = "bg-slate-800 hover:bg-slate-900 text-white font-semibold py-2.5 px-6 rounded-xl transition-colors shadow-sm ml-auto";
+                    return;
+                }
+            }
+
+            if (currentQuestionIndex < quizData.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            } else {
+                processQuizSubmission();
+            }
+        }
+
+        function evaluateAndDisplayExplanation() {
+            const q = quizData[currentQuestionIndex];
+            const uAns = userAnswers[currentQuestionIndex];
+            let isCorrect = false;
+
+            if (q.type === 'single' || q.type === 'multiple') {
+                const targetOptions = document.querySelectorAll('.option-wrapper');
+                const sortedExpected = [...q.answer].sort().toString();
+                const sortedUser = uAns ? [...uAns].sort().toString() : "";
+                isCorrect = sortedExpected === sortedUser;
+
+                targetOptions.forEach((element) => {
+                    const idx = parseInt(element.getAttribute('data-idx'));
+                    const isExpected = q.answer.includes(idx);
+                    const isSelected = uAns?.includes(idx);
+
+                    if (isExpected) {
+                        element.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900');
+                    } else if (isSelected && !isExpected) {
+                        element.classList.add('bg-rose-50', 'border-rose-400', 'text-rose-900');
+                    }
+                });
+            } else if (q.type === 'matrix' || q.type === 'matching') {
+                const selectElements = document.querySelectorAll('.matrix-select');
+                let correctCount = 0;
+                
+                q.subquestions.forEach((_, subIdx) => {
+                    const uVal = uAns ? uAns[subIdx] : -1;
+                    const expectedVal = q.answer[subIdx];
+                    const selectEl = selectElements[subIdx];
+
+                    if (uVal === expectedVal) {
+                        correctCount++;
+                        if (selectEl) selectEl.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900');
+                    } else {
+                        if (selectEl) selectEl.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-900');
+                    }
+                });
+                isCorrect = correctCount === q.subquestions.length;
+            }
+
+            explanationBox.classList.remove('hidden');
+            if (isCorrect) {
+                feedbackIcon.innerHTML = `<div class="bg-emerald-500 text-white p-1 rounded-full"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg></div>`;
+                explanationTitle.textContent = "Correct Answer Matrix Match";
+                explanationTitle.className = "font-bold text-sm text-emerald-800";
+            } else {
+                feedbackIcon.innerHTML = `<div class="bg-rose-500 text-white p-1 rounded-full"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg></div>`;
+                explanationTitle.textContent = "Incorrect Target Configuration";
+                explanationTitle.className = "font-bold text-sm text-rose-800";
+            }
+            explanationText.textContent = q.explanation;
+        }
+
+        function processQuizSubmission(forcedTimeOut = false) {
+            clearInterval(timerIntervalId);
+            let coreScore = 0;
+
+            quizData.forEach((q, idx) => {
+                const uAns = userAnswers[idx];
+                if (!uAns) return;
+
+                if (q.type === 'single' || q.type === 'multiple') {
+                    if ([...q.answer].sort().toString() === [...uAns].sort().toString()) coreScore++;
+                } else if (q.type === 'matrix' || q.type === 'matching') {
+                    let allRowsMatch = true;
+                    q.subquestions.forEach((_, sIdx) => {
+                        if (uAns[sIdx] !== q.answer[sIdx]) allRowsMatch = false;
+                    });
+                    if (allRowsMatch) coreScore++;
+                }
+            });
+
+            const percentMetric = Math.round((coreScore / quizData.length) * 100);
+            scorePercentage.textContent = `${percentMetric}%`;
+            scoreFraction.textContent = `${coreScore} out of ${quizData.length} items evaluated correctly`;
+
+            if (percentMetric >= 70) {
+                scorePercentage.className = "text-5xl font-black text-emerald-600";
+                resultsHeadline.textContent = "Assessment Passed!";
+                resultsIconFrame.className = "inline-flex items-center justify-center w-20 h-20 bg-emerald-50 rounded-full mb-4 text-emerald-600";
+                resultsIconFrame.innerHTML = `<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+            } else {
+                scorePercentage.className = "text-5xl font-black text-rose-600";
+                resultsHeadline.textContent = "Review Required";
+                resultsIconFrame.className = "inline-flex items-center justify-center w-20 h-20 bg-rose-50 rounded-full mb-4 text-rose-600";
+                resultsIconFrame.innerHTML = `<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>`;
+            }
+
+            if(forcedTimeOut) {
+                resultsSubtext.textContent = "Exam terminated because session tracking limits timed out.";
+            } else {
+                resultsSubtext.textContent = "All answers evaluated against current Certiport testing profiles standard metrics.";
+            }
+
+            quizScreen.classList.add('hidden');
+            document.getElementById('quiz-status-bar').classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+        }
+
+        function startReviewMode() {
+            isReviewed = true;
+            currentQuestionIndex = 0;
+            resultsScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            document.getElementById('quiz-status-bar').classList.remove('hidden');
+            renderQuestion();
+        }
+
+        function exitReviewMode() {
+            isReviewed = false;
+            quizScreen.classList.add('hidden');
+            document.getElementById('quiz-status-bar').classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+        }
+
+        function resetQuizEnvironment() {
+            userAnswers = {};
+            currentQuestionIndex = 0;
+            isReviewed = false;
+            clearInterval(timerIntervalId);
+            resultsScreen.classList.add('hidden');
+            setupScreen.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
