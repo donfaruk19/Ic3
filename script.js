@@ -12,7 +12,7 @@ let session = {
     userAnswers: [],       // Array storing user configuration inputs
     getCurrentQuestion: function() {
         return this.questions[this.currentIdx] || null;
-    }
+    },
     flags: [],             // Array tracking user flagged checkpoints
     timerId: null,
     timeRemaining: 45 * 60 // 45-minute baseline operational limit
