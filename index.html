@@ -323,99 +323,55 @@
     </footer>
 
     <script>
-        let originalEngineOptions = [];
+    function selectTrack(trackId) {
+        // Shift Interface Views
+        document.getElementById('dashboard-screen').classList.add('hidden');
+        document.getElementById('workspace-screen').classList.remove('hidden');
+        document.getElementById('setup-screen').classList.remove('hidden');
+        document.getElementById('exam-container').classList.add('hidden');
+        document.getElementById('result-screen').classList.add('hidden');
+        document.getElementById('review-screen').classList.add('hidden');
 
-        // Capture whatever options script.js built naturally on initialization
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                const selectElement = document.getElementById('module-select');
-                if (selectElement && selectElement.options.length > 0) {
-                    originalEngineOptions = Array.from(selectElement.options).map(o => ({ value: o.value, text: o.textContent }));
-                }
-            }, 150);
-        });
+        // Clear existing dropdown options
+        const moduleSelect = document.getElementById('module-select');
+        moduleSelect.innerHTML = ''; 
 
-        function selectTrack(trackId) {
-            document.getElementById('dashboard-screen').classList.add('hidden');
-            document.getElementById('workspace-screen').classList.remove('hidden');
-            document.getElementById('setup-screen').classList.remove('hidden');
-            document.getElementById('exam-container').classList.add('hidden');
-            document.getElementById('result-screen').classList.add('hidden');
-            document.getElementById('review-screen').classList.add('hidden');
-
-            const moduleSelect = document.getElementById('module-select');
-            moduleSelect.innerHTML = ''; 
-
-            let matched = false;
-            const targetPrefix = `l${trackId}`;
-
-            // Phase 1: Filter using options captured directly from script.js initialization loop
-            if (originalEngineOptions.length > 0) {
-                originalEngineOptions.forEach(opt => {
-                    if (opt.value.startsWith(targetPrefix) || opt.value.includes(`level${trackId}`)) {
-                        let nOpt = document.createElement('option');
-                        nOpt.value = opt.value;
-                        nOpt.textContent = opt.text;
-                        moduleSelect.appendChild(nOpt);
-                        matched = true;
-                    }
-                });
-            }
-
-            // Phase 2: Live Memory Scan Backup — query the allModules global variable directly to capture new additions
-            if (!matched && typeof allModules !== 'undefined') {
-                Object.keys(allModules).forEach(key => {
-                    if (key.startsWith(targetPrefix) || key.startsWith(`level${trackId}`)) {
-                        let nOpt = document.createElement('option');
-                        nOpt.value = key;
-                        
-                        // Parse clean display labels based on common operational patterns
-                        let cleanText = key.replace(/_/g, ' ').toUpperCase();
-                        if (trackId === 3) {
-                            if (key.includes('lesson1') || key.includes('m1')) cleanText = "Lesson 1: Data Visualization & Parsing";
-                            if (key.includes('lesson2') || key.includes('m2')) cleanText = "Lesson 2: Advanced Security Architectures";
-                        } else if (trackId === 2) {
-                            if (key.includes('lesson1') || key.includes('m1')) cleanText = "Lesson 1: Operating System Fundamentals";
-                            if (key.includes('lesson2') || key.includes('m2')) cleanText = "Lesson 2: Workplace Applications & Files";
-                            if (key.includes('lesson12') || key.includes('m12')) cleanText = "Lesson 12: Network Digital Communication";
-                        }
-                        
-                        nOpt.textContent = cleanText;
-                        moduleSelect.appendChild(nOpt);
-                        matched = true;
-                    }
-                });
-            }
-
-            // Phase 3: Total Safeguard Configuration Mapping (Fallback hard links if script.js hasn't finished evaluating)
-            if (moduleSelect.children.length === 0) {
-                const legacyMap = {
-                    2: [
-                        { val: "l2_lesson1", txt: "Lesson 1: Operating System Fundamentals" },
-                        { val: "l2_lesson2", txt: "Lesson 2: Workplace Applications & Files" },
-                        { val: "l2_lesson12", txt: "Lesson 12: Network Digital Communication" }
-                    ],
-                    3: [
-                        { val: "l3_lesson1", txt: "Lesson 1: Data Visualization & Parsing" },
-                        { val: "l3_lesson2", txt: "Lesson 2: Advanced Security Architectures" },
-                        { val: "l3m1", txt: "Module 1: Advanced Literacy Systems" },
-                        { val: "l3m2", txt: "Module 2: Cloud Encryption Networks" }
-                    ]
-                };
-                legacyMap[trackId].forEach(opt => {
-                    let nOpt = document.createElement('option');
-                    nOpt.value = opt.val;
-                    nOpt.textContent = opt.txt;
-                    moduleSelect.appendChild(nOpt);
-                });
-            }
+        // Target the specific level in the unified database (e.g., 'level2' or 'level3')
+        const targetLevelKey = 'level' + trackId;
+        
+        // Safety Check: Make sure questions.js is loaded
+        if (typeof masterQuestionBank === 'undefined') {
+            alert("CRITICAL ERROR: questions.js database is missing or failed to load.");
+            return;
         }
 
-        function returnToDashboard() {
-            document.getElementById('workspace-screen').classList.add('hidden');
-            document.getElementById('dashboard-screen').classList.remove('hidden');
+        const levelData = masterQuestionBank[targetLevelKey];
+
+        // Populate the dropdown dynamically based on the track selected
+        if (levelData) {
+            // Option 1: Master Exam (All Modules)
+            let allOpt = document.createElement('option');
+            allOpt.value = 'all';
+            allOpt.textContent = `ALL LEVEL ${trackId} COMBINED CORE OBJECTIVES`;
+            moduleSelect.appendChild(allOpt);
+
+            // Option 2: Individual Modules
+            Object.keys(levelData).forEach(lessonKey => {
+                let nOpt = document.createElement('option');
+                nOpt.value = lessonKey; // e.g., 'l3_lesson15'
+                nOpt.textContent = levelData[lessonKey].title; // e.g., 'Lesson 15: Technology Basics'
+                moduleSelect.appendChild(nOpt);
+            });
+        } else {
+            console.error(`Data for ${targetLevelKey} not found in masterQuestionBank.`);
         }
-    </script>
+    }
+
+    function returnToDashboard() {
+        document.getElementById('workspace-screen').classList.add('hidden');
+        document.getElementById('dashboard-screen').classList.remove('hidden');
+    }
+</script>
 
     <script src="questions.js"></script>
     <script src="script.js"></script>
