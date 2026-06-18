@@ -10,6 +10,9 @@ let session = {
     currentIdx: 0,
     questions: [],
     userAnswers: [],       // Array storing user configuration inputs
+    getCurrentQuestion: function() {
+        return this.questions[this.currentIdx] || null;
+    }
     flags: [],             // Array tracking user flagged checkpoints
     timerId: null,
     timeRemaining: 45 * 60 // 45-minute baseline operational limit
@@ -58,21 +61,19 @@ document.addEventListener("DOMContentLoaded", () => {
  * Route Tracker Launcher - Triggered by Dashboard Selection Cards
  * Opens the Deployment Form and seeds the configuration drops.
  */
-function selectTrack(trackIdentifier) {
-    if (trackIdentifier !== 2 && trackIdentifier !== 3) {
-        console.error("Security Alert: Unauthorized track vector access attempted.");
+function selectTrack(trackId) {
+    session.currentTrack = trackId;
+    
+    // Safety check for data
+    const targetKey = 'level' + trackId;
+    if (typeof masterQuestionBank === 'undefined' || !masterQuestionBank[targetKey]) {
+        console.error("Critical: Data for " + targetKey + " not found.");
         return;
     }
 
-    session.currentTrack = trackIdentifier;
-    session.currentIdx = 0;
-
-    // Direct interface viewport shifts
-    UI.dashScreen.classList.add('hidden');
-    UI.workScreen.classList.remove('hidden');
-    UI.setupScreen.classList.remove('hidden');
-    UI.examContainer.classList.add('hidden');
-    UI.resultScreen.classList.add('hidden');
+    // Hide dashboard, show workspace
+    document.getElementById('dashboard-screen').classList.add('hidden');
+    document.getElementById('workspace-screen').classList.remove('hidden');
 
     // Sync configuration options dropdown from database memory maps
     populateModuleDropdown(trackIdentifier);
@@ -246,6 +247,8 @@ function loadQuestion() {
 // -----------------------------------------------------------------
 
 function renderMCQ(q) {
+    const container = document.getElementById('options-container');
+    container.innerHTML = '';
     q.a.forEach((optionText, index) => {
         const btn = document.createElement("button");
         btn.className = "action-btn";
