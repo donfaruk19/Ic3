@@ -129,53 +129,44 @@ function populateModuleDropdown(trackId) {
 /**
  * Validates initialization form data and constructs targeted question sandbox arrays
  */
+/**
+ * Validates initialization form data and constructs targeted question sandbox arrays
+ */
 function deployExamSandbox() {
     session.mode = UI.modeSelect ? UI.modeSelect.value : "training";
     session.selectedModule = UI.moduleSelect ? UI.moduleSelect.value : "all";
     session.currentIdx = 0;
     session.questions = [];
 
-    // Construct evaluation target set from Level 3 Modules
-    if (session.currentTrack === 3 && typeof level3Modules !== 'undefined') {
-        if (session.selectedModule === "all") {
-            Object.keys(level3Modules).forEach(modKey => {
-                level3Modules[modKey].questions.forEach(q => {
-                    let clone = JSON.parse(JSON.stringify(q));
-                    clone.sourceLesson = `L3: ${level3Modules[modKey].title}`;
-                    session.questions.push(clone);
-                });
-            });
-        } else if (level3Modules[session.selectedModule]) {
-            level3Modules[session.selectedModule].questions.forEach(q => {
+    const targetLevelKey = 'level' + session.currentTrack;
+    const levelData = masterQuestionBank[targetLevelKey];
+
+    if (!levelData) {
+        alert("Configuration Error: Selected data repository level is missing.");
+        return;
+    }
+
+    // If user selected "ALL LEVEL X COMBINED"
+    if (session.selectedModule === "all") {
+        Object.keys(levelData).forEach(lessonKey => {
+            levelData[lessonKey].questions.forEach(q => {
                 let clone = JSON.parse(JSON.stringify(q));
-                clone.sourceLesson = `L3: ${level3Modules[session.selectedModule].title}`;
+                clone.sourceLesson = levelData[lessonKey].title;
                 session.questions.push(clone);
             });
-        }
-    } else {
-        // Construct array from Level 2 modules mapping tracking variables
-        const sourceData = typeof allModules !== 'undefined' ? allModules : {};
-        if (session.selectedModule === "all") {
-            Object.keys(sourceData).forEach(modKey => {
-                if (sourceData[modKey].questions) {
-                    sourceData[modKey].questions.forEach(q => {
-                        let clone = JSON.parse(JSON.stringify(q));
-                        clone.sourceLesson = sourceData[modKey].title || `L2: ${modKey.toUpperCase()}`;
-                        session.questions.push(clone);
-                    });
-                }
-            });
-        } else if (sourceData[session.selectedModule] && sourceData[session.selectedModule].questions) {
-            sourceData[session.selectedModule].questions.forEach(q => {
-                let clone = JSON.parse(JSON.stringify(q));
-                clone.sourceLesson = sourceData[session.selectedModule].title || `L2 Module`;
-                session.questions.push(clone);
-            });
-        }
+        });
+    } 
+    // If user selected a specific individual lesson
+    else if (levelData[session.selectedModule]) {
+        levelData[session.selectedModule].questions.forEach(q => {
+            let clone = JSON.parse(JSON.stringify(q));
+            clone.sourceLesson = levelData[session.selectedModule].title;
+            session.questions.push(clone);
+        });
     }
 
     if (session.questions.length === 0) {
-        alert("Configuration Error: Selected data repository target module is unpopulated.");
+        alert("Configuration Error: The selected module currently contains no questions. Please paste your questions into questions.js.");
         return;
     }
 
@@ -189,7 +180,7 @@ function deployExamSandbox() {
 
     // Run clock mechanics if Testing profile is initialized
     if (session.mode === "testing") {
-        session.timeRemaining = 45 * 60;
+        session.timeRemaining = 45 * 60; // 45 Minutes
         runSimulationClock();
         if (UI.timer) UI.timer.style.color = "#fff";
     } else {
@@ -199,7 +190,6 @@ function deployExamSandbox() {
 
     loadQuestion();
 }
-
 /**
  * Directs the core rendering pipeline for all active test layout blocks
  */
