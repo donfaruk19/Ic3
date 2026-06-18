@@ -204,6 +204,7 @@ function deployExamSandbox() {
  * Directs the core rendering pipeline for all active test layout blocks
  */
 function loadQuestion() {
+    let currentQ = session.questions[session.currentIdx] || null;
     const q = session.getCurrentQuestion();
     if (!q) return;
 
@@ -481,6 +482,7 @@ function triggerImmediateFeedback(isCorrect, explanationText) {
 // -----------------------------------------------------------------
 
 function handleNext() {
+    let currentQ = session.questions[session.currentIdx] || null;
     if (session.currentIdx < session.questions.length - 1) {
         session.currentIdx++;
         loadQuestion();
@@ -497,6 +499,7 @@ function handlePrev() {
 }
 
 function toggleFlag() {
+    let currentQ = session.questions[session.currentIdx] || null;
     session.flags[session.currentIdx] = !session.flags[session.currentIdx];
     loadQuestion();
 }
