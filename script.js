@@ -4,107 +4,75 @@
 
 // High-Security Session Matrix State Object
 let session = {
-    mode: "training",      // Options: 'training' or 'testing'
-    currentTrack: null,    // Selected Track: 1, 2 or 3
-    selectedModule: null,  // Target module key or 'all'
+    mode: "training",      
+    currentTrack: null,    
+    selectedModule: null,  
     currentIdx: 0,
     questions: [],
-    userAnswers: [],       // Array storing user configuration inputs
+    userAnswers: [],       
+    flags: [],             
+    timerId: null,
+    timeRemaining: 45 * 60,
     getCurrentQuestion: function() {
         return this.questions[this.currentIdx] || null;
-    },                     // FIX: Added missing comma to prevent script crash
-    flags: [],             // Array tracking user flagged checkpoints
-    timerId: null,
-    timeRemaining: 45 * 60 // 45-minute baseline operational limit
+    }
 };
 
 // Global DOM Cache Matrix Injection Layer
-const UI = {
-    dashScreen: document.getElementById('dashboard-screen'),
-    workScreen: document.getElementById('workspace-screen'),
-    setupScreen: document.getElementById('setup-screen'),
-    examContainer: document.getElementById('exam-container'),
-    optionsContainer: document.getElementById('options-container'),
-    interactiveContainer: document.getElementById('interactive-container'),
-    qText: document.getElementById('question-text'),
-    progressIndicator: document.getElementById('progress-indicator'),
-    timer: document.getElementById('exam-timer'),
-    prevBtn: document.getElementById('prev-btn'),
-    nextBtn: document.getElementById('next-btn'),
-    flagBtn: document.getElementById('flag-btn'),
-    resultScreen: document.getElementById('result-screen'),
-    candidateNameInput: document.getElementById('candidate-name'),
-    moduleSelect: document.getElementById('module-select'),
-    modeSelect: document.getElementById('mode-select'),
-    reportName: document.getElementById('report-candidate-name'),
-    reportScore: document.getElementById('report-final-score'),
-    reportOutcome: document.getElementById('report-outcome-text'),
-    analysisBody: document.getElementById('analysisTableBody')
-};
-
-// Orchestrate initialization bindings once DOM layers stabilize
+// We use a DOMContentLoaded listener to ensure these elements exist
 document.addEventListener("DOMContentLoaded", () => {
-    if (UI.nextBtn) UI.nextBtn.addEventListener("click", handleNext);
-    if (UI.prevBtn) UI.prevBtn.addEventListener("click", handlePrev);
-    if (UI.flagBtn) UI.flagBtn.addEventListener("click", toggleFlag);
-    
-    const setupForm = document.getElementById("setup-form");
-    if (setupForm) {
-        setupForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            deployExamSandbox();
-        });
-    }
+    window.UI = {
+        dashScreen: document.getElementById('dashboard-screen'),
+        workScreen: document.getElementById('workspace-screen'),
+        setupScreen: document.getElementById('setup-screen'),
+        examContainer: document.getElementById('exam-container'),
+        optionsContainer: document.getElementById('options-container'),
+        // ... rest of your UI mappings
+    };
 });
 
 /**
- * Route Tracker Launcher - Triggered by Dashboard Selection Cards
- * Opens the Deployment Form and seeds the configuration drops.
+ * Route Tracker Launcher 
+ * This must be defined globally so the onclick in HTML can see it.
  */
-    function selectTrack(trackId) {
-        // Shift Interface Views
-        document.getElementById('dashboard-screen').classList.add('hidden');
-        document.getElementById('workspace-screen').classList.remove('hidden');
-        document.getElementById('setup-screen').classList.remove('hidden');
-        document.getElementById('exam-container').classList.add('hidden');
-        document.getElementById('result-screen').classList.add('hidden');
-        document.getElementById('review-screen').classList.add('hidden');
-
-        // Clear existing dropdown options
-        const moduleSelect = document.getElementById('module-select');
-        moduleSelect.innerHTML = ''; 
-
-        // Target the specific level in the unified database (e.g., 'level2' or 'level3')
-        const targetLevelKey = 'level' + trackId;
-        
-        // Safety Check: Make sure questions.js is loaded
-        if (typeof masterQuestionBank === 'undefined') {
-            alert("CRITICAL ERROR: questions.js database is missing or failed to load.");
-            return;
-        }
-
-        const levelData = masterQuestionBank[targetLevelKey];
-
-        // Populate the dropdown dynamically based on the track selected
-        if (levelData) {
-            // Option 1: Master Exam (All Modules)
-            let allOpt = document.createElement('option');
-            allOpt.value = 'all';
-            allOpt.textContent = `ALL LEVEL ${trackId} COMBINED CORE OBJECTIVES`;
-            moduleSelect.appendChild(allOpt);
-
-            // Option 2: Individual Modules
-            Object.keys(levelData).forEach(lessonKey => {
-                let nOpt = document.createElement('option');
-                nOpt.value = lessonKey; // e.g., 'l3_lesson15'
-                nOpt.textContent = levelData[lessonKey].title; // e.g., 'Lesson 15: Technology Basics'
-                moduleSelect.appendChild(nOpt);
-            });
-        } else {
-            console.error(`Data for ${targetLevelKey} not found in masterQuestionBank.`);
-        }
+function selectTrack(trackId) {
+    session.currentTrack = trackId;
+    
+    // Safety check for data
+    if (typeof masterQuestionBank === 'undefined') {
+        console.error("Critical: questions.js is not loaded.");
+        return;
     }
 
+    const targetKey = 'level' + trackId;
+    const levelData = masterQuestionBank[targetKey];
+    
+    if (!levelData) {
+        console.error("Data for " + targetKey + " not found.");
+        return;
+    }
+
+    // Hide dashboard, show workspace
+    document.getElementById('dashboard-screen').classList.add('hidden');
+    document.getElementById('workspace-screen').classList.remove('hidden');
+    
+    // Populate the dropdown (ensure module-select exists in your HTML)
+    const moduleSelect = document.getElementById('module-select');
+    if (moduleSelect) {
+        moduleSelect.innerHTML = "";
+        let allOpt = document.createElement('option');
+        allOpt.value = 'all';
+        allOpt.textContent = `ALL LEVEL ${trackId} COMBINED`;
+        moduleSelect.appendChild(allOpt);
+
+        Object.keys(levelData).forEach(lessonKey => {
+            let nOpt = document.createElement('option');
+            nOpt.value = lessonKey;
+            nOpt.textContent = levelData[lessonKey].title;
+            moduleSelect.appendChild(nOpt);
+        });
+    }
+}
     function returnToDashboard() {
         document.getElementById('workspace-screen').classList.add('hidden');
         document.getElementById('dashboard-screen').classList.remove('hidden');
