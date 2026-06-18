@@ -1,5 +1,5 @@
 // =================================================================
-// IC3 GS6 LEVEL 3 EXAM DATA MATRIX
+// IC3 GS6 LEVEL 3 EXAM DATA MATRIX (REGENERATED & EXPANDED: 55 QUESTIONS)
 // =================================================================
 const level3Modules = {
     lesson1: {
@@ -106,6 +106,85 @@ const level3Modules = {
                 a: ["Smartphone", "Desktop Computer", "Tablet"],
                 cor: 1,
                 exp: "Desktop computers use standardized internal spaces and PCI-e layouts, allowing operators to safely update RAM, drives, and processing units."
+            },
+            {
+                type: "mcq",
+                q: "When evaluating hardware infrastructure for a dense wireless workplace deployment, what distinct operational advantage does the 6 GHz frequency band provide over legacy 2.4 GHz and 5 GHz networks?",
+                a: [
+                    "Significantly longer wave propagation distances through reinforced concrete barriers.",
+                    "Access to wider dedicated channels with minimal radio frequency congestion from older devices.",
+                    "Complete backward compatibility with legacy 802.11b hardware devices.",
+                    "Elimination of the requirement for network-level security protocol layers."
+                ],
+                cor: 1,
+                exp: "The 6 GHz spectrum provides substantial bandwidth channels free from legacy device degradation, mitigating interference in congested local networks."
+            },
+            {
+                type: "mcq",
+                q: "What technical problem occurs on a workstation when the host operating system engages in excessive 'page swapping' (thrashing) within virtual memory allocations?",
+                a: [
+                    "The CPU physical core clock rate dynamically scales upward to match demand.",
+                    "System responsiveness drops drastically because mechanical or flash drive access is exponentially slower than native RAM.",
+                    "The motherboard isolates the primary power phase rail and activates low-power safe recovery.",
+                    "The contents of the secondary application configuration matrix are entirely purged."
+                ],
+                cor: 1,
+                exp: "Virtual memory uses secondary storage as overflow space when physical RAM is exhausted. Thrashing occurs when the OS spends more time shuffling page data between disk and memory than executing software threads, killing system throughput."
+            },
+            {
+                type: "mcq",
+                q: "Which interface standard allows high-performance solid-state drives (SSDs) to communicate directly over a workstation's PCI Express bus architecture?",
+                a: ["SATA III", "NVMe (Non-Volatile Memory Express)", "SAS (Serial Attached SCSI)", "IDE PATA"],
+                cor: 1,
+                exp: "NVMe maps communication directly onto high-speed PCIe channels, reducing internal driver latencies compared to older storage controller protocols."
+            },
+            {
+                type: "multi",
+                q: "A computer initiates power phases but fails to clear the Power-On Self-Test (POST) sequence, presenting an unyielding blank display plate. Which two diagnostics steps are appropriate to isolate this fault?",
+                a: [
+                    "Auditing the motherboard's discrete hardware beep-code frequencies or integrated troubleshooting LEDs.",
+                    "Initiating a comprehensive deep-system directory scan using local anti-malware software engines.",
+                    "Verifying device driver update rollouts within the platform Device Manager utility.",
+                    "Testing operational thresholds with a verified baseline power supply or reseating RAM modules sequentially.",
+                    "Re-allocating the primary storage partitioning boundary configurations."
+                ],
+                required: 2,
+                cor: [0, 4],
+                exp: "Pre-boot failures (POST issues) happen before the OS is active. Auditing motherboard indicators (beeps/LEDs) or isolating critical components like the power supply unit (PSU) and RAM are the proper hardware diagnostics approaches."
+            },
+            {
+                type: "mcq",
+                q: "In cloud infrastructure architecture, what specific software component sits between physical host hardware resources and the client runtime instances to govern virtualization allocations?",
+                a: ["Container Engine wrapper", "Hypervisor", "Elastic Resource Load Balancer", "Application Programming Interface Gateway"],
+                cor: 1,
+                exp: "A hypervisor (or Virtual Machine Monitor) abstracts computing power, memory structures, and hardware storage, assigning them strictly to isolated virtual machines."
+            },
+            {
+                type: "match",
+                q: "Match the specialized physical peripheral interface array to its intended workspace accessibility or operational role.",
+                pairs: [
+                    { item: "Ergonomic Vertical Mouse", match: "Reduces forearm pronation and wrist repetitive strain risks during long monitoring shifts." },
+                    { item: "Refreshable Braille Unit", match: "Translates active workspace screen code streams into tactile output arrays for visually impaired technicians." },
+                    { item: "Sip-and-Puff Controller", match: "Translates precise air pressure variations into software navigation vectors for motor-impaired operators." }
+                ],
+                exp: "Specialized inputs match physical operational requirements, helping users with various accommodation or workplace safety needs interact with software effectively."
+            },
+            {
+                type: "mcq",
+                q: "Why are discrete Graphics Processing Units (GPUs) fundamentally more effective than traditional Central Processing Units (CPUs) for executing parallel analytical models like machine learning sets?",
+                a: [
+                    "GPUs feature higher core clock frequencies measured in deep Terahertz steps.",
+                    "GPUs deploy thousands of micro-cores engineered to process vast matrices of computations simultaneously.",
+                    "GPUs function completely outside the standard limitations of the system BIOS framework.",
+                    "GPUs utilize non-volatile memory architectures that require no electrical voltage refresh intervals."
+                ],
+                cor: 1,
+                exp: "CPUs are designed for fast sequential logic on a few complex processing cores. GPUs handle massive datasets simultaneously by breaking parallel calculations across thousands of small, specialized vector cores."
+            },
+            {
+                type: "mcq",
+                q: "Which hardware appliance bridges the grid line to provide both surge deflection and temporary battery runtime blocks when critical infrastructure suffers line droops or blackouts?",
+                a: ["Transient Voltage Surge Suppressor strip", "Uninterruptible Power Supply (UPS)", "Step-Down Isolation Transformer", "Managed Power Distribution Unit"]
             }
         ]
     },
@@ -218,6 +297,75 @@ const level3Modules = {
                 a: ["Sociopolitical Bias", "Commercial Bias", "Logical Fallacy", "Inferential Bias"],
                 cor: 2,
                 exp: "A logical fallacy is an error in reasoning that undermines the structural validity of an argument within informational materials."
+            },
+            {
+                type: "mcq",
+                q: "When a team analyst gathers information and highlights evidence that strictly matches a preferred hypothesis while disregarding conflicting research data, what bias is occurring?",
+                a: ["Sunk Cost Blindness", "Confirmation Bias", "Ad Hominem Divergence", "Availability Fallacy"],
+                cor: 1,
+                exp: "Confirmation bias occurs when an individual filters information to fit their pre-existing beliefs, ignoring balanced factual counter-points."
+            },
+            {
+                type: "multi",
+                q: "An analyst is evaluating a suspect video statement found on open networks. Which two methods or structural signs are most effective for identifying a deepfake video?",
+                a: [
+                    "Verifying that the file properties list standard high-definition resolution profiles.",
+                    "Inspecting for visual artifacts along edge lines, erratic blinking rhythms, and inconsistent facial shadows.",
+                    "Executing basic keyword query terms of the speaker's name inside general public directories.",
+                    "Running a frame-by-frame analysis to detect audio-to-video synchronization anomalies or unnatural light shifts.",
+                    "Checking if the source media element runs correctly across different open video applications."
+                ],
+                required: 2,
+                cor: [1, 3],
+                exp: "Forensic video assessment isolates geometric blending anomalies on the face, lighting inconsistencies, and microscopic audio sync deviations typical of AI synthesis engines."
+            },
+            {
+                type: "mcq",
+                q: "Which query syntax properly instructs an indexing engine to isolate PDF files found only on official United States government web nodes?",
+                a: ["site:.gov + file:.pdf", "site:gov filetype:pdf", "domain:gov type:pdf", "search:gov/extensions:pdf"],
+                cor: 1,
+                exp: "The 'site:' modifier restricts queries to specific domains, while 'filetype:' filters for matching document formats."
+            },
+            {
+                type: "mcq",
+                q: "What is the core practice of 'Lateral Reading' when cross-examining an unfamiliar online media publisher's reliability?",
+                a: ["Reading from the absolute top of the source layout page straight down to the footer notes before closing the tab."],
+                b: ["Opening separate browser tabs to research independent third-party sources and analysis regarding that author or organization."],
+                c: ["Analyzing font choice, design elements, and image resolution values directly on the landing dashboard."],
+                d: ["Checking if the domain layout incorporates a standard privacy statement or modern contact widget."],
+                cor: 1,
+                exp: "Lateral reading means looking outside the publication's own site to discover how independent media critics, watchdogs, or reference networks evaluate their credibility."
+            },
+            {
+                type: "mcq",
+                q: "During a technical forum debate, a speaker distorts an opponent's defense architecture to make it appear weak and easily compromised, then attacks that caricature. What fallacy was committed?",
+                a: ["False Dilemma (Either-Or)", "Straw Man Fallacy", "Slippery Slope Progression", "Circular Restatement"],
+                cor: 1,
+                exp: "A Straw Man fallacy occurs when an opponent's actual argument is misrepresented or exaggerated to make it an easier target for refutation."
+            },
+            {
+                type: "match",
+                q: "Match the network identity tracing/tracking tracking variable to its correct operational description.",
+                pairs: [
+                    { item: "First-party Cookie", match: "Created and cached by the direct site you are visiting to preserve state logs, cart structures, and system profile identities." },
+                    { item: "Third-party Cookie", match: "Embedded by independent marketing networks to build an analytical behavior profile across completely different domains." },
+                    { item: "Incognito Profile Mode", match: "Ensures the host browser purges temporary session data, tracking cookies, and local history lines as soon as the window closes." }
+                ],
+                exp: "First-party cookies manage direct interaction logs; third-party elements cross domain boundaries for profiling; incognito settings clear local session data."
+            },
+            {
+                type: "mcq",
+                q: "A network operator flags a suspicious email domain variant 'rnicrosoft.com' designed to mimic 'microsoft.com' by relying on letter combinations. This deceptive strategy is known as:",
+                a: ["Doxing", "Typosquatting", "Man-in-the-Middle Injection", "Data Exfiltration Layout"],
+                cor: 1,
+                exp: "Typosquatting targets users who make typographical errors or fail to spot subtle visual character replacements (like 'r' and 'n' mimicking 'm') in fraudulent links."
+            },
+            {
+                type: "mcq",
+                q: "What digital dynamic occurs when optimization algorithms continuously feed content that aligns with an analyst's past habits, isolating them from alternative information streams?",
+                a: ["Data Decentralization Loop", "Filter Bubble / Echo Chamber", "Network Latency Sync Error", "Architectural Redundancy Model"],
+                cor: 1,
+                exp: "Filter bubbles isolate individuals from diverse perspectives by continuously matching user feeds to their past behavioral tracking history."
             }
         ]
     },
@@ -274,6 +422,128 @@ const level3Modules = {
                 a: ["Adding the audio track as background music for a public social video profile.", "Downloading an offline copy from unvetted channels to avoid payment gates.", "Embedding the media file as the primary theme audio inside a commercial presentation deck.", "Playing the physical audio copy using personal gear privately among friends."],
                 cor: 3,
                 exp: "Private, non-commercial playback among a small circle of friends does not constitute public performance or synchronization infringement."
+            },
+            {
+                type: "multi",
+                q: "Which three statements define the operational advantages or properties of Vector-based media configurations?",
+                a: [
+                    "Graphics are mapped mathematically using anchors, paths, arcs, and geometric coordinates.",
+                    "Assets can be scaled infinitely higher without generating pixelation or loss of line sharpness.",
+                    "They are the ideal standard choice for recording detailed real-world photographic scenery.",
+                    "They maintain a lightweight storage footprint for corporate icons, wireframes, and logos.",
+                    "They undergo permanent format destruction if moved onto solid-state environments."
+                ],
+                required: 3,
+                cor: [0, 1, 3],
+                exp: "Vector assets use geometric formulas rather than static pixel matrices. This means they scale cleanly without bloating storage files, making them ideal for logos and layouts."
+            },
+            {
+                type: "mcq",
+                q: "An online presentation template is marked with a Creative Commons 'CC BY-NC-ND' designation. What boundaries must an operator honor to use this asset legally?",
+                a: ["Revamp the visual layout freely, use it inside paid ad campaigns, and erase author tags."],
+                b: ["Credit the original creator, limit use to non-commercial environments, and construct no derivative variations."],
+                c: ["Redistribute the material for business profits provided the base file packaging standard is changed."],
+                d: ["Deploy the content across external marketing channels while skipping author attribution loops."],
+                cor: 1,
+                exp: "The CC BY-NC-ND license requires explicit author attribution (BY), restricts usage to non-profit activities (NC), and forbids derivative adaptations (ND)."
+            },
+            {
+                type: "mcq",
+                q: "When formatting a critical report or slide deck intended for executive leadership review, which typography layout choice best preserves professional readability?",
+                a: ["Filling every slide with long paragraphs of descriptive text to ensure no detail is skipped."],
+                b: ["Deploying high-contrast font combinations, consistent heading hierarchies, and parsing data into concise bullet parameters."],
+                c: ["Mixing three distinct text animations and bright color sweeps on every new line entry."],
+                d: ["Placing a low-contrast abstract wallpaper directly behind the primary informational blocks."],
+                cor: 1,
+                exp: "Effective presentations use clean layout hierarchies, high-contrast text combinations, and concise, legible text blocks to ensure readability."
+            },
+            {
+                type: "mcq",
+                q: "What is the primary technical objective of providing alternative text ('Alt Text') markup strings for image elements in web documents?",
+                a: ["To shield the asset file structure from unauthorized scrapers using basic encryption hooks."],
+                b: ["To supply assistive screen readers with a spoken text description of the graphic for visually impaired users."],
+                c: ["To force the underlying layout engine to multiply image dimensions on high-resolution monitors."],
+                d: ["To embed localized GPS tracking fields inside the image element's root metadata layers."],
+                cor: 1,
+                exp: "Alt text provides descriptive content for images, ensuring screen reader engines can articulate graphic meanings to visually impaired users."
+            },
+            {
+                type: "mcq",
+                q: "In professional video engineering, what is the core functional difference between a codec and a container format?",
+                a: ["The codec outlines the display skin design, while the container establishes file license fees."],
+                b: ["The codec compresses and decompresses raw media tracks, while the container packages the audio, video, and subtitle elements into one standardized file wrapper."],
+                c: ["The container modifies local optical lens focus variables, while the codec acts as a hardware processing chip."],
+                d: ["The codec manages cloud distribution pipelines, while the container runs exclusively inside local memory structures."],
+                cor: 1,
+                exp: "Codecs (such as H.264 or AV1) encode and decode raw video and audio streams, whereas containers (like .MP4 or .MKV) act as files that bundle these separate tracks together."
+            },
+            {
+                type: "mcq",
+                q: "An analyst configures the cell formula '=B$2 * C2' in a spreadsheet application and replicates it down to the next row. What text structure appears in the new cell?",
+                a: ["=B$3 * C3", "=B$2 * C3", "=B2 * C2", "=B$2 * C2"],
+                cor: 1,
+                exp: "The dollar sign ($) creates an absolute row reference, locking row 2 in place. The relative reference (C2) updates dynamically to C3 when moved down to the next row."
+            },
+            {
+                type: "mcq",
+                q: "Which spreadsheet configuration constraint keeps cell inputs confined to whole integers between 1 and 50, automatically blocking text or out-of-bounds input values?",
+                a: ["Conditional Formatting rules", "Data Validation settings", "AutoFilter indexing arrays", "Pivot Table cross-summaries"],
+                cor: 1,
+                exp: "Data validation allows authors to enforce data types, numerical ranges, and custom rules on cell inputs, maintaining data integrity."
+            },
+            {
+                type: "mcq",
+                q: "What is the goal of utilizing Responsive Web Design frameworks along with CSS Media Queries?",
+                a: ["To reduce processing latency inside back-end database servers during search queries."],
+                b: ["To ensure the page layout automatically repositions and rescales dynamically across all device viewports, from smartphones to large monitors."],
+                c: ["To prevent the web browser from reading first-party or third-party storage cookies."],
+                d: ["To block end users from executing native document printing processes in the browser environment."],
+                cor: 1,
+                exp: "Responsive web design dynamically adapts page elements and asset grids to match the user's screen width and device orientation, providing an optimal user experience."
+            },
+            {
+                type: "mcq",
+                q: "Which tracking chart visualizes a complex project layout by detailing task lengths, individual completion markers, and dependencies across a horizontal timeline?",
+                a: ["Venn Diagram matrix", "Gantt Chart", "Pie Progression metric", "Mind Map configuration"],
+                cor: 1,
+                exp: "Gantt charts display tasks, milestones, and workflow dependencies on a timeline, helping teams track project schedules."
+            },
+            {
+                type: "match",
+                q: "Match the structural HTML semantic tag to its correct document layout responsibility.",
+                pairs: [
+                    { item: "<nav>", match: "Encapsulates the primary block of navigational hyperlinks used to travel across site directories." },
+                    { item: "<article>", match: "Defines a self-contained content module intended to be independently reusable or syndicatable." },
+                    { item: "<footer>", match: "Specifies the bottom block of a page, typically storing copyright info, terms links, or author metadata fields." }
+                ],
+                exp: "Semantic markup tags clearly describe their structural role to browsers, search indexers, and screen readers."
+            },
+            {
+                type: "mcq",
+                q: "When collaborating with a team in a cloud word processor, which utility records all text insertions, adjustments, and deletions for subsequent owner approval?",
+                a: ["Macro Automation Scripting tools", "Track Changes / Suggesting Mode", "Strict Folder Access Encryption", "Metadata Tagging Fields"],
+                cor: 1,
+                exp: "Track Changes or Suggesting mode acts as an audit trail that highlights collaborative edits without overwriting the text permanently until approved."
+            },
+            {
+                type: "mcq",
+                q: "When adjusting audio settings for an instructional training module, increasing the digital sample rate results in:",
+                a: ["A significant compression of the overall audio file size footprint on disk."],
+                b: ["More frequent digital snapshots of the analog sound wave per second, capturing higher frequencies with greater fidelity."],
+                c: ["An automatic decrease in microphone physical recording levels."],
+                d: ["The transformation of the acoustic stream into a mathematical vector asset layout."],
+                cor: 1,
+                exp: "The sample rate determines the number of audio snapshots taken per second. Higher sample rates capture sound wave frequencies more accurately, improving audio fidelity at the cost of larger file sizes."
+            },
+            {
+                type: "mcq",
+                q: "What is the primary reason for outputting finalized tech manuals or project reports in Portable Document Format (PDF) rather than standard text formats?",
+                a: ["PDF files allow any viewer to modify primary text layout parameters without specialized tools."],
+                b: ["PDF files preserve visual formatting, typography choices, and image positioning identically across all operating platforms and hardware configurations."],
+                c: ["PDF files skip the need for file compression algorithms during storage transfers."],
+                d: ["PDF elements allow the document to run system hardware drivers directly from the paragraph blocks."],
+                cor: 1,
+                exp: "The PDF specification is a post-layout document format designed to display assets identically on any operating system, screen size, or device type."
             }
         ]
     }
