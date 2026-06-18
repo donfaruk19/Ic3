@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IC3 GS6 MASTER PRACTICUM PLATFORM</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         :root {
             --bg-primary: #0b0f19;
@@ -14,6 +15,7 @@
             --text-muted: #a0aec0;
             --border-color: #2d3748;
             --success: #38a169;
+            --danger: #e53e3e;
         }
 
         body {
@@ -21,13 +23,18 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* DASHBOARD SCREEN */
+        /* CENTRAL SELECTION LANDING DASHBOARD */
         .dashboard-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .header-banner {
@@ -53,7 +60,7 @@
 
         .track-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
@@ -65,6 +72,9 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .track-card::before {
@@ -94,6 +104,7 @@
             font-weight: bold;
             text-transform: uppercase;
             margin-bottom: 15px;
+            align-self: flex-start;
         }
 
         .level-2 .track-badge { background: rgba(49, 130, 206, 0.2); color: var(--accent-blue); }
@@ -132,7 +143,7 @@
 
         .hidden { display: none !important; }
         
-        /* BACK BUTTON INTEGRATION */
+        /* WORKSPACE INTEGRATION STYLES */
         .back-to-dash-btn {
             background: transparent;
             border: 1px solid var(--border-color);
@@ -142,16 +153,70 @@
             cursor: pointer;
             font-weight: 600;
             margin-bottom: 20px;
+            transition: all 0.2s;
         }
         .back-to-dash-btn:hover {
             color: var(--text-main);
             border-color: var(--accent-gold);
         }
+
+        /* CONFIGURATION FORM WORKFLOW */
+        .config-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: var(--accent-gold);
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--accent-gold);
+            outline: none;
+        }
+        .launch-engine-btn {
+            background: var(--accent-gold);
+            color: #000;
+            font-weight: bold;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .launch-engine-btn:hover {
+            background: #b39670;
+        }
     </style>
 </head>
 <body>
 
-    <!-- CENTRAL SELECTION LANDING DASHBOARD -->
+    <div id="loading-overlay" class="hidden" role="alert" aria-busy="true" aria-live="polite">
+        <div class="spinner"></div>
+        <p>Loading Mission Parameters...</p>
+    </div>
+
     <div id="dashboard-screen" class="dashboard-container">
         <div class="header-banner">
             <h1>IC3 GS6 CERTIFICATION TRAINING SUITE</h1>
@@ -159,40 +224,152 @@
         </div>
 
         <div class="track-grid">
-            <!-- LEVEL 2 TRACK -->
             <div class="track-card level-2">
-                <span class="track-badge">Level 2 Track</span>
-                <h2 class="track-title">Core Digital Competencies</h2>
-                <p class="track-desc">Focuses on intermediate skills across workplace applications, network navigation, and basic system diagnostics configurations.</p>
+                <div>
+                    <span class="track-badge">Level 2 Track</span>
+                    <h2 class="track-title">Core Digital Competencies</h2>
+                    <p class="track-desc">Focuses on intermediate skills across workplace applications, network navigation, and basic system diagnostics configurations.</p>
+                </div>
                 <button class="action-btn" onclick="selectTrack(2)">Access Level 2 Systems</button>
             </div>
 
-            <!-- LEVEL 3 TRACK -->
             <div class="track-card level-3">
-                <span class="track-badge">Level 3 Track</span>
-                <h2 class="track-title">Advanced Literacy & Information Security</h2>
-                <p class="track-desc">Master data visualization parsing, complex licensing mechanisms, design lifecycles, and cryptographic multifactor verification architectures.</p>
+                <div>
+                    <span class="track-badge">Level 3 Track</span>
+                    <h2 class="track-title">Advanced Literacy & Information Security</h2>
+                    <p class="track-desc">Master data visualization parsing, complex licensing mechanisms, design lifecycles, and cryptographic multifactor verification architectures.</p>
+                </div>
                 <button class="action-btn" onclick="selectTrack(3)">Access Level 3 Systems</button>
             </div>
         </div>
     </div>
 
-    <!-- MAIN EXAM SIMULATOR WORKSPACE WRAPPER -->
     <div id="workspace-screen" class="hidden">
         <div style="max-width:1000px; margin: 20px auto; padding: 0 20px;">
             <button class="back-to-dash-btn" onclick="returnToDashboard()">← Return to Mission Control</button>
             
-            <!-- Existing Quiz System Containers remain inside here -->
-            <div id="exam-container">
-                <div class="q-header">
-                    <span id="question-text">Question content will render dynamically here.</span>
+            <section id="setup-screen" aria-labelledby="setup-title">
+                <div class="config-box">
+                    <h2 id="setup-title" style="color: var(--accent-gold); margin-top: 0; margin-bottom: 20px; font-size: 1.3rem; text-transform: uppercase;">System Deployment Initialization</h2>
+                    <form id="setup-form" onsubmit="event.preventDefault();">
+                        <div class="form-group">
+                            <label for="candidate-name">Candidate Operator Name:</label>
+                            <input type="text" id="candidate-name" placeholder="Enter full name" required value="Guest Operator">
+                        </div>
+                        <div class="form-group">
+                            <label for="module-select">Target Objective Module:</label>
+                            <select id="module-select">
+                                </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mode-select">Execution Profile Mode:</label>
+                            <select id="mode-select">
+                                <option value="training">Training Profile (Immediate Answer Explanations)</option>
+                                <option value="testing">Testing Profile (Full Exam Simulation Sandbox)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="launch-engine-btn" id="start-btn">Deploy Exam Sandbox</button>
+                    </form>
                 </div>
-                <div id="options-container"></div>
-                <div id="interactive-container"></div>
-                <!-- Controls and Feedback components go here -->
+            </section>
+
+            <div id="exam-container" class="hidden">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 20px;">
+                    <span id="progress-indicator" style="font-weight: bold; color: var(--accent-gold);">Question: --/--</span>
+                    <span id="exam-timer" style="font-family: monospace; font-size: 1.1rem; color: #fff;">Time Remaining: --:--</span>
+                </div>
+
+                <div class="q-header" style="margin-bottom: 25px;">
+                    <h3 id="question-text" style="font-size: 1.15rem; line-height: 1.6; margin: 0;">Question content will render dynamically here.</h3>
+                </div>
+                
+                <div id="options-container" style="margin-bottom: 25px;"></div>
+                <div id="interactive-container" style="margin-bottom: 25px;"></div>
+
+                <div style="display: flex; justify-content: space-between; gap: 10px; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                    <button id="prev-btn" class="back-to-dash-btn" style="margin:0;">Previous</button>
+                    <div>
+                        <button id="flag-btn" class="back-to-dash-btn" style="margin:0; border-color: var(--accent-gold); color: var(--accent-gold);">Flag Question</button>
+                    </div >
+                    <button id="next-btn" class="launch-engine-btn" style="width: auto; padding: 10px 25px;">Next</button>
+                </div>
             </div>
+
+            <section id="result-screen" class="hidden">
+                <div class="config-box" style="text-align: center;">
+                    <h2 style="color: var(--accent-gold); margin-top:0;">Performance Assessment Report</h2>
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
+                    
+                    <div style="font-size: 1.2rem; margin-bottom: 10px;">Operator: <span id="report-candidate-name" style="font-weight: bold; color: #fff;">--</span></div>
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--accent-gold); margin: 20px 0;" id="report-final-score">0</div>
+                    
+                    <div class="outcome-banner" style="padding: 15px; border-radius: 6px; margin-bottom: 25px; background: rgba(255,255,255,0.05);">
+                        <span id="report-outcome-text" style="font-weight: bold; letter-spacing: 1px;">--</span>
+                        <span id="report-outcome-icon" class="status-icon"></span>
+                    </div>
+
+                    <table style="width: 100%; border-collapse: collapse; text-align: left; margin-bottom: 25px;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--border-color); color: var(--accent-gold);">
+                                <th style="padding: 10px;">Objective Competency Domain</th>
+                                <th style="padding: 10px; text-align: right;">Proficiency Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="analysisTableBody">
+                            </tbody>
+                    </table>
+
+                    <div style="display: flex; gap: 15px; justify-content: center;">
+                        <button onclick="window.print()" class="back-to-dash-btn" style="margin:0;">Print Transcript</button>
+                        <button onclick="location.reload()" class="launch-engine-btn" style="width: auto; padding: 10px 25px;">Return to Menu</button>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
+
+    <script>
+        // Track Module Inventory Database Manifest
+        const levelModules = {
+            2: [
+                { key: "l2_lesson1", name: "Lesson 1: Operating System Fundamentals" },
+                { key: "l2_lesson2", name: "Lesson 2: Workplace Applications & Files" },
+                { key: "l2_lesson12", name: "Lesson 12: Network Digital Communication" }
+            ],
+            3: [
+                { key: "l3_lesson1", name: "Lesson 1: Data Visualization & Parsing" },
+                { key: "l3_lesson2", name: "Lesson 2: Advanced Security Architectures" }
+            ]
+        };
+
+        function selectTrack(trackId) {
+            document.getElementById('dashboard-screen').classList.add('hidden');
+            document.getElementById('workspace-screen').classList.remove('hidden');
+            
+            // Reset to clean configuration panel setup state
+            document.getElementById('setup-screen').classList.remove('hidden');
+            document.getElementById('exam-container').classList.add('hidden');
+            document.getElementById('result-screen').classList.add('hidden');
+
+            const moduleSelect = document.getElementById('module-select');
+            moduleSelect.innerHTML = ''; // Purge legacy options
+
+            // Load contextual map criteria modules
+            if (levelModules[trackId]) {
+                levelModules[trackId].forEach(mod => {
+                    let opt = document.createElement('option');
+                    opt.value = mod.key;
+                    opt.textContent = mod.name;
+                    moduleSelect.appendChild(opt);
+                });
+            }
+        }
+
+        function returnToDashboard() {
+            document.getElementById('workspace-screen').classList.add('hidden');
+            document.getElementById('dashboard-screen').classList.remove('hidden');
+        }
+    </script>
 
     <script src="questions.js"></script>
     <script src="script.js"></script>
