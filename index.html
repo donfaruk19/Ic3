@@ -15,7 +15,6 @@
             --text-muted: #a0aec0;
             --border-color: #2d3748;
             --success: #38a169;
-            --danger: #e53e3e;
         }
 
         body {
@@ -24,17 +23,13 @@
             background-color: var(--bg-primary);
             color: var(--text-main);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
-        /* CENTRAL SELECTION LANDING DASHBOARD */
+        /* DASHBOARD SCREEN */
         .dashboard-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
-            width: 100%;
-            box-sizing: border-box;
         }
 
         .header-banner {
@@ -60,7 +55,7 @@
 
         .track-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
 
@@ -143,7 +138,6 @@
 
         .hidden { display: none !important; }
         
-        /* WORKSPACE INTEGRATION STYLES */
         .back-to-dash-btn {
             background: transparent;
             border: 1px solid var(--border-color);
@@ -160,7 +154,6 @@
             border-color: var(--accent-gold);
         }
 
-        /* CONFIGURATION FORM WORKFLOW */
         .config-box {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
@@ -168,9 +161,7 @@
             padding: 25px;
             margin-bottom: 20px;
         }
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .form-group { margin-bottom: 20px; }
         .form-group label {
             display: block;
             font-size: 0.85rem;
@@ -188,10 +179,6 @@
             border-radius: 6px;
             box-sizing: border-box;
         }
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--accent-gold);
-            outline: none;
-        }
         .launch-engine-btn {
             background: var(--accent-gold);
             color: #000;
@@ -205,9 +192,9 @@
             cursor: pointer;
             font-size: 1rem;
         }
-        .launch-engine-btn:hover {
-            background: #b39670;
-        }
+        .launch-engine-btn:hover { background: #b39670; }
+        .copyright-footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 40px; padding: 20px; border-top: 1px solid var(--border-color); }
+        .copyright-footer span { color: var(--accent-gold); font-weight: bold; }
     </style>
 </head>
 <body>
@@ -248,9 +235,9 @@
         <div style="max-width:1000px; margin: 20px auto; padding: 0 20px;">
             <button class="back-to-dash-btn" onclick="returnToDashboard()">← Return to Mission Control</button>
             
-            <section id="setup-screen" aria-labelledby="setup-title">
+            <section id="setup-screen">
                 <div class="config-box">
-                    <h2 id="setup-title" style="color: var(--accent-gold); margin-top: 0; margin-bottom: 20px; font-size: 1.3rem; text-transform: uppercase;">System Deployment Initialization</h2>
+                    <h2 style="color: var(--accent-gold); margin-top:0; text-transform: uppercase; font-size:1.2rem; letter-spacing:1px;">System Deployment Initialization</h2>
                     <form id="setup-form" onsubmit="event.preventDefault();">
                         <div class="form-group">
                             <label for="candidate-name">Candidate Operator Name:</label>
@@ -280,7 +267,7 @@
                 </div>
 
                 <div class="q-header" style="margin-bottom: 25px;">
-                    <h3 id="question-text" style="font-size: 1.15rem; line-height: 1.6; margin: 0;">Question content will render dynamically here.</h3>
+                    <h3 id="question-text" style="font-size: 1.15rem; line-height: 1.6; margin: 0;">Loading Objective...</h3>
                 </div>
                 
                 <div id="options-container" style="margin-bottom: 25px;"></div>
@@ -288,18 +275,22 @@
 
                 <div style="display: flex; justify-content: space-between; gap: 10px; padding-top: 15px; border-top: 1px solid var(--border-color);">
                     <button id="prev-btn" class="back-to-dash-btn" style="margin:0;">Previous</button>
-                    <div>
-                        <button id="flag-btn" class="back-to-dash-btn" style="margin:0; border-color: var(--accent-gold); color: var(--accent-gold);">Flag Question</button>
-                    </div >
+                    <button id="flag-btn" class="back-to-dash-btn" style="margin:0; border-color: var(--accent-gold); color: var(--accent-gold);">Flag Question</button>
                     <button id="next-btn" class="launch-engine-btn" style="width: auto; padding: 10px 25px;">Next</button>
                 </div>
             </div>
+
+            <section id="review-screen" class="hidden">
+                <div class="config-box">
+                    <h2 style="color: var(--accent-gold); margin-top:0;">Review Items Matrix</h2>
+                    <div id="question-nav-grid"></div>
+                </div>
+            </section>
 
             <section id="result-screen" class="hidden">
                 <div class="config-box" style="text-align: center;">
                     <h2 style="color: var(--accent-gold); margin-top:0;">Performance Assessment Report</h2>
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
-                    
                     <div style="font-size: 1.2rem; margin-bottom: 10px;">Operator: <span id="report-candidate-name" style="font-weight: bold; color: #fff;">--</span></div>
                     <div style="font-size: 2.5rem; font-weight: bold; color: var(--accent-gold); margin: 20px 0;" id="report-final-score">0</div>
                     
@@ -315,12 +306,11 @@
                                 <th style="padding: 10px; text-align: right;">Proficiency Score</th>
                             </tr>
                         </thead>
-                        <tbody id="analysisTableBody">
-                            </tbody>
+                        <tbody id="analysisTableBody"></tbody>
                     </table>
 
                     <div style="display: flex; gap: 15px; justify-content: center;">
-                        <button onclick="window.print()" class="back-to-dash-btn" style="margin:0;">Print Transcript</button>
+                        <button onclick="window.print()" class="back-to-dash-btn" style="margin:0;">Print Report</button>
                         <button onclick="location.reload()" class="launch-engine-btn" style="width: auto; padding: 10px 25px;">Return to Menu</button>
                     </div>
                 </div>
@@ -328,39 +318,95 @@
         </div>
     </div>
 
+    <footer class="copyright-footer">
+        <p>© 2026 IC3 GS6 Exam Simulator. Designed by <span>Donfaruk19</span></p>
+    </footer>
+
     <script>
-        // Track Module Inventory Database Manifest
-        const levelModules = {
-            2: [
-                { key: "l2_lesson1", name: "Lesson 1: Operating System Fundamentals" },
-                { key: "l2_lesson2", name: "Lesson 2: Workplace Applications & Files" },
-                { key: "l2_lesson12", name: "Lesson 12: Network Digital Communication" }
-            ],
-            3: [
-                { key: "l3_lesson1", name: "Lesson 1: Data Visualization & Parsing" },
-                { key: "l3_lesson2", name: "Lesson 2: Advanced Security Architectures" }
-            ]
-        };
+        let originalEngineOptions = [];
+
+        // Capture whatever options script.js built naturally on initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const selectElement = document.getElementById('module-select');
+                if (selectElement && selectElement.options.length > 0) {
+                    originalEngineOptions = Array.from(selectElement.options).map(o => ({ value: o.value, text: o.textContent }));
+                }
+            }, 150);
+        });
 
         function selectTrack(trackId) {
             document.getElementById('dashboard-screen').classList.add('hidden');
             document.getElementById('workspace-screen').classList.remove('hidden');
-            
-            // Reset to clean configuration panel setup state
             document.getElementById('setup-screen').classList.remove('hidden');
             document.getElementById('exam-container').classList.add('hidden');
             document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('review-screen').classList.add('hidden');
 
             const moduleSelect = document.getElementById('module-select');
-            moduleSelect.innerHTML = ''; // Purge legacy options
+            moduleSelect.innerHTML = ''; 
 
-            // Load contextual map criteria modules
-            if (levelModules[trackId]) {
-                levelModules[trackId].forEach(mod => {
-                    let opt = document.createElement('option');
-                    opt.value = mod.key;
-                    opt.textContent = mod.name;
-                    moduleSelect.appendChild(opt);
+            let matched = false;
+            const targetPrefix = `l${trackId}`;
+
+            // Phase 1: Filter using options captured directly from script.js initialization loop
+            if (originalEngineOptions.length > 0) {
+                originalEngineOptions.forEach(opt => {
+                    if (opt.value.startsWith(targetPrefix) || opt.value.includes(`level${trackId}`)) {
+                        let nOpt = document.createElement('option');
+                        nOpt.value = opt.value;
+                        nOpt.textContent = opt.text;
+                        moduleSelect.appendChild(nOpt);
+                        matched = true;
+                    }
+                });
+            }
+
+            // Phase 2: Live Memory Scan Backup — query the allModules global variable directly to capture new additions
+            if (!matched && typeof allModules !== 'undefined') {
+                Object.keys(allModules).forEach(key => {
+                    if (key.startsWith(targetPrefix) || key.startsWith(`level${trackId}`)) {
+                        let nOpt = document.createElement('option');
+                        nOpt.value = key;
+                        
+                        // Parse clean display labels based on common operational patterns
+                        let cleanText = key.replace(/_/g, ' ').toUpperCase();
+                        if (trackId === 3) {
+                            if (key.includes('lesson1') || key.includes('m1')) cleanText = "Lesson 1: Data Visualization & Parsing";
+                            if (key.includes('lesson2') || key.includes('m2')) cleanText = "Lesson 2: Advanced Security Architectures";
+                        } else if (trackId === 2) {
+                            if (key.includes('lesson1') || key.includes('m1')) cleanText = "Lesson 1: Operating System Fundamentals";
+                            if (key.includes('lesson2') || key.includes('m2')) cleanText = "Lesson 2: Workplace Applications & Files";
+                            if (key.includes('lesson12') || key.includes('m12')) cleanText = "Lesson 12: Network Digital Communication";
+                        }
+                        
+                        nOpt.textContent = cleanText;
+                        moduleSelect.appendChild(nOpt);
+                        matched = true;
+                    }
+                });
+            }
+
+            // Phase 3: Total Safeguard Configuration Mapping (Fallback hard links if script.js hasn't finished evaluating)
+            if (moduleSelect.children.length === 0) {
+                const legacyMap = {
+                    2: [
+                        { val: "l2_lesson1", txt: "Lesson 1: Operating System Fundamentals" },
+                        { val: "l2_lesson2", txt: "Lesson 2: Workplace Applications & Files" },
+                        { val: "l2_lesson12", txt: "Lesson 12: Network Digital Communication" }
+                    ],
+                    3: [
+                        { val: "l3_lesson1", txt: "Lesson 1: Data Visualization & Parsing" },
+                        { val: "l3_lesson2", txt: "Lesson 2: Advanced Security Architectures" },
+                        { val: "l3m1", txt: "Module 1: Advanced Literacy Systems" },
+                        { val: "l3m2", txt: "Module 2: Cloud Encryption Networks" }
+                    ]
+                };
+                legacyMap[trackId].forEach(opt => {
+                    let nOpt = document.createElement('option');
+                    nOpt.value = opt.val;
+                    nOpt.textContent = opt.txt;
+                    moduleSelect.appendChild(nOpt);
                 });
             }
         }
