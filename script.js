@@ -61,26 +61,54 @@ document.addEventListener("DOMContentLoaded", () => {
  * Route Tracker Launcher - Triggered by Dashboard Selection Cards
  * Opens the Deployment Form and seeds the configuration drops.
  */
-function selectTrack(trackId) {
-    session.currentTrack = trackId;
-    
-    // Safety check for data
-    const targetKey = 'level' + trackId;
-    if (typeof masterQuestionBank === 'undefined' || !masterQuestionBank[targetKey]) {
-        console.error("Critical: Data for " + targetKey + " not found.");
-        return;
+    function selectTrack(trackId) {
+        // Shift Interface Views
+        document.getElementById('dashboard-screen').classList.add('hidden');
+        document.getElementById('workspace-screen').classList.remove('hidden');
+        document.getElementById('setup-screen').classList.remove('hidden');
+        document.getElementById('exam-container').classList.add('hidden');
+        document.getElementById('result-screen').classList.add('hidden');
+        document.getElementById('review-screen').classList.add('hidden');
+
+        // Clear existing dropdown options
+        const moduleSelect = document.getElementById('module-select');
+        moduleSelect.innerHTML = ''; 
+
+        // Target the specific level in the unified database (e.g., 'level2' or 'level3')
+        const targetLevelKey = 'level' + trackId;
+        
+        // Safety Check: Make sure questions.js is loaded
+        if (typeof masterQuestionBank === 'undefined') {
+            alert("CRITICAL ERROR: questions.js database is missing or failed to load.");
+            return;
+        }
+
+        const levelData = masterQuestionBank[targetLevelKey];
+
+        // Populate the dropdown dynamically based on the track selected
+        if (levelData) {
+            // Option 1: Master Exam (All Modules)
+            let allOpt = document.createElement('option');
+            allOpt.value = 'all';
+            allOpt.textContent = `ALL LEVEL ${trackId} COMBINED CORE OBJECTIVES`;
+            moduleSelect.appendChild(allOpt);
+
+            // Option 2: Individual Modules
+            Object.keys(levelData).forEach(lessonKey => {
+                let nOpt = document.createElement('option');
+                nOpt.value = lessonKey; // e.g., 'l3_lesson15'
+                nOpt.textContent = levelData[lessonKey].title; // e.g., 'Lesson 15: Technology Basics'
+                moduleSelect.appendChild(nOpt);
+            });
+        } else {
+            console.error(`Data for ${targetLevelKey} not found in masterQuestionBank.`);
+        }
     }
 
-    // Hide dashboard, show workspace
-    UI.dashScreen.classList.add('hidden');
-    UI.workScreen.classList.remove('hidden');
-    UI.setupScreen.classList.remove('hidden');
-    UI.examContainer.classList.add('hidden');
-    UI.resultScreen.classList.add('hidden');
-
-    // FIX: Sync configuration options directly using the corrected parameter
-    populateModuleDropdown(trackId);
-}
+    function returnToDashboard() {
+        document.getElementById('workspace-screen').classList.add('hidden');
+        document.getElementById('dashboard-screen').classList.remove('hidden');
+    }
 
 /**
  * Parses global database tokens dynamically to form selection dropdown arrays
