@@ -473,11 +473,11 @@ function triggerImmediateFeedback(isCorrect, explanationText) {
     if (isCorrect) {
         box.style.backgroundColor = "rgba(56, 161, 105, 0.15)";
         box.style.borderColor = "var(--success)";
-        box.innerHTML = `<strong style="color:#48bb78; letter-spacing:1px;">✓ TRANSMISSION COMPLIANT</strong><p style="margin:6px 0 0 0; font-size:0.92rem; line-height:1.5; color:var(--text-main);">${explanationText}</p>`;
+        box.innerHTML = `<strong style="color:#48bb78; letter-spacing:1px;">✓ CORRECT</strong><p style="margin:6px 0 0 0; font-size:0.92rem; line-height:1.5; color:var(--text-main);">${explanationText}</p>`;
     } else {
         box.style.backgroundColor = "rgba(229, 62, 62, 0.15)";
         box.style.borderColor = "#e53e3e";
-        box.innerHTML = `<strong style="color:#fc8181; letter-spacing:1px;">✗ OPERATIONAL VERIFICATION FAULT</strong><p style="margin:6px 0 0 0; font-size:0.92rem; line-height:1.5; color:var(--text-muted);">${explanationText}</p>`;
+        box.innerHTML = `<strong style="color:#fc8181; letter-spacing:1px;">✗ WRONG</strong><p style="margin:6px 0 0 0; font-size:0.92rem; line-height:1.5; color:var(--text-muted);">${explanationText}</p>`;
     }
     
     UI.examContainer.insertBefore(box, UI.prevBtn.parentElement);
