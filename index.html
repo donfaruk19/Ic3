@@ -79,6 +79,9 @@
         .launch-engine-btn:hover { background: #b39670; }
         .copyright-footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 40px; padding: 20px; border-top: 1px solid var(--border-color); }
         .copyright-footer span { color: var(--accent-gold); font-weight: bold; }
+        .hidden {
+        display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -131,7 +134,7 @@
         <div style="max-width:1000px; margin: 20px auto; padding: 0 20px;">
             <button class="back-to-dash-btn" onclick="returnToDashboard()">← Return to Mission Control</button>
             
-            <section id="setup-screen">
+            <section id="setup-screen" class="hidden">
                 <div class="config-box">
                     <h2 style="color: var(--accent-gold); margin-top:0; text-transform: uppercase; font-size:1.2rem; letter-spacing:1px;">System Deployment Initialization</h2>
                     <form id="setup-form" onsubmit="event.preventDefault();">
