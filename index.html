@@ -137,7 +137,7 @@
             <section id="setup-screen" class="hidden">
                 <div class="config-box">
                     <h2 style="color: var(--accent-gold); margin-top:0; text-transform: uppercase; font-size:1.2rem; letter-spacing:1px;">System Deployment Initialization</h2>
-                    <form id="setup-form" onsubmit="event.preventDefault();">
+                    <form id="setup-form" onsubmit="event.preventDefault(); deployExamSandbox();">
                         <div class="form-group">
                             <label for="candidate-name">Candidate Operator Name:</label>
                             <input type="text" id="candidate-name" placeholder="Enter full name" required value="Guest Operator">
