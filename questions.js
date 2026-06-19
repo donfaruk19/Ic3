@@ -279,10 +279,10 @@ const masterQuestionBank = {
                 {
                     type: "mcq",
                     q: "What is the core practice of 'Lateral Reading' when cross-examining an unfamiliar online media publisher's reliability?",
-                    a: ["Reading from the absolute top of the source layout page straight down to the footer notes before closing the tab."],
-                    b: ["Opening separate browser tabs to research independent third-party sources and analysis regarding that author or organization."],
-                    c: ["Analyzing font choice, design elements, and image resolution values directly on the landing dashboard."],
-                    d: ["Checking if the domain layout incorporates a standard privacy statement or modern contact widget."],
+                    a: ["Reading from the absolute top of the source layout page straight down to the footer notes before closing the tab.",
+                        "Opening separate browser tabs to research independent third-party sources and analysis regarding that author or organization.",
+                        "Analyzing font choice, design elements, and image resolution values directly on the landing dashboard.",
+                        "Checking if the domain layout incorporates a standard privacy statement or modern contact widget."],
                     cor: 1,
                     exp: "Lateral reading means looking outside the publication's own site to discover how independent media critics, watchdogs, or reference networks evaluate their credibility."
                 },
@@ -354,10 +354,10 @@ const masterQuestionBank = {
                 {
                     type: "mcq",
                     q: "An online presentation template is marked with a Creative Commons 'CC BY-NC-ND' designation. What boundaries must an operator honor to use this asset legally?",
-                    a: ["Revamp the visual layout freely, use it inside paid ad campaigns, and erase author tags."],
-                    b: ["Credit the original creator, limit use to non-commercial environments, and construct no derivative variations."],
-                    c: ["Redistribute the material for business profits provided the base file packaging standard is changed."],
-                    d: ["Deploy the content across external marketing channels while skipping author attribution loops."]
+                    a: ["Revamp the visual layout freely, use it inside paid ad campaigns, and erase author tags.",
+                        "Credit the original creator, limit use to non-commercial environments, and construct no derivative variations.",
+                        "Redistribute the material for business profits provided the base file packaging standard is changed.",
+                        "Deploy the content across external marketing channels while skipping author attribution loops."]
                 }
             ]
         },
@@ -367,50 +367,50 @@ const masterQuestionBank = {
                 {
                     type: "mcq",
                     q: "When formatting a critical report or slide deck intended for executive leadership review, which typography layout choice best preserves professional readability?",
-                    a: ["Filling every slide with long paragraphs of descriptive text to ensure no detail is skipped."],
-                    b: ["Deploying high-contrast font combinations, consistent heading hierarchies, and parsing data into concise bullet parameters."],
-                    c: ["Mixing three distinct text animations and bright color sweeps on every new line entry."],
-                    d: ["Placing a low-contrast abstract wallpaper directly behind the primary informational blocks."],
+                    a: ["Filling every slide with long paragraphs of descriptive text to ensure no detail is skipped.",
+                        "Deploying high-contrast font combinations, consistent heading hierarchies, and parsing data into concise bullet parameters.",
+                        "Mixing three distinct text animations and bright color sweeps on every new line entry.",
+                        "Placing a low-contrast abstract wallpaper directly behind the primary informational blocks."],
                     cor: 1,
                     exp: "Effective presentations use clean layout hierarchies, high-contrast text combinations, and concise, legible text blocks to ensure readability."
                 },
                 {
                     type: "mcq",
                     q: "What is the primary technical objective of providing alternative text ('Alt Text') markup strings for image elements in web documents?",
-                    a: ["To shield the asset file structure from unauthorized scrapers using basic encryption hooks."],
-                    b: ["To supply assistive screen readers with a spoken text description of the graphic for visually impaired users."],
-                    c: ["To force the underlying layout engine to multiply image dimensions on high-resolution monitors."],
-                    d: ["To embed localized GPS tracking fields inside the image element's root metadata layers."],
+                    a: ["To shield the asset file structure from unauthorized scrapers using basic encryption hooks.",
+                        "To supply assistive screen readers with a spoken text description of the graphic for visually impaired users.",
+                        "To force the underlying layout engine to multiply image dimensions on high-resolution monitors.",
+                        "To embed localized GPS tracking fields inside the image element's root metadata layers."],
                     cor: 1,
                     exp: "Alt text provides descriptive content for images, ensuring screen reader engines can articulate graphic meanings to visually impaired users."
                 },
                 {
                     type: "mcq",
                     q: "In professional video engineering, what is the core functional difference between a codec and a container format?",
-                    a: ["The codec outlines the display skin design, while the container establishes file license fees."],
-                    b: ["The codec compresses and decompresses raw media tracks, while the container packages the audio, video, and subtitle elements into one standardized file wrapper."],
-                    c: ["The container modifies local optical lens focus variables, while the codec acts as a hardware processing chip."],
-                    d: ["The codec manages cloud distribution pipelines, while the container runs exclusively inside local memory structures."],
+                    a: ["The codec outlines the display skin design, while the container establishes file license fees.",
+                        "The codec compresses and decompresses raw media tracks, while the container packages the audio, video, and subtitle elements into one standardized file wrapper.",
+                        "The container modifies local optical lens focus variables, while the codec acts as a hardware processing chip.",
+                        "The codec manages cloud distribution pipelines, while the container runs exclusively inside local memory structures."],
                     cor: 1,
                     exp: "Codecs (such as H.264 or AV1) encode and decode raw video and audio streams, whereas containers (like .MP4 or .MKV) act as files that bundle these separate tracks together."
                 },
                 {
                     type: "mcq",
                     q: "What is the primary reason for outputting finalized tech manuals or project reports in Portable Document Format (PDF) rather than standard text formats?",
-                    a: ["PDF files allow any viewer to modify primary text layout parameters without specialized tools."],
-                    b: ["PDF files preserve visual formatting, typography choices, and image positioning identically across all operating platforms and hardware configurations."],
-                    c: ["PDF files skip the need for file compression algorithms during storage transfers."],
-                    d: ["PDF elements allow the document to run system hardware drivers directly from the paragraph blocks."],
+                    a: ["PDF files allow any viewer to modify primary text layout parameters without specialized tools.",
+                        "PDF files preserve visual formatting, typography choices, and image positioning identically across all operating platforms and hardware configurations.",
+                        "PDF files skip the need for file compression algorithms during storage transfers.",
+                        "PDF elements allow the document to run system hardware drivers directly from the paragraph blocks."],
                     cor: 1,
                     exp: "The PDF specification is a post-layout document format designed to display assets identically on any operating system, screen size, or device type."
                 },
                 {
                     type: "mcq",
                     q: "When adjusting audio settings for an instructional training module, increasing the digital sample rate results in:",
-                    a: ["A significant compression of the overall audio file size footprint on disk."],
-                    b: ["More frequent digital snapshots of the analog sound wave per second, capturing higher frequencies with greater fidelity."],
-                    c: ["An automatic decrease in microphone physical recording levels."],
-                    d: ["The transformation of the acoustic stream into a mathematical vector asset layout."],
+                    a: ["A significant compression of the overall audio file size footprint on disk.",
+                        "More frequent digital snapshots of the analog sound wave per second, capturing higher frequencies with greater fidelity.",
+                        "An automatic decrease in microphone physical recording levels.",
+                        "The transformation of the acoustic stream into a mathematical vector asset layout."],
                     cor: 1,
                     exp: "The sample rate determines the number of audio snapshots taken per second. Higher sample rates capture sound wave frequencies more accurately, improving audio fidelity at the cost of larger file sizes."
                 }
