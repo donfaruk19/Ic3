@@ -120,6 +120,159 @@ function selectTrack(trackId) {
 /**
  * Validates initialization form data and constructs targeted question sandbox arrays
  */
+// =================================================================
+// FLASHCARD STUDY SYSTEM MECHANICS
+// =================================================================
+let flashcardDeck = [];
+let currentCardIdx = 0;
+let cardIsFlipped = false;
+
+/**
+ * Initializes and transitions the interface into Flashcard Study Mode
+ */
+function deployFlashcards() {
+    session.selectedModule = UI.moduleSelect ? UI.moduleSelect.value : "all";
+    const targetLevelKey = 'level' + session.currentTrack;
+    const levelData = masterQuestionBank[targetLevelKey];
+
+    if (!levelData) {
+        alert("Configuration Error: Selected data repository level is missing.");
+        return;
+    }
+
+    flashcardDeck = [];
+    currentCardIdx = 0;
+    cardIsFlipped = false;
+
+    // Filter and compile flashcards based on dropdown selection
+    if (session.selectedModule === "all") {
+        Object.keys(levelData).forEach(lessonKey => {
+            levelData[lessonKey].questions.forEach(q => {
+                flashcardDeck.push({ ...q, category: levelData[lessonKey].title });
+            });
+        });
+    } else if (levelData[session.selectedModule]) {
+        levelData[session.selectedModule].questions.forEach(q => {
+            flashcardDeck.push({ ...q, category: levelData[session.selectedModule].title });
+        });
+    }
+
+    if (flashcardDeck.length === 0) {
+        alert("Configuration Error: The selected module contains no questions.");
+        return;
+    }
+
+    // Hide setup panel, format workspace specifically for flashcards
+    UI.setupScreen.classList.add('hidden');
+    UI.examContainer.classList.remove('hidden');
+    
+    if (UI.timer) UI.timer.textContent = "🧠 Flashcard Study Protocol";
+    
+    renderFlashcard();
+}
+
+/**
+ * Builds the visual presentation profile of the current flashcard asset
+ */
+function renderFlashcard() {
+    if (flashcardDeck.length === 0) return;
+    const card = flashcardDeck[currentCardIdx];
+    
+    cardIsFlipped = false; // Always reset to the question face first
+
+    // Set header tracking index
+    if (UI.progressIndicator) {
+        UI.progressIndicator.textContent = `Reviewing: ${currentCardIdx + 1} / ${flashcardDeck.length} [${card.category}]`;
+    }
+
+    // Render interactive flashcard box
+    UI.qText.innerHTML = `
+        <div style="font-size:0.8rem; color:var(--accent-gold); margin-bottom:5px; text-transform:uppercase; letter-spacing:1px;">
+            Topic: ${card.topic || "Core Knowledge Vector"}
+        </div>
+        <div>${card.q}</div>
+    `;
+
+    UI.optionsContainer.innerHTML = "";
+    UI.interactiveContainer.innerHTML = `
+        <div id="flashcard-plate" onclick="flipFlashcard()" style="background: var(--bg-secondary); border: 2px dashed var(--border-color); padding: 40px 20px; text-align: center; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; margin: 20px 0;">
+            <p id="flashcard-content" style="font-size: 1.1rem; font-weight: 500; color: var(--text-muted);">
+                🖱️ Click / Tap Card Panel to Reveal Verification Key
+            </p>
+        </div>
+        <p style="text-align:center; font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">
+            Tip: Review your answer mentally before revealing the answer block.
+        </p>
+    `;
+
+    // Reconfigure structural navigation buttons for review operations
+    UI.prevBtn.disabled = (currentCardIdx === 0);
+    UI.prevBtn.onclick = () => {
+        if (currentCardIdx > 0) { currentCardIdx--; renderFlashcard(); }
+    };
+
+    UI.nextBtn.textContent = (currentCardIdx === flashcardDeck.length - 1) ? "Return to Configuration" : "Next Card";
+    UI.nextBtn.onclick = () => {
+        if (currentCardIdx < flashcardDeck.length - 1) {
+            currentCardIdx++;
+            renderFlashcard();
+        } else {
+            // Exit study mode, reset view to workspace configuration panel
+            UI.examContainer.classList.add('hidden');
+            UI.setupScreen.classList.remove('hidden');
+            // Re-bind default handlers so regular exams function normally
+            UI.nextBtn.textContent = "Next";
+            UI.nextBtn.onclick = handleNext;
+            UI.prevBtn.onclick = handlePrev;
+        }
+    };
+
+    if (UI.flagBtn) UI.flagBtn.textContent = "Study Mode Active";
+}
+
+/**
+ * Handles the visual flip translation logic to display answer matrices safely
+ */
+function flipFlashcard() {
+    const plate = document.getElementById("flashcard-plate");
+    const content = document.getElementById("flashcard-content");
+    if (!plate || !content) return;
+
+    const card = flashcardDeck[currentCardIdx];
+    cardIsFlipped = !cardIsFlipped;
+
+    if (cardIsFlipped) {
+        plate.style.borderColor = "var(--accent-gold)";
+        plate.style.background = "rgba(197, 168, 128, 0.05)";
+        
+        let answerMarkup = "";
+        
+        if (card.type === "mcq" || card.type === "single") {
+            answerMarkup = `<strong style="color:var(--success);">Correct Choice:</strong> ${card.a[card.cor]}`;
+        } else if (card.type === "multi") {
+            const multiAnswers = card.cor.map(idx => card.a[idx]).join(" | ");
+            answerMarkup = `<strong style="color:var(--success);">Required Solutions:</strong><br>${multiAnswers}`;
+        } else if (card.type === "match") {
+            let pairsList = card.pairs.map(p => `• <strong>${p.item}</strong> ➔ ${p.match}`).join("<br>");
+            answerMarkup = `<strong style="color:var(--success);">Target Alignment Maps:</strong><br>${pairsList}`;
+        } else if (card.type === "ordering") {
+            let sortedSteps = [...card.steps].sort((a, b) => card.cor[card.steps.indexOf(a)] - card.cor[card.steps.indexOf(b)]);
+            answerMarkup = `<strong style="color:var(--success);">Validated Priority Sequence:</strong><br>${sortedSteps.map((s, i) => `${i + 1}. ${s}`).join("<br>")}`;
+        }
+
+        content.innerHTML = `
+            <div style="text-align: left; line-height: 1.6;">
+                ${answerMarkup}
+                <hr style="border:0; border-top:1px solid var(--border-color); margin:15px 0;">
+                <small style="color:var(--text-main); display:block;"><strong>Operational Objective context:</strong><br>${card.exp}</small>
+            </div>
+        `;
+    } else {
+        plate.style.borderColor = "var(--border-color)";
+        plate.style.background = "var(--bg-secondary)";
+        content.innerHTML = `🖱️ Click / Tap Card Panel to Reveal Verification Key`;
+    }
+}
 function deployExamSandbox() {
     // 0. Primary Matrix Verification
     if (!session.currentTrack) {
