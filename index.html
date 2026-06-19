@@ -132,14 +132,14 @@
 
     <div id="workspace-screen" class="hidden">
         <div style="max-width:1000px; margin: 20px auto; padding: 0 20px;">
-            <button class="back-to-dash-btn" onclick="returnToDashboard()">← Return to Mission Control</button>
+            <button class="back-to-dash-btn" onclick="returnToDashboard()">← Return to Dashboard</button>
             
             <section id="setup-screen" class="hidden">
                 <div class="config-box">
-                    <h2 style="color: var(--accent-gold); margin-top:0; text-transform: uppercase; font-size:1.2rem; letter-spacing:1px;">System Deployment Initialization</h2>
+                    <h2 style="color: var(--accent-gold); margin-top:0; text-transform: uppercase; font-size:1.2rem; letter-spacing:1px;">System Initialization</h2>
                     <form id="setup-form" onsubmit="event.preventDefault(); deployExamSandbox();">
                         <div class="form-group">
-                            <label for="candidate-name">Candidate Operator Name:</label>
+                            <label for="candidate-name">Candidate Name:</label>
                             <input type="text" id="candidate-name" placeholder="Enter full name" required value="Guest Operator">
                         </div>
                         <div class="form-group">
@@ -149,11 +149,14 @@
                         <div class="form-group">
                             <label for="mode-select">Execution Profile Mode:</label>
                             <select id="mode-select">
-                                <option value="training">Training Profile (Immediate Answer Explanations)</option>
-                                <option value="testing">Testing Profile (Full Exam Simulation Sandbox)</option>
+                                <option value="training">Training Mode (Immediate Answer & Explanations)</option>
+                                <option value="testing">Testing Mode (Full Exam Simulation Sandbox)</option>
                             </select>
                         </div>
-                        <button type="submit" class="launch-engine-btn" id="start-btn">Deploy Exam Sandbox</button>
+                        <div class="form-actions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px;">
+                            <button type="submit" class="action-btn" style="border-color: var(--accent-gold); background: rgba(197, 168, 128, 0.1);"> ⚔️ Deploy Practice Sandbox </button>
+                            <button type="button" class="action-btn" onclick="deployFlashcards()" style="border-color: var(--accent-blue); background: rgba(49, 130, 206, 0.1);"> 🧠 Launch Flashcard Deck </button>
+                        </div>
                     </form>
                 </div>
             </section>
