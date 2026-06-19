@@ -578,7 +578,9 @@ level2: {
                     a: ["Revamp the visual layout freely, use it inside paid ad campaigns, and erase author tags.",
                         "Credit the original creator, limit use to non-commercial environments, and construct no derivative variations.",
                         "Redistribute the material for business profits provided the base file packaging standard is changed.",
-                        "Deploy the content across external marketing channels while skipping author attribution loops."]
+                        "Deploy the content across external marketing channels while skipping author attribution loops."],
+                    cor: 1,
+                    exp: "Credit the original creator, limit use to non-commercial environments, and construct no derivative variations."
                 }
             ]
         },
