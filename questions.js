@@ -33,27 +33,248 @@ const masterQuestionBank = {
     // ---------------------------------------------------------
     // LEVEL 2: WORKING KNOWLEDGE (Lessons 8 - 14)
     // ---------------------------------------------------------
-    level2: {
+level2: {
         l2_lesson8: { title: "Lesson 8: Technology Basics", questions: [
-            // PASTE YOUR LEVEL 2 LESSON 8 QUESTIONS HERE
+            {
+                type: "single",
+                topic: "Audio Settings",
+                q: "You are in a loud room. You connect headphones to your computer so you can hear the audio better, but sound still comes through the computer speakers instead of the headphones. You need the computer audio to come through the headphones instead of the speakers. What should you do?",
+                a: [
+                    "Manage input devices.",
+                    "Mute your computer speakers.",
+                    "Manage output devices.",
+                    "Configure Ease of Access audio settings."
+                ],
+                cor: 2,
+                exp: "To route system audio feeds dynamically to external peripherals like headphones, you must manage and select the appropriate hardware within the Output Device properties workspace."
+            },
+            {
+                type: "multi",
+                topic: "Keyboard Home Row",
+                q: "Which two keys are part of the \"home row\" on a standard keyboard? (Choose 2.)",
+                a: ["B", "D", "K", "Q", "X", "Y"],
+                required: 2,
+                cor: [1, 2],
+                exp: "On a standard alphanumeric QWERTY layout, the resting home row keys are A, S, D, F, G, H, J, K, L, and ;."
+            },
+            {
+                type: "match",
+                topic: "Hardware Profiles: Printers",
+                q: "Move each advantage from the list on the left to the corresponding printer type on the right.",
+                pairs: [
+                    { item: "Documents are dry to the touch when printed", match: "Laser Printer" },
+                    { item: "Environmentally friendly", match: "General Unassigned Benefit" },
+                    { item: "Good for printing high-quality photographs", match: "Inkjet Printer" },
+                    { item: "Suitable for mass-printing documents at a low cost", match: "Laser Printer" }
+                ],
+                cor: [1, 2, 0, 1],
+                exp: "Laser printers leverage heated fusion to secure instantly dry powder outputs for high-volume text. Inkjet printer variants run fine fluid ink streams ideal for photograph color replication accuracy."
+            },
+            {
+                type: "mcq",
+                topic: "Display Hardware Configuration",
+                q: "You are working on your laptop computer in a sunny outside area. You need to minimize eyestrain. Which monitor setting should you adjust?",
+                a: ["Contrast", "Sharpness", "Scale", "Brightness"],
+                cor: 3,
+                exp: "Upregging output brightness allows the display backlight to overcome ambient solar glare, significantly decreasing visual strain on the user."
+            }
         ]},
         l2_lesson9: { title: "Lesson 9: Digital Citizenship", questions: [
-            // PASTE YOUR LEVEL 2 LESSON 9 QUESTIONS HERE
+            {
+                type: "mcq",
+                topic: "AI Copyright",
+                q: "Who owns the copyright to content that is generated solely by Artificial Intelligence (AI)?",
+                a: [
+                    "The developer who wrote the code for the AI model that generated the content.",
+                    "The company that publishes and maintains the AI model servers.",
+                    "The person who wrote the prompt used to generate the content.",
+                    "No one - all AI-generated content is automatically in the public domain."
+                ],
+                cor: 3,
+                exp: "Copyright law generally requires human authorship; work created completely by an AI without human intervention cannot be copyrighted and falls into the public domain."
+            },
+            {
+                type: "mcq",
+                topic: "Content Distribution Rights",
+                q: "When is it appropriate to post someone else's content online?",
+                a: [
+                    "If it has already been shared by others",
+                    "When it is a positive message",
+                    "With permission, or if posted publicly",
+                    "Anytime, because it's already online"
+                ],
+                cor: 2,
+                exp: "You must secure clear licensing rights, explicitly verified permission vectors, or confirm the asset resides transparently inside public domain listings before republishing."
+            }
         ]},
         l2_lesson10: { title: "Lesson 10: Information Management", questions: [
-            // PASTE YOUR LEVEL 2 LESSON 10 QUESTIONS HERE
+            {
+                type: "match",
+                topic: "Evaluating Source Bias",
+                q: "You need to assess whether the content of an online article is biased. Select Yes if the aspect helps check bias, or No if it does not.",
+                pairs: [
+                    { item: "Article funding source", match: "Yes" },
+                    { item: "Article publication date", match: "No" },
+                    { item: "Education level of the author", match: "No" },
+                    { item: "Connections of the author to political organizations", match: "Yes" }
+                ],
+                cor: [0, 1, 1, 0],
+                exp: "Funding sources and external political affiliations directly flag ideological bias. Conversely, timeline checks or specific academic credentials assess validity and domain authority, not direct functional slant."
+            }
         ]},
         l2_lesson11: { title: "Lesson 11: Content Creation", questions: [
-            // PASTE YOUR LEVEL 2 LESSON 11 QUESTIONS HERE
+            {
+                type: "mcq",
+                topic: "Software Macros",
+                q: "What is one advantage of using macros in software programs?",
+                a: [
+                    "They provide cloud storage services.",
+                    "They automate repetitive tasks.",
+                    "They automatically correct spelling errors.",
+                    "They store files online automatically."
+                ],
+                cor: 1,
+                exp: "Macros are pre-recorded sequences of tasks or commands that allow users to run complex or highly repetitive sequences instantly with one click."
+            },
+            {
+                type: "mcq",
+                topic: "File Versioning",
+                q: "What is a primary purpose of file versioning?",
+                a: [
+                    "To identify the date the file was created.",
+                    "To identify the file as a non-final release, or draft.",
+                    "To enable users to recover earlier copies of the file.",
+                    "To enable multiple users to collaborate on the file content."
+                ],
+                cor: 2,
+                exp: "File versioning archives historically timestamped iterative logs, making it simple to restore or roll back to historical states if revisions break functionality."
+            },
+            {
+                type: "mcq",
+                topic: "Document Management",
+                q: "What is the best way to monitor edits made in a document?",
+                a: [
+                    "Keep a separate document to note all changes made.",
+                    "Manually highlight all changes after editing.",
+                    "Use a different color for every edit.",
+                    "Turn on Track Changes before you start editing the document."
+                ],
+                cor: 3,
+                exp: "Enabling standard 'Track Changes' protocols builds persistent markup streams tracking all additions and adjustments inside the document workspace natively."
+            },
+            {
+                type: "multi",
+                topic: "File Naming Conventions",
+                q: "You are designing a poster for a client. As you work, you periodically save new versions of your file to keep track of your changes and design ideas. Which two groups of files demonstrate good file naming conventions? (Choose 2.)",
+                a: [
+                    "poster_original.psd, poster_cropped.psd, poster_grayscale.psd",
+                    "poster_draft1.psd, poster_draft2.psd, poster_FINAL.psd",
+                    "myposter.psd, newposter.psd, poster.psd",
+                    "poster.psd, poster copy.psd, poster copy 2.psd"
+                ],
+                required: 2,
+                cor: [0, 1],
+                exp: "Professional taxonomy structures use precise descriptive context tags (Group A) or clearly ordered numerical sequences tracking progress iterations logically (Group B)."
+            }
         ]},
         l2_lesson12: { title: "Lesson 12: Communication", questions: [
-            // PASTE YOUR LEVEL 2 LESSON 12 QUESTIONS HERE
+            {
+                type: "mcq",
+                topic: "Email Bcc Field",
+                q: "What is the purpose of the Bcc field of an email message?",
+                a: [
+                    "To indicate that a reply is optional.",
+                    "To collect information about someone without them knowing.",
+                    "To keep multiple recipients' email addresses private from each other.",
+                    "To indicate that the message is personal."
+                ],
+                cor: 2,
+                exp: "The Blind Carbon Copy (Bcc) structure completely hides the explicit identities and emails of listed recipients from each other to enforce privacy."
+            }
         ]},
         l2_lesson13: { title: "Lesson 13: Collaboration", questions: [
-            // PASTE YOUR LEVEL 2 LESSON 13 QUESTIONS HERE
+            {
+                type: "match",
+                topic: "Digital Feedback Etiquette",
+                q: "A team of people are digitally collaborating on a project and need to provide feedback digitally. Select Yes if the behavior follows digital etiquette standards or No if it does not.",
+                pairs: [
+                    { item: "Correct other people whenever their opinions and ideas are wrong.", match: "No" },
+                    { item: "Give fair criticism and constructive feedback, but phrase it respectfully.", match: "Yes" },
+                    { item: "Use abbreviations, slang, and emojis to give your comments more personality.", match: "No" },
+                    { item: "Use good grammar and spelling so your comments are clear and easy to understand.", match: "Yes" }
+                ],
+                cor: [1, 0, 1, 0],
+                exp: "Professional digital feedback typically requires clear, formal communication rather than informal slang, confrontational corrections, or overused emojis."
+            },
+            {
+                type: "multi",
+                topic: "Remote Meeting Etiquette",
+                q: "You lead a team of people of differing beliefs, backgrounds, and ages. You plan to host a remote meeting using a videoconferencing tool to brainstorm ideas for a new project. You need to demonstrate good digital etiquette. Which two actions should you take? (Choose 2.)",
+                a: [
+                    "Use features such as Raise Hand to provide opportunities for all team members to participate",
+                    "Keep the team focused and avoid conflicts by limiting discussion to a list of only your own ideas.",
+                    "Privately offer to help a team member with no videoconferencing experience become familiar with the controls before the meeting",
+                    "Ask a team member with a strong accent to respond through the chat box so they can be clearly understood by the rest of the team."
+                ],
+                required: 2,
+                cor: [0, 2],
+                exp: "Digital meeting etiquette relies on open, interactive features like 'Raise Hand' and resolving technological or experience differences through private onboarding before calls."
+            },
+            {
+                type: "match",
+                topic: "Digital Collaboration Core Concepts",
+                q: "You have become part of a team that uses collaboration. For each statement about collaboration, select True or False.",
+                pairs: [
+                    { item: "Individual input and creative decision-making will be limited.", match: "False" },
+                    { item: "Members share ideas to come up with solutions.", match: "True" },
+                    { item: "Everyone in the group will have the same perspectives for the project.", match: "False" }
+                ],
+                cor: [1, 0, 1],
+                exp: "Collaboration connects varied backgrounds and ideas to find cross-functional answers, supporting individual input instead of limiting it."
+            }
         ]},
         l2_lesson14: { title: "Lesson 14: Safety and Security", questions: [
-            // PASTE YOUR LEVEL 2 LESSON 14 QUESTIONS HERE
+            {
+                type: "mcq",
+                topic: "Digital Wallet Advantage",
+                q: "What is an advantage of using a digital wallet such as Apple Pay or Google Pay?",
+                a: [
+                    "Encourages you to shop around for the best price.",
+                    "Builds your credit history.",
+                    "Gives you free access to Apple TV or YouTube Premium.",
+                    "Requires you to authorize every transaction."
+                ],
+                cor: 3,
+                exp: "Digital wallets demand discrete verification tokens (e.g., biometric thumbprints or entry codes) before processing localized payments safely."
+            },
+            {
+                type: "multi",
+                topic: "Internet Challenges",
+                q: "You learn about a potentially fun new internet challenge. For which two reasons should teenagers avoid participating in the challenge? (Choose 2.)",
+                a: [
+                    "Even seemingly harmless challenges, like the sunburn tattoo or cinnamon challenges, can cause serious harm that requires medical attention.",
+                    "During puberty, the teen brain is flooded with hormones that make it seek out rewards, such as \"likes\" or followers.",
+                    "The teen brain isn't finished developing yet, so teens often have a hard time thinking through all the possible consequences of their actions.",
+                    "Their friends all want them to participate in the challenge."
+                ],
+                required: 2,
+                cor: [0, 2],
+                exp: "Seemingly non-threatening digital trends can hide severe physical hazards; developmental stages require teenagers to exercise caution, as risk-assessment pathways are still maturing."
+            },
+            {
+                type: "match",
+                topic: "Security & File Management Terms",
+                q: "Move each term from the list to its correct description match.",
+                pairs: [
+                    { item: "The ability to view the contents of a file but not modify it", match: "Read-Only File" },
+                    { item: "Settings that determine who can read, write, or execute a file", match: "File Permission" },
+                    { item: "The process of encoding data to prevent unauthorized access", match: "Encryption" },
+                    { item: "A file that can be viewed and modified by users with the appropriate permissions", match: "Read-Write File" },
+                    { item: "A security feature that restricts file access to users who enter the correct access code", match: "Password Protection" }
+                ],
+                cor: [0, 1, 2, 3, 4],
+                exp: "These variables determine specific object privileges, cryptographic protection limits, and identity tracking workflows across file systems."
+            }
         ]}
     },
 
