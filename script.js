@@ -20,28 +20,32 @@ let session = {
 
 // Global DOM Cache Matrix Injection Layer
 // All IDs listed here must exist in your index.html
-const UI = {
-    dashScreen: document.getElementById('dashboard-screen'),
-    workScreen: document.getElementById('workspace-screen'),
-    setupScreen: document.getElementById('setup-screen'),
-    examContainer: document.getElementById('exam-container'),
-    optionsContainer: document.getElementById('options-container'),
-    interactiveContainer: document.getElementById('interactive-container'),
-    qText: document.getElementById('question-text'),
-    progressIndicator: document.getElementById('progress-indicator'),
-    timer: document.getElementById('exam-timer'),
-    prevBtn: document.getElementById('prev-btn'),
-    nextBtn: document.getElementById('next-btn'),
-    flagBtn: document.getElementById('flag-btn'),
-    resultScreen: document.getElementById('result-screen'),
-    candidateNameInput: document.getElementById('candidate-name'),
-    moduleSelect: document.getElementById('module-select'),
-    modeSelect: document.getElementById('mode-select'),
-    reportName: document.getElementById('report-candidate-name'),
-    reportScore: document.getElementById('report-final-score'),
-    reportOutcome: document.getElementById('report-outcome-text'),
-    analysisBody: document.getElementById('analysisTableBody')
-};
+document.addEventListener("DOMContentLoaded", function() {
+    // Move all IU to listener
+    window.UI = {
+        dashScreen: document.getElementById('dashboard-screen'),
+        workScreen: document.getElementById('workspace-screen'),
+        setupScreen: document.getElementById('setup-screen'),
+        examContainer: document.getElementById('exam-container'),
+        optionsContainer: document.getElementById('options-container'),
+        interactiveContainer: document.getElementById('interactive-container'),
+        qText: document.getElementById('question-text'),
+        progressIndicator: document.getElementById('progress-indicator'),
+        timer: document.getElementById('exam-timer'),
+        prevBtn: document.getElementById('prev-btn'),
+        nextBtn: document.getElementById('next-btn'),
+        flagBtn: document.getElementById('flag-btn'),
+        resultScreen: document.getElementById('result-screen'),
+        candidateNameInput: document.getElementById('candidate-name'),
+        moduleSelect: document.getElementById('module-select'),
+        modeSelect: document.getElementById('mode-select'),
+        reportName: document.getElementById('report-candidate-name'),
+        reportScore: document.getElementById('report-final-score'),
+        reportOutcome: document.getElementById('report-outcome-text'),
+        analysisBody: document.getElementById('analysisTableBody')
+    };
+    console.log("UI Mapped Successfully");
+});
 
 /**
  * Route Tracker Launcher
