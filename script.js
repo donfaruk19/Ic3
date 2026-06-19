@@ -53,9 +53,9 @@ document.addEventListener("DOMContentLoaded", function() {
 function selectTrack(trackId) {
     session.currentTrack = trackId;
     
-    // Safety check for data
+    // Safety check for data structure integrity
     if (typeof masterQuestionBank === 'undefined') {
-        console.error("Critical: questions.js is not loaded.");
+        alert("CRITICAL SYSTEM ERROR: questions.js database is unmapped or failed to load.");
         return;
     }
 
@@ -63,20 +63,32 @@ function selectTrack(trackId) {
     const levelData = masterQuestionBank[targetKey];
     
     if (!levelData) {
-        console.error("Data for " + targetKey + " not found.");
+        console.error("Data matrix for " + targetKey + " not found.");
         return;
     }
 
-    // Hide dashboard, show setup
+    // --- MASTER CONTAINER VIEW TRANSITION PIPELINE ---
+    // 1. Hide the main command dashboard
     if (UI.dashScreen) UI.dashScreen.classList.add('hidden');
+    
+    // 2. Unhide the parent workspace screen wrapper (FIXES BLANK PAGE)
+    if (UI.workScreen) UI.workScreen.classList.remove('hidden');
+    
+    // 3. Display the setup configuration screen
     if (UI.setupScreen) UI.setupScreen.classList.remove('hidden');
     
-    // Populate dropdown
+    // 4. Ensure structural isolation by hiding sub-containers until deployed
+    if (UI.examContainer) UI.examContainer.classList.add('hidden');
+    if (UI.resultScreen) UI.resultScreen.classList.add('hidden');
+    let reviewScr = document.getElementById('review-screen');
+    if (reviewScr) reviewScr.classList.add('hidden');
+    
+    // Dynamic population of the objective module selector drop-down
     if (UI.moduleSelect) {
         UI.moduleSelect.innerHTML = "";
         let allOpt = document.createElement('option');
         allOpt.value = 'all';
-        allOpt.textContent = `ALL LEVEL ${trackId} COMBINED`;
+        allOpt.textContent = `ALL LEVEL ${trackId} COMBINED CORE OBJECTIVES`;
         UI.moduleSelect.appendChild(allOpt);
 
         Object.keys(levelData).forEach(lessonKey => {
@@ -90,7 +102,17 @@ function selectTrack(trackId) {
 /**
  * Validates initialization form data and constructs targeted question sandbox arrays
  */
+/**
+ * Validates initialization form data and constructs targeted question sandbox arrays
+ */
 function deployExamSandbox() {
+    // 0. Primary Matrix Verification
+    if (!session.currentTrack) {
+        alert("CRITICAL RUNTIME FAULT: Core track assignment sequence was bypassed. Return to Dashboard Control.");
+        return;
+    }
+
+    // 1. Map configurations from UI components defensively
     session.mode = UI.modeSelect ? UI.modeSelect.value : "training";
     session.selectedModule = UI.moduleSelect ? UI.moduleSelect.value : "all";
     session.currentIdx = 0;
@@ -100,55 +122,73 @@ function deployExamSandbox() {
     const levelData = masterQuestionBank[targetLevelKey];
 
     if (!levelData) {
-        alert("Configuration Error: Selected data repository level is missing.");
+        alert("Configuration Error: Selected data repository level matrix ('" + targetLevelKey + "') is missing inside questions.js.");
         return;
     }
 
-    // If user selected "ALL LEVEL X COMBINED"
+    // 2. Parse database questions into execution array
     if (session.selectedModule === "all") {
+        // If user selected "ALL COMBINED"
         Object.keys(levelData).forEach(lessonKey => {
-            levelData[lessonKey].questions.forEach(q => {
+            if (levelData[lessonKey].questions && Array.isArray(levelData[lessonKey].questions)) {
+                levelData[lessonKey].questions.forEach(q => {
+                    let clone = JSON.parse(JSON.stringify(q));
+                    clone.sourceLesson = levelData[lessonKey].title || lessonKey;
+                    session.questions.push(clone);
+                });
+            }
+        });
+    } else if (levelData[session.selectedModule]) {
+        // If user selected a specific individual lesson
+        if (levelData[session.selectedModule].questions && Array.isArray(levelData[session.selectedModule].questions)) {
+            levelData[session.selectedModule].questions.forEach(q => {
                 let clone = JSON.parse(JSON.stringify(q));
-                clone.sourceLesson = levelData[lessonKey].title;
+                clone.sourceLesson = levelData[session.selectedModule].title || session.selectedModule;
                 session.questions.push(clone);
             });
-        });
-    } 
-    // If user selected a specific individual lesson
-    else if (levelData[session.selectedModule]) {
-        levelData[session.selectedModule].questions.forEach(q => {
-            let clone = JSON.parse(JSON.stringify(q));
-            clone.sourceLesson = levelData[session.selectedModule].title;
-            session.questions.push(clone);
-        });
+        }
     }
 
+    // 3. Prevent execution of unpopulated datasets
     if (session.questions.length === 0) {
-        alert("Configuration Error: The selected module currently contains no questions. Please paste your questions into questions.js.");
+        alert("Configuration Error: The selected module array currently contains 0 questions. Verify that your objectives database in questions.js matches the expected layout structure keys.");
         return;
     }
 
-    // Initialize tracking structures
+    // 4. Initialize tracking vectors matching the total questions size
     session.userAnswers = new Array(session.questions.length).fill(null);
     session.flags = new Array(session.questions.length).fill(false);
 
-    // Transition viewports
-    UI.setupScreen.classList.add('hidden');
-    UI.examContainer.classList.remove('hidden');
+    // 5. Hardened Viewport Transition Matrix Layer
+    if (UI.setupScreen) UI.setupScreen.classList.add('hidden');
+    if (UI.examContainer) UI.examContainer.classList.remove('hidden');
+    if (UI.resultScreen) UI.resultScreen.classList.add('hidden');
+    
+    let reviewScr = document.getElementById('review-screen');
+    if (reviewScr) reviewScr.classList.add('hidden');
 
-    // Run clock mechanics if Testing profile is initialized
+    // 6. Clock Mechanism System Logic Execution
+    clearInterval(session.timerId); // Terminate any lingering timer threads before starting
+    
     if (session.mode === "testing") {
-        session.timeRemaining = 45 * 60; // 45 Minutes
-        runSimulationClock();
-        if (UI.timer) UI.timer.style.color = "#fff";
+        session.timeRemaining = 45 * 60; // 45 Minutes Baseline
+        if (typeof runSimulationClock === 'function') {
+            runSimulationClock();
+        } else {
+            console.warn("Execution Engine Warning: runSimulationClock function is unmapped.");
+        }
+        if (UI.timer) UI.timer.style.color = "#ffffff";
     } else {
-        clearInterval(session.timerId);
-        if (UI.timer) UI.timer.textContent = "Training Workspace Profile";
+        if (UI.timer) UI.timer.textContent = "TRAINING WORKSPACE PROFILE ACTIVE";
     }
 
-    loadQuestion();
+    // 7. Inject initial sandbox environment viewport values
+    if (typeof loadQuestion === 'function') {
+        loadQuestion();
+    } else {
+        console.error("CRITICAL CRASH: loadQuestion runtime engine function is unmapped.");
+    }
 }
-
 /**
  * Directs the core rendering pipeline for all active test layout blocks
  */
