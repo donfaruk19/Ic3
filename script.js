@@ -10,30 +10,41 @@ let session = {
     currentIdx: 0,
     questions: [],
     userAnswers: [],       
-    flags: [],             
-    timerId: null,
-    timeRemaining: 45 * 60,
     getCurrentQuestion: function() {
         return this.questions[this.currentIdx] || null;
-    }
+    }, // <-- COMMA ADDED HERE (This fixes the Syntax Error)
+    flags: [],             
+    timerId: null,
+    timeRemaining: 45 * 60 
 };
 
 // Global DOM Cache Matrix Injection Layer
-// We use a DOMContentLoaded listener to ensure these elements exist
-document.addEventListener("DOMContentLoaded", () => {
-    window.UI = {
-        dashScreen: document.getElementById('dashboard-screen'),
-        workScreen: document.getElementById('workspace-screen'),
-        setupScreen: document.getElementById('setup-screen'),
-        examContainer: document.getElementById('exam-container'),
-        optionsContainer: document.getElementById('options-container'),
-        // ... rest of your UI mappings
-    };
-});
+// All IDs listed here must exist in your index.html
+const UI = {
+    dashScreen: document.getElementById('dashboard-screen'),
+    workScreen: document.getElementById('workspace-screen'),
+    setupScreen: document.getElementById('setup-screen'),
+    examContainer: document.getElementById('exam-container'),
+    optionsContainer: document.getElementById('options-container'),
+    interactiveContainer: document.getElementById('interactive-container'),
+    qText: document.getElementById('question-text'),
+    progressIndicator: document.getElementById('progress-indicator'),
+    timer: document.getElementById('exam-timer'),
+    prevBtn: document.getElementById('prev-btn'),
+    nextBtn: document.getElementById('next-btn'),
+    flagBtn: document.getElementById('flag-btn'),
+    resultScreen: document.getElementById('result-screen'),
+    candidateNameInput: document.getElementById('candidate-name'),
+    moduleSelect: document.getElementById('module-select'),
+    modeSelect: document.getElementById('mode-select'),
+    reportName: document.getElementById('report-candidate-name'),
+    reportScore: document.getElementById('report-final-score'),
+    reportOutcome: document.getElementById('report-outcome-text'),
+    analysisBody: document.getElementById('analysisTableBody')
+};
 
 /**
- * Route Tracker Launcher 
- * This must be defined globally so the onclick in HTML can see it.
+ * Route Tracker Launcher
  */
 function selectTrack(trackId) {
     session.currentTrack = trackId;
@@ -52,59 +63,26 @@ function selectTrack(trackId) {
         return;
     }
 
-    // Hide dashboard, show workspace
-    document.getElementById('dashboard-screen').classList.add('hidden');
-    document.getElementById('workspace-screen').classList.remove('hidden');
+    // Hide dashboard, show setup
+    if (UI.dashScreen) UI.dashScreen.classList.add('hidden');
+    if (UI.setupScreen) UI.setupScreen.classList.remove('hidden');
     
-    // Populate the dropdown (ensure module-select exists in your HTML)
-    const moduleSelect = document.getElementById('module-select');
-    if (moduleSelect) {
-        moduleSelect.innerHTML = "";
+    // Populate dropdown
+    if (UI.moduleSelect) {
+        UI.moduleSelect.innerHTML = "";
         let allOpt = document.createElement('option');
         allOpt.value = 'all';
         allOpt.textContent = `ALL LEVEL ${trackId} COMBINED`;
-        moduleSelect.appendChild(allOpt);
+        UI.moduleSelect.appendChild(allOpt);
 
         Object.keys(levelData).forEach(lessonKey => {
             let nOpt = document.createElement('option');
             nOpt.value = lessonKey;
             nOpt.textContent = levelData[lessonKey].title;
-            moduleSelect.appendChild(nOpt);
+            UI.moduleSelect.appendChild(nOpt);
         });
     }
 }
-    function returnToDashboard() {
-        document.getElementById('workspace-screen').classList.add('hidden');
-        document.getElementById('dashboard-screen').classList.remove('hidden');
-    }
-
-/**
- * Parses global database tokens dynamically to form selection dropdown arrays
- */
-function populateModuleDropdown(trackId) {
-    if (!UI.moduleSelect) return;
-    UI.moduleSelect.innerHTML = "";
-
-    // Insert master compiled matrix baseline entry
-    let allOpt = document.createElement("option");
-    allOpt.value = "all";
-    allOpt.textContent = `ALL LEVEL ${trackId} COMBINED CORE OBJECTIVES`;
-    UI.moduleSelect.appendChild(allOpt);
-
-    // FIX: Point dropdown generator directly to the unified masterQuestionBank
-    const targetKey = 'level' + trackId;
-    const levelData = masterQuestionBank[targetKey];
-
-    if (levelData) {
-        Object.keys(levelData).forEach(key => {
-            let opt = document.createElement("option");
-            opt.value = key;
-            opt.textContent = levelData[key].title || key.toUpperCase();
-            UI.moduleSelect.appendChild(opt);
-        });
-    }
-}
-
 /**
  * Validates initialization form data and constructs targeted question sandbox arrays
  */
