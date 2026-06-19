@@ -12,7 +12,7 @@ let session = {
     userAnswers: [],       
     getCurrentQuestion: function() {
         return this.questions[this.currentIdx] || null;
-    }, // <-- COMMA ADDED HERE (This fixes the Syntax Error)
+    },
     flags: [],             
     timerId: null,
     timeRemaining: 45 * 60 
@@ -555,5 +555,3 @@ function returnToDashboard() {
         session.currentTrack = null;
     }
 }
-
-```
