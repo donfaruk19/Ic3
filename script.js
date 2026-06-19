@@ -47,6 +47,21 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("UI Mapped Successfully");
 });
 
+// Orchestrate initialization bindings once DOM layers stabilize
+document.addEventListener("DOMContentLoaded", () => {
+    if (UI.nextBtn) UI.nextBtn.addEventListener("click", handleNext);
+    if (UI.prevBtn) UI.prevBtn.addEventListener("click", handlePrev);
+    if (UI.flagBtn) UI.flagBtn.addEventListener("click", toggleFlag);
+    
+    const setupForm = document.getElementById("setup-form");
+    if (setupForm) {
+        setupForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            deployExamSandbox();
+        });
+    }
+});
+
 /**
  * Route Tracker Launcher
  */
