@@ -88,13 +88,13 @@
 
     <div id="loading-overlay" class="hidden" role="alert" aria-busy="true" aria-live="polite">
         <div class="spinner"></div>
-        <p>Loading Mission Parameters...</p>
+        <p>Loading Parameters...</p>
     </div>
 
     <div id="dashboard-screen" class="dashboard-container">
         <div class="header-banner">
             <h1>IC3 GS6 CERTIFICATION TRAINING SUITE</h1>
-            <p>Operational Mission Control & Practice Matrix</p>
+            <p>Practice Matrix</p>
         </div>
 
         <div class="track-grid">
@@ -147,7 +147,7 @@
                             <select id="module-select"></select>
                         </div>
                         <div class="form-group">
-                            <label for="mode-select">Execution Profile Mode:</label>
+                            <label for="mode-select"> Mode Selection:</label>
                             <select id="mode-select">
                                 <option value="training">Training Mode (Immediate Answer & Explanations)</option>
                                 <option value="testing">Testing Mode (Full Exam Simulation Sandbox)</option>
@@ -192,7 +192,7 @@
                 <div class="config-box" style="text-align: center;">
                     <h2 style="color: var(--accent-gold); margin-top:0;">Performance Assessment Report</h2>
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
-                    <div style="font-size: 1.2rem; margin-bottom: 10px;">Operator: <span id="report-candidate-name" style="font-weight: bold; color: #fff;">--</span></div>
+                    <div style="font-size: 1.2rem; margin-bottom: 10px;">Candidate Name: <span id="report-candidate-name" style="font-weight: bold; color: #fff;">--</span></div>
                     <div style="font-size: 2.5rem; font-weight: bold; color: var(--accent-gold); margin: 20px 0;" id="report-final-score">0</div>
                     
                     <div class="outcome-banner" style="padding: 15px; border-radius: 6px; margin-bottom: 25px; background: rgba(255,255,255,0.05);">
@@ -224,6 +224,7 @@
     </footer>
 
     <script src="questions.js"></script>
+    <script src="cards.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
