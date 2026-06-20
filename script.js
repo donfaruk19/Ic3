@@ -110,37 +110,18 @@ function selectTrack(trackId) {
 }
 
 // =================================================================
-// RECONFIGURED FLASHCARD CORE MODULE - SECURITY & ISOLATION ENGINE
+// SYSTEM CONSOLE ISOLATED FLASHCARD INTERACTION CORE
 // =================================================================
 let flashcardDeck = [];
 let currentCardIdx = 0;
 let cardIsFlipped = false;
 
-// Dynamic Master Navigation Router to isolate Study Mode from Exam Mode
-function routeNextNavigation(e) {
-    // Stop any other script or event listener from hijacking this click event
-    if (e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-    }
-    
-    if (flashcardDeck.length === 0) return;
-
-    if (currentCardIdx < flashcardDeck.length - 1) {
-        currentCardIdx++;
-        renderFlashcard();
-    } else {
-        exitFlashcardDeck(); // Clean study session separation path
-    }
-}
-
 function deployFlashcards() {
     session.selectedModule = UI.moduleSelect ? UI.moduleSelect.value : "all";
     const targetLevelKey = 'level' + session.currentTrack;
     
-    // Safety verification check on external cards.js file
     if (typeof masterFlashcardBank === 'undefined' || !masterFlashcardBank[targetLevelKey]) {
-        alert("Configuration Error: Flashcard repository for this level is unavailable or cards.js is missing.");
+        alert("Configuration Error: Flashcard repository for this level is unavailable.");
         return;
     }
 
@@ -149,7 +130,7 @@ function deployFlashcards() {
     currentCardIdx = 0;
     cardIsFlipped = false;
 
-    // Filter and pull from cards.js
+    // Filter and build deck
     if (session.selectedModule === "all") {
         Object.keys(levelData).forEach(lessonKey => {
             if (levelData[lessonKey].cards && Array.isArray(levelData[lessonKey].cards)) {
@@ -167,27 +148,20 @@ function deployFlashcards() {
     }
 
     if (flashcardDeck.length === 0) {
-        alert("System Notice: No summary flashcards have been added to this lesson module database yet.");
+        alert("System Notice: No summary flashcards found for this selection.");
         return;
     }
 
-    // CRITICAL: Clone and replace the buttons to completely kill any hidden exam event listeners
-    if (UI.nextBtn) {
-        const cleanNextBtn = UI.nextBtn.cloneNode(true);
-        UI.nextBtn.parentNode.replaceChild(cleanNextBtn, UI.nextBtn);
-        UI.nextBtn = cleanNextBtn; // Re-assign global UI reference
-    }
-    if (UI.prevBtn) {
-        const cleanPrevBtn = UI.prevBtn.cloneNode(true);
-        UI.prevBtn.parentNode.replaceChild(cleanPrevBtn, UI.prevBtn);
-        UI.prevBtn = cleanPrevBtn; // Re-assign global UI reference
-    }
-
-    // Toggle viewport matrix layout
+    // Prepare viewport matrix layout
     if (UI.setupScreen) UI.setupScreen.classList.add('hidden');
     if (UI.examContainer) UI.examContainer.classList.remove('hidden');
-    if (UI.timer) UI.timer.textContent = "🧠 Flashcard Study Protocol";
+    if (UI.timer) UI.timer.textContent = "🧠 COGNITIVE STUDY OVERLAY ACTIVE";
     
+    // Hide the master workspace evaluation buttons so they cannot be clicked
+    if (UI.nextBtn) UI.nextBtn.style.display = 'none';
+    if (UI.prevBtn) UI.prevBtn.style.display = 'none';
+    if (UI.flagBtn) UI.flagBtn.style.display = 'none';
+
     renderFlashcard();
 }
 
@@ -197,40 +171,54 @@ function renderFlashcard() {
     cardIsFlipped = false;
 
     if (UI.progressIndicator) {
-        UI.progressIndicator.textContent = `Review Core: ${currentCardIdx + 1} / ${flashcardDeck.length} [${card.category}]`;
+        UI.progressIndicator.textContent = `CRITICAL REVIEW: ${currentCardIdx + 1} / ${flashcardDeck.length} [${card.category}]`;
     }
 
+    // Set Up Card Context Frame
     UI.qText.innerHTML = `
-        <div style="font-size:0.8rem; color:var(--accent-gold); margin-bottom:5px; text-transform:uppercase; letter-spacing:1px;">
-            Core Objective Vector: ${card.topic}
+        <div style="font-size:0.8rem; color:var(--accent-gold); margin-bottom:5px; text-transform:uppercase; letter-spacing:1px; font-family:monospace;">
+            TACTICAL VECTOR: ${card.topic}
         </div>
-        <div style="font-size:1.2rem; color:#fff; font-weight:600; line-height:1.4;">${card.front}</div>
+        <div style="font-size:1.25rem; color:#fff; font-weight:600; line-height:1.4;">${card.front}</div>
     `;
 
+    // Clear operational option fields
     UI.optionsContainer.innerHTML = "";
+    
+    // Inject the card container AND a completely independent control pane
     UI.interactiveContainer.innerHTML = `
-        <div id="flashcard-plate" onclick="flipFlashcard()" style="background: var(--bg-secondary); border: 2px dashed var(--border-color); padding: 40px 20px; text-align: center; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; margin: 20px 0;">
-            <p id="flashcard-content" style="font-size: 1.05rem; font-weight: 500; color: var(--text-muted); line-height:1.5;">
-                🖱️ Click / Tap Panel Area to Reveal Core Objective Verification Key
+        <div id="flashcard-plate" onclick="flipFlashcard()" style="background: var(--bg-secondary); border: 2px dashed var(--border-color); padding: 45px 20px; text-align: center; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; margin: 20px 0;">
+            <p id="flashcard-content" style="font-size: 1.05rem; font-weight: 500; color: var(--text-muted); line-height:1.5; margin:0;">
+                🖱️ Click / Tap Area to Verify Objective Criteria
             </p>
         </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px;">
+            <button id="study-prev-btn" class="action-btn" style="padding: 12px; font-weight: bold; font-family: monospace; text-transform: uppercase;" ${currentCardIdx === 0 ? 'disabled' : ''}>
+                ⬅️ Previous Entry
+            </button>
+            <button id="study-next-btn" class="action-btn" style="padding: 12px; font-weight: bold; font-family: monospace; text-transform: uppercase; background: var(--accent-gold); color: #000; border-color: var(--accent-gold);">
+                ${currentCardIdx === flashcardDeck.length - 1 ? '🔴 Terminate Session' : 'Next Objective ➡️'}
+            </button>
+        </div>
     `;
 
-    // Handle Back/Previous Button Action cleanly
-    UI.prevBtn.disabled = (currentCardIdx === 0);
-    UI.prevBtn.onclick = (e) => { 
-        if (e) e.stopImmediatePropagation();
-        if (currentCardIdx > 0) { 
-            currentCardIdx--; 
-            renderFlashcard(); 
-        } 
+    // Direct event listener binding to our new study panel buttons
+    document.getElementById('study-prev-btn').onclick = (e) => {
+        if (currentCardIdx > 0) {
+            currentCardIdx--;
+            renderFlashcard();
+        }
     };
 
-    // Safely route the Next Button exclusively to the card router
-    UI.nextBtn.textContent = (currentCardIdx === flashcardDeck.length - 1) ? "Exit Deck Panel" : "Next Objective";
-    UI.nextBtn.onclick = routeNextNavigation;
-
-    if (UI.flagBtn) UI.flagBtn.textContent = "Study Profile Active";
+    document.getElementById('study-next-btn').onclick = (e) => {
+        if (currentCardIdx < flashcardDeck.length - 1) {
+            currentCardIdx++;
+            renderFlashcard();
+        } else {
+            terminateStudyInterface();
+        }
+    };
 }
 
 function flipFlashcard() {
@@ -243,45 +231,32 @@ function flipFlashcard() {
 
     if (cardIsFlipped) {
         plate.style.borderColor = "var(--accent-gold)";
-        plate.style.background = "rgba(197, 168, 128, 0.03)";
+        plate.style.background = "rgba(197, 168, 128, 0.04)";
         content.innerHTML = `
-            <div style="text-align: left; animation: fadeIn 0.2s ease;">
-                <strong style="color:var(--success); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:5px;">✓ Verified Competency Blueprint:</strong>
-                <p style="color:var(--text-main); font-size:1.05rem; margin:0; line-height:1.6;">${card.back}</p>
+            <div style="text-align: left; animation: fadeIn 0.15s ease-out;">
+                <strong style="color:var(--success); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:8px; font-family:monospace;">✓ VERIFIED COMPETENCY MATRIX:</strong>
+                <p style="color:var(--text-main); font-size:1.05rem; margin:0; line-height:1.6; font-weight: 500;">${card.back}</p>
             </div>
         `;
     } else {
         plate.style.borderColor = "var(--border-color)";
         plate.style.background = "var(--bg-secondary)";
-        content.innerHTML = `🖱️ Click / Tap Panel Area to Reveal Core Objective Verification Key`;
+        content.innerHTML = `🖱️ Click / Tap Area to Verify Objective Criteria`;
     }
 }
 
-// RESTORE ORIGINAL EXAM ENGINE DEFAULTS ON SYSTEM EXIT
-function exitFlashcardDeck() {
-    alert("Flashcard Study Session Complete! Returning to Dashboard.");
+function terminateStudyInterface() {
+    alert("Study Module Concluded successfully. System returning to standard command configurations.");
     
+    // Return display visibility back to primary engine systems
     if (UI.examContainer) UI.examContainer.classList.add('hidden');
     if (UI.setupScreen) UI.setupScreen.classList.remove('hidden');
     if (UI.dashScreen) UI.dashScreen.classList.remove('hidden');
 
-    // Re-clone buttons one last time to shake off the flashcard listeners
-    if (UI.nextBtn) {
-        const restoreNextBtn = UI.nextBtn.cloneNode(true);
-        UI.nextBtn.parentNode.replaceChild(restoreNextBtn, UI.nextBtn);
-        UI.nextBtn = restoreNextBtn;
-    }
-    if (UI.prevBtn) {
-        const restorePrevBtn = UI.prevBtn.cloneNode(true);
-        UI.prevBtn.parentNode.replaceChild(restorePrevBtn, UI.prevBtn);
-        UI.prevBtn = restorePrevBtn;
-    }
-
-    // Safely point back to your default exam handlers
-    UI.nextBtn.textContent = "Next";
-    if (typeof handleNext !== 'undefined') UI.nextBtn.addEventListener('click', handleNext);
-    if (typeof handlePrev !== 'undefined') UI.prevBtn.addEventListener('click', handlePrev);
-    if (UI.prevBtn) UI.prevBtn.disabled = false;
+    // Restore the main master application buttons perfectly without triggering changes
+    if (UI.nextBtn) UI.nextBtn.style.display = '';
+    if (UI.prevBtn) UI.prevBtn.style.display = '';
+    if (UI.flagBtn) UI.flagBtn.style.display = '';
 }
 function deployExamSandbox() {
     // 0. Primary Matrix Verification
