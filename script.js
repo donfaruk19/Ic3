@@ -195,11 +195,7 @@ function renderFlashcard() {
             currentCardIdx++;
             renderFlashcard();
         } else {
-            if (UI.examContainer) UI.examContainer.classList.add('hidden');
-            if (UI.setupScreen) UI.setupScreen.classList.remove('hidden');
-            UI.nextBtn.textContent = "Next";
-            UI.nextBtn.onclick = handleNext;
-            UI.prevBtn.onclick = handlePrev;
+            exitFlashcardDeck(); // Clean study session separation path
         }
     };
     if (UI.flagBtn) UI.flagBtn.textContent = "Study Profile Active";
@@ -227,6 +223,22 @@ function flipFlashcard() {
         plate.style.background = "var(--bg-secondary)";
         content.innerHTML = `🖱️ Click / Tap Panel Area to Reveal Core Objective Verification Key`;
     }
+}
+
+// SAFELY DISCONNECT STUDY VIEW FROM ASSESSMENTS
+function exitFlashcardDeck() {
+    alert("Flashcard Study Session Complete! Returning to Dashboard.");
+    
+    // Hide review views and return back to dashboard configurations smoothly
+    if (UI.examContainer) UI.examContainer.classList.add('hidden');
+    if (UI.setupScreen) UI.setupScreen.classList.remove('hidden');
+    if (UI.dashScreen) UI.dashScreen.classList.remove('hidden'); // Ensure dashboard is displayed
+
+    // Reassign navigation properties cleanly back to default behaviors without executing anything
+    UI.nextBtn.textContent = "Next";
+    UI.nextBtn.onclick = (typeof handleNext !== 'undefined') ? handleNext : null;
+    UI.prevBtn.onclick = (typeof handlePrev !== 'undefined') ? handlePrev : null;
+    if (UI.prevBtn) UI.prevBtn.disabled = false;
 }
 function deployExamSandbox() {
     // 0. Primary Matrix Verification
