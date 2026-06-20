@@ -21,7 +21,7 @@ let session = {
 // Global DOM Cache Matrix Injection Layer
 // All IDs listed here must exist in your index.html
 document.addEventListener("DOMContentLoaded", function() {
-    // Move all IU to listener
+    // Move all UI to listener
     window.UI = {
         dashScreen: document.getElementById('dashboard-screen'),
         workScreen: document.getElementById('workspace-screen'),
@@ -83,16 +83,10 @@ function selectTrack(trackId) {
     }
 
     // --- MASTER CONTAINER VIEW TRANSITION PIPELINE ---
-    // 1. Hide the main command dashboard
     if (UI.dashScreen) UI.dashScreen.classList.add('hidden');
-    
-    // 2. Unhide the parent workspace screen wrapper (FIXES BLANK PAGE)
     if (UI.workScreen) UI.workScreen.classList.remove('hidden');
-    
-    // 3. Display the setup configuration screen
     if (UI.setupScreen) UI.setupScreen.classList.remove('hidden');
     
-    // 4. Ensure structural isolation by hiding sub-containers until deployed
     if (UI.examContainer) UI.examContainer.classList.add('hidden');
     if (UI.resultScreen) UI.resultScreen.classList.add('hidden');
     let reviewScr = document.getElementById('review-screen');
@@ -114,6 +108,7 @@ function selectTrack(trackId) {
         });
     }
 }
+
 // =================================================================
 // RECONFIGURED FLASHCARD CORE MODULE - CARDS.JS ENGINE
 // =================================================================
@@ -139,14 +134,18 @@ function deployFlashcards() {
     // Filter and pull from cards.js
     if (session.selectedModule === "all") {
         Object.keys(levelData).forEach(lessonKey => {
-            levelData[lessonKey].cards.forEach(card => {
-                flashcardDeck.push({ ...card, category: levelData[lessonKey].title });
-            });
+            if (levelData[lessonKey].cards && Array.isArray(levelData[lessonKey].cards)) {
+                levelData[lessonKey].cards.forEach(card => {
+                    flashcardDeck.push({ ...card, category: levelData[lessonKey].title });
+                });
+            }
         });
     } else if (levelData[session.selectedModule]) {
-        levelData[session.selectedModule].cards.forEach(card => {
-            flashcardDeck.push({ ...card, category: levelData[session.selectedModule].title });
-        });
+        if (levelData[session.selectedModule].cards && Array.isArray(levelData[session.selectedModule].cards)) {
+            levelData[session.selectedModule].cards.forEach(card => {
+                flashcardDeck.push({ ...card, category: levelData[session.selectedModule].title });
+            });
+        }
     }
 
     if (flashcardDeck.length === 0) {
@@ -155,8 +154,8 @@ function deployFlashcards() {
     }
 
     // Toggle viewport matrix layout
-    UI.setupScreen.classList.add('hidden');
-    UI.examContainer.classList.remove('hidden');
+    if (UI.setupScreen) UI.setupScreen.classList.add('hidden');
+    if (UI.examContainer) UI.examContainer.classList.remove('hidden');
     if (UI.timer) UI.timer.textContent = "🧠 Flashcard Study Protocol";
     
     renderFlashcard();
@@ -196,8 +195,8 @@ function renderFlashcard() {
             currentCardIdx++;
             renderFlashcard();
         } else {
-            UI.examContainer.classList.add('hidden');
-            UI.setupScreen.classList.remove('hidden');
+            if (UI.examContainer) UI.examContainer.classList.add('hidden');
+            if (UI.setupScreen) UI.setupScreen.classList.remove('hidden');
             UI.nextBtn.textContent = "Next";
             UI.nextBtn.onclick = handleNext;
             UI.prevBtn.onclick = handlePrev;
