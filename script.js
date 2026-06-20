@@ -110,11 +110,29 @@ function selectTrack(trackId) {
 }
 
 // =================================================================
-// RECONFIGURED FLASHCARD CORE MODULE - CARDS.JS ENGINE
+// RECONFIGURED FLASHCARD CORE MODULE - SECURITY & ISOLATION ENGINE
 // =================================================================
 let flashcardDeck = [];
 let currentCardIdx = 0;
 let cardIsFlipped = false;
+
+// Dynamic Master Navigation Router to isolate Study Mode from Exam Mode
+function routeNextNavigation(e) {
+    // Stop any other script or event listener from hijacking this click event
+    if (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+    }
+    
+    if (flashcardDeck.length === 0) return;
+
+    if (currentCardIdx < flashcardDeck.length - 1) {
+        currentCardIdx++;
+        renderFlashcard();
+    } else {
+        exitFlashcardDeck(); // Clean study session separation path
+    }
+}
 
 function deployFlashcards() {
     session.selectedModule = UI.moduleSelect ? UI.moduleSelect.value : "all";
@@ -153,6 +171,18 @@ function deployFlashcards() {
         return;
     }
 
+    // CRITICAL: Clone and replace the buttons to completely kill any hidden exam event listeners
+    if (UI.nextBtn) {
+        const cleanNextBtn = UI.nextBtn.cloneNode(true);
+        UI.nextBtn.parentNode.replaceChild(cleanNextBtn, UI.nextBtn);
+        UI.nextBtn = cleanNextBtn; // Re-assign global UI reference
+    }
+    if (UI.prevBtn) {
+        const cleanPrevBtn = UI.prevBtn.cloneNode(true);
+        UI.prevBtn.parentNode.replaceChild(cleanPrevBtn, UI.prevBtn);
+        UI.prevBtn = cleanPrevBtn; // Re-assign global UI reference
+    }
+
     // Toggle viewport matrix layout
     if (UI.setupScreen) UI.setupScreen.classList.add('hidden');
     if (UI.examContainer) UI.examContainer.classList.remove('hidden');
@@ -186,18 +216,20 @@ function renderFlashcard() {
         </div>
     `;
 
+    // Handle Back/Previous Button Action cleanly
     UI.prevBtn.disabled = (currentCardIdx === 0);
-    UI.prevBtn.onclick = () => { if (currentCardIdx > 0) { currentCardIdx--; renderFlashcard(); } };
-
-    UI.nextBtn.textContent = (currentCardIdx === flashcardDeck.length - 1) ? "Exit Deck Panel" : "Next Objective";
-    UI.nextBtn.onclick = () => {
-        if (currentCardIdx < flashcardDeck.length - 1) {
-            currentCardIdx++;
-            renderFlashcard();
-        } else {
-            exitFlashcardDeck(); // Clean study session separation path
-        }
+    UI.prevBtn.onclick = (e) => { 
+        if (e) e.stopImmediatePropagation();
+        if (currentCardIdx > 0) { 
+            currentCardIdx--; 
+            renderFlashcard(); 
+        } 
     };
+
+    // Safely route the Next Button exclusively to the card router
+    UI.nextBtn.textContent = (currentCardIdx === flashcardDeck.length - 1) ? "Exit Deck Panel" : "Next Objective";
+    UI.nextBtn.onclick = routeNextNavigation;
+
     if (UI.flagBtn) UI.flagBtn.textContent = "Study Profile Active";
 }
 
@@ -225,19 +257,30 @@ function flipFlashcard() {
     }
 }
 
-// SAFELY DISCONNECT STUDY VIEW FROM ASSESSMENTS
+// RESTORE ORIGINAL EXAM ENGINE DEFAULTS ON SYSTEM EXIT
 function exitFlashcardDeck() {
     alert("Flashcard Study Session Complete! Returning to Dashboard.");
     
-    // Hide review views and return back to dashboard configurations smoothly
     if (UI.examContainer) UI.examContainer.classList.add('hidden');
     if (UI.setupScreen) UI.setupScreen.classList.remove('hidden');
-    if (UI.dashScreen) UI.dashScreen.classList.remove('hidden'); // Ensure dashboard is displayed
+    if (UI.dashScreen) UI.dashScreen.classList.remove('hidden');
 
-    // Reassign navigation properties cleanly back to default behaviors without executing anything
+    // Re-clone buttons one last time to shake off the flashcard listeners
+    if (UI.nextBtn) {
+        const restoreNextBtn = UI.nextBtn.cloneNode(true);
+        UI.nextBtn.parentNode.replaceChild(restoreNextBtn, UI.nextBtn);
+        UI.nextBtn = restoreNextBtn;
+    }
+    if (UI.prevBtn) {
+        const restorePrevBtn = UI.prevBtn.cloneNode(true);
+        UI.prevBtn.parentNode.replaceChild(restorePrevBtn, UI.prevBtn);
+        UI.prevBtn = restorePrevBtn;
+    }
+
+    // Safely point back to your default exam handlers
     UI.nextBtn.textContent = "Next";
-    UI.nextBtn.onclick = (typeof handleNext !== 'undefined') ? handleNext : null;
-    UI.prevBtn.onclick = (typeof handlePrev !== 'undefined') ? handlePrev : null;
+    if (typeof handleNext !== 'undefined') UI.nextBtn.addEventListener('click', handleNext);
+    if (typeof handlePrev !== 'undefined') UI.prevBtn.addEventListener('click', handlePrev);
     if (UI.prevBtn) UI.prevBtn.disabled = false;
 }
 function deployExamSandbox() {
