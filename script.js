@@ -114,12 +114,6 @@ function selectTrack(trackId) {
         });
     }
 }
-/**
- * Validates initialization form data and constructs targeted question sandbox arrays
- */
-/**
- * Validates initialization form data and constructs targeted question sandbox arrays
- */
 // =================================================================
 // FLASHCARD STUDY SYSTEM MECHANICS
 // =================================================================
@@ -230,7 +224,7 @@ function renderFlashcard() {
     if (UI.flagBtn) UI.flagBtn.textContent = "Study Mode Active";
 }
 
-/**// =================================================================
+// =================================================================
 // RECONFIGURED FLASHCARD CORE MODULE - CARDS.JS ENGINE
 // =================================================================
 let flashcardDeck = [];
