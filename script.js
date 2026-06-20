@@ -230,9 +230,98 @@ function renderFlashcard() {
     if (UI.flagBtn) UI.flagBtn.textContent = "Study Mode Active";
 }
 
-/**
- * Handles the visual flip translation logic to display answer matrices safely
- */
+/**// =================================================================
+// RECONFIGURED FLASHCARD CORE MODULE - CARDS.JS ENGINE
+// =================================================================
+let flashcardDeck = [];
+let currentCardIdx = 0;
+let cardIsFlipped = false;
+
+function deployFlashcards() {
+    session.selectedModule = UI.moduleSelect ? UI.moduleSelect.value : "all";
+    const targetLevelKey = 'level' + session.currentTrack;
+    
+    // Safety verification check on external cards.js file
+    if (typeof masterFlashcardBank === 'undefined' || !masterFlashcardBank[targetLevelKey]) {
+        alert("Configuration Error: Flashcard repository for this level is unavailable or cards.js is missing.");
+        return;
+    }
+
+    const levelData = masterFlashcardBank[targetLevelKey];
+    flashcardDeck = [];
+    currentCardIdx = 0;
+    cardIsFlipped = false;
+
+    // Filter and pull from cards.js
+    if (session.selectedModule === "all") {
+        Object.keys(levelData).forEach(lessonKey => {
+            levelData[lessonKey].cards.forEach(card => {
+                flashcardDeck.push({ ...card, category: levelData[lessonKey].title });
+            });
+        });
+    } else if (levelData[session.selectedModule]) {
+        levelData[session.selectedModule].cards.forEach(card => {
+            flashcardDeck.push({ ...card, category: levelData[session.selectedModule].title });
+        });
+    }
+
+    if (flashcardDeck.length === 0) {
+        alert("System Notice: No summary flashcards have been added to this lesson module database yet.");
+        return;
+    }
+
+    // Toggle viewport matrix layout
+    UI.setupScreen.classList.add('hidden');
+    UI.examContainer.classList.remove('hidden');
+    if (UI.timer) UI.timer.textContent = "🧠 Flashcard Study Protocol";
+    
+    renderFlashcard();
+}
+
+function renderFlashcard() {
+    if (flashcardDeck.length === 0) return;
+    const card = flashcardDeck[currentCardIdx];
+    cardIsFlipped = false;
+
+    if (UI.progressIndicator) {
+        UI.progressIndicator.textContent = `Review Core: ${currentCardIdx + 1} / ${flashcardDeck.length} [${card.category}]`;
+    }
+
+    UI.qText.innerHTML = `
+        <div style="font-size:0.8rem; color:var(--accent-gold); margin-bottom:5px; text-transform:uppercase; letter-spacing:1px;">
+            Core Objective Vector: ${card.topic}
+        </div>
+        <div style="font-size:1.2rem; color:#fff; font-weight:600; line-height:1.4;">${card.front}</div>
+    `;
+
+    UI.optionsContainer.innerHTML = "";
+    UI.interactiveContainer.innerHTML = `
+        <div id="flashcard-plate" onclick="flipFlashcard()" style="background: var(--bg-secondary); border: 2px dashed var(--border-color); padding: 40px 20px; text-align: center; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; margin: 20px 0;">
+            <p id="flashcard-content" style="font-size: 1.05rem; font-weight: 500; color: var(--text-muted); line-height:1.5;">
+                🖱️ Click / Tap Panel Area to Reveal Core Objective Verification Key
+            </p>
+        </div>
+    `;
+
+    UI.prevBtn.disabled = (currentCardIdx === 0);
+    UI.prevBtn.onclick = () => { if (currentCardIdx > 0) { currentCardIdx--; renderFlashcard(); } };
+
+    UI.nextBtn.textContent = (currentCardIdx === flashcardDeck.length - 1) ? "Exit Deck Panel" : "Next Objective";
+    UI.nextBtn.onclick = () => {
+        if (currentCardIdx < flashcardDeck.length - 1) {
+            currentCardIdx++;
+            renderFlashcard();
+        } else {
+            UI.examContainer.classList.add('hidden');
+            UI.setupScreen.classList.remove('hidden');
+            UI.nextBtn.textContent = "Next";
+            UI.nextBtn.onclick = handleNext;
+            UI.prevBtn.onclick = handlePrev;
+        }
+    };
+    if (UI.flagBtn) UI.flagBtn.textContent = "Study Profile Active";
+}
+
 function flipFlashcard() {
     const plate = document.getElementById("flashcard-plate");
     const content = document.getElementById("flashcard-content");
@@ -243,34 +332,17 @@ function flipFlashcard() {
 
     if (cardIsFlipped) {
         plate.style.borderColor = "var(--accent-gold)";
-        plate.style.background = "rgba(197, 168, 128, 0.05)";
-        
-        let answerMarkup = "";
-        
-        if (card.type === "mcq" || card.type === "single") {
-            answerMarkup = `<strong style="color:var(--success);">Correct Choice:</strong> ${card.a[card.cor]}`;
-        } else if (card.type === "multi") {
-            const multiAnswers = card.cor.map(idx => card.a[idx]).join(" | ");
-            answerMarkup = `<strong style="color:var(--success);">Required Solutions:</strong><br>${multiAnswers}`;
-        } else if (card.type === "match") {
-            let pairsList = card.pairs.map(p => `• <strong>${p.item}</strong> ➔ ${p.match}`).join("<br>");
-            answerMarkup = `<strong style="color:var(--success);">Target Alignment Maps:</strong><br>${pairsList}`;
-        } else if (card.type === "ordering") {
-            let sortedSteps = [...card.steps].sort((a, b) => card.cor[card.steps.indexOf(a)] - card.cor[card.steps.indexOf(b)]);
-            answerMarkup = `<strong style="color:var(--success);">Validated Priority Sequence:</strong><br>${sortedSteps.map((s, i) => `${i + 1}. ${s}`).join("<br>")}`;
-        }
-
+        plate.style.background = "rgba(197, 168, 128, 0.03)";
         content.innerHTML = `
-            <div style="text-align: left; line-height: 1.6;">
-                ${answerMarkup}
-                <hr style="border:0; border-top:1px solid var(--border-color); margin:15px 0;">
-                <small style="color:var(--text-main); display:block;"><strong>Operational Objective context:</strong><br>${card.exp}</small>
+            <div style="text-align: left; animation: fadeIn 0.2s ease;">
+                <strong style="color:var(--success); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:5px;">✓ Verified Competency Blueprint:</strong>
+                <p style="color:var(--text-main); font-size:1.05rem; margin:0; line-height:1.6;">${card.back}</p>
             </div>
         `;
     } else {
         plate.style.borderColor = "var(--border-color)";
         plate.style.background = "var(--bg-secondary)";
-        content.innerHTML = `🖱️ Click / Tap Card Panel to Reveal Verification Key`;
+        content.innerHTML = `🖱️ Click / Tap Panel Area to Reveal Core Objective Verification Key`;
     }
 }
 function deployExamSandbox() {
