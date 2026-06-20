@@ -4,279 +4,428 @@
 
 const masterFlashcardBank = {
     // ---------------------------------------------------------
-    // LEVEL 1: FOUNDAMENTALS (Lessons 1 - 7)
+    // LEVEL 1: FUNDAMENTALS (Lessons 1 - 7)
     // ---------------------------------------------------------
     level1: {
         l1_lesson1: {
             title: "Lesson 1: Technology Basics",
             cards: [
-                {
-                    topic: "Hardware & Software",
-                    front: "What is the structural difference between hardware and software components?",
-                    back: "Hardware refers to the tangible physical components of a device (CPU, RAM, Storage). Software consists of intangible digital code, instructions, and applications that command the hardware."
-                },
-                {
-                    topic: "Operating Systems",
-                    front: "What is the primary role of an Operating System (OS) in computer architecture?",
-                    back: "The OS acts as the core intermediary system layer that manages hardware resources, executes applications, and provides the user interface."
-                }
+                { topic: "Operating System Role", front: "What is the primary function of an Operating System (OS)?", back: "It acts as the core software environment that coordinates hardware communication, manages computer memory, controls peripheral paths, and provides a graphical user interface (GUI) for human interaction." },
+                { topic: "Desktop OS Ecosystems", front: "Name three major desktop operating systems used in modern computer environments.", back: "Microsoft Windows, Apple macOS, and Linux." },
+                { topic: "Mobile OS Platforms", front: "What are the two dominant operating systems specifically designed for mobile devices?", back: "Apple iOS (closed-source, proprietary to Apple hardware) and Google Android (open-source, deployed across multiple manufacturer hardware sets)." },
+                { topic: "The Web Browser", front: "What is a web browser and what is its fundamental design purpose?", back: "A client-side software application engineered to fetch, interpret, render, and navigate HTML code documents and media streams hosted on remote web servers across the internet." },
+                { topic: "Address Bar vs. Search Bar", front: "What is the precise structural purpose of a web browser's Address Bar?", back: "It accepts direct entries of exact Uniform Resource Locators (URLs) or web addresses to navigate immediately to a target server location, whereas a search bar queries a search engine index." },
+                { topic: "Online User Profiles", front: "Why are authenticated online accounts necessary for cloud infrastructure utilities?", back: "They provide decentralized access validation, allowing settings, preferences, licenses, cloud storage files, and user identities to sync securely across disparate physical hardware terminal points." },
+                { topic: "The Windows Taskbar", front: "What functions does the persistent Windows Taskbar provide to an operator?", back: "It houses the Start Menu trigger, pinned application shortcuts, currently active process footprints, system tray telemetry icons (clock, volume, network), and notification panels." },
+                { topic: "Hardware Definition", front: "What constitutes computer hardware?", back: "The physical, tangible, mechanical, and electrical components of a digital terminal system that you can physically touch (such as the motherboard, power supply, keyboard, or display panel)." },
+                { topic: "Software Definition", front: "What constitutes computer software?", back: "The intangible collections of digital code instructions, programs, algorithms, and application layers that command and tell the underlying computer hardware exactly what actions to execute." },
+                { topic: "Input Devices", front: "What is the engineering objective of an Input Device?", back: "To capture raw external real-world user data or commands and convert them into binary digital signals that the computer's CPU can interpret and process (e.g., Keyboards, Mice, Scanners, Microphones)." },
+                { topic: "Output Devices", front: "What is the engineering objective of an Output Device?", back: "To translate processed electronic binary data straight from the computer system back into human-readable or tangible physical representations (e.g., Monitors, Printers, Projectors, Speakers)." },
+                { topic: "Volatile Memory (RAM)", front: "What are the core operating characteristics of Random Access Memory (RAM)?", back: "It is ultra-fast, volatile temporary storage used by the CPU to hold data active processes need right now. It wipes completely clean the instant power to the machine is severed." },
+                { topic: "Non-Volatile Storage (Hard Drives/SSD)", front: "What defines non-volatile storage media arrays?", back: "Long-term data preservation systems (like Solid State Drives or Hard Disk Drives) that retain written digital data permanently, even when the system is completely powered down." },
+                { topic: "Peripherals Connection Paths", front: "What is the utility of a Universal Serial Bus (USB) port interface?", back: "A standard, hot-swappable hardware bus interface used to establish power transmission and data communications channels between computers and external peripheral devices." },
+                { topic: "Platform Selection Factors", front: "What critical parameters should guide an organization when selecting a computing platform?", back: "Total procurement cost, explicit operational software application compatibility requirements, field portability needs, hardware upgrade parameters, and existing security baseline support." }
             ]
         },
         l1_lesson2: {
             title: "Lesson 2: Digital Citizenship",
             cards: [
-                {
-                    topic: "Digital Footprint",
-                    front: "What constitutes a user's permanent digital footprint online?",
-                    back: "The traceable trail of data, public posts, search history, cookies, and uploaded content left behind by an individual's online activities."
-                },
-                {
-                    topic: "Netiquette Standards",
-                    front: "What is a core tenet of online communication etiquette (Netiquette)?",
-                    back: "Treating digital interactions with the same professional respect as face-to-face contact, including avoiding hostile language (flaming) and respecting others' privacy."
-                }
+                { topic: "Digital Identity", front: "What elements construct an individual's digital identity or online profile?", back: "The complete cumulative digital trail of usernames, registered email addresses, social profile parameters, bios, avatars, and posted materials connected to a specific person." },
+                { topic: "Digital Footprint", front: "What is a permanent digital footprint?", back: "The absolute trace record of online history, data packets, search inputs, public forum text, tracking cookies, and media files generated by a user that remains archives on server nets permanently." },
+                { topic: "Public vs. Private Context", front: "Why must users carefully evaluate information before publishing it to the web?", back: "Data launched onto public servers can be copied, screenshotted, archived, and distributed globally instantly, making it virtually impossible to completely recall or delete once exposed." },
+                { topic: "Netiquette Rules", front: "Define the core operational standard of Netiquette.", back: "Network Etiquette: the baseline rulebook of professional courtesy, ethical behavior, and constructive language formatting required during digital text interactions across collaborative networks." },
+                { topic: "Cyberbullying Indicators", front: "What behaviors clarify digital interactions as cyberbullying threats?", back: "The sustained, deliberate deployment of electronic channels to distribute hostile, harassing, intimidating, defamatory, or malicious messages targeted directly at an individual." },
+                { topic: "Reporting Threats", front: "What action path should a user immediately execute when uncovering online abuse?", back: "Preserve exact timestamped evidence captures (screenshots), leverage the application's built-in block/report vectors, and escalate the issue to local security monitors or network administrators." },
+                { topic: "Digital Health & Ergonomics", front: "What physical risks are associated with poor ergonomic habits during extended device configurations?", back: "Repetitive Strain Injuries (RSI) like carpal tunnel, chronic eyestrain from display glare, and musculoskeletal issues caused by slouched posture." },
+                { topic: "The 20-20-20 Rule", front: "How does the 20-20-20 behavioral rule protect a computer operator from visual fatigue?", back: "Every 20 minutes of continuous monitor engagement, an operator must shift focus to an object located at least 20 feet away for a minimum duration of 20 seconds to relax eye muscles." },
+                { topic: "Digital Distraction", front: "What are the structural impacts of digital distractions in workspace environments?", back: "Fragmented cognitive focus, increased human error rates during data validation entry, delayed project delivery timelines, and diminished situational awareness." },
+                { topic: "Intellectual Property Basics", front: "What is the core definition of Intellectual Property (IP)?", back: "Intangible human mind creations protected by legal statutes such as copyrights, trademarks, and patents to prevent unauthorized commercial exploitation." },
+                { topic: "Copyright Boundaries", front: "What primary protections does a standard copyright grant an author?", back: "Exclusive operational control over the reproduction, distribution, public display, and performance adaptations of their original creative works." },
+                { topic: "Fair Use Limitations", front: "What parameters allow copyrighted assets to be used legally under Fair Use clauses?", back: "Limited reproduction of short fragments for non-profit educational study, news reporting, critique, or parody purposes without requiring an explicit license purchase." },
+                { topic: "Public Domain Status", front: "What does it mean if a file asset resides in the Public Domain?", back: "The asset's copyright limitations have completely expired or were explicitly waived, allowing anyone to freely modify, reuse, or monetize the file without permission." },
+                { topic: "Plagiarism Defined", front: "What is the absolute difference between copyright infringement and plagiarism?", back: "Copyright infringement is a legal violation of distribution rights; plagiarism is an ethical violation involving passing off someone else's work or ideas as your own without proper credit." },
+                { topic: "Creative Commons Roles", front: "What is the structural objective of the Creative Commons (CC) licensing framework?", back: "It provides standardized, public legal toolsets that creators can apply to grant users conditional permissions to share and use their work legally under specific guidelines." }
             ]
         },
         l1_lesson3: {
             title: "Lesson 3: Information Management",
             cards: [
-                {
-                    topic: "Search Operators",
-                    front: "How do boolean operators like AND, OR, and NOT alter search database queries?",
-                    back: "AND narrows results by requiring all terms; OR broadens results by accepting any term; NOT filters out unwanted concepts entirely."
-                },
-                {
-                    topic: "Source Evaluation",
-                    front: "What is the primary purpose of cross-referencing information online?",
-                    back: "To verify the reliability, currency, factuality, and lack of systemic bias in an online source before using or sharing its data."
-                }
+                { topic: "Search Engine Definition", front: "What is the core function of an internet Search Engine?", back: "An automated web database application that utilizes web crawlers (spiders) to index site contents globally, cataloging keyword matrices to match user inquiries instantly." },
+                { topic: "Keyword Strategy", front: "How does keyword selection affect information search outcomes?", back: "Using precise, descriptive nouns and technical industry terms filters out irrelevant web content, whereas broad or vague words generate millions of unrelated hits." },
+                { topic: "Boolean: AND Operator", front: "How does appending the Boolean operator 'AND' alter database queries?", back: "It narrows search outputs by instructing the query engine that every single term on either side of the operator must be present in the returned document." },
+                { topic: "Boolean: OR Operator", front: "How does appending the Boolean operator 'OR' alter database queries?", back: "It broadens search outputs by instructing the query engine to return documents containing either one or both terms, useful for tracking down synonyms." },
+                { topic: "Boolean: NOT Operator", front: "How does appending the Boolean operator 'NOT' alter database queries?", back: "It narrows search fields by telling the query processor to filter out and exclude any document containing the specified keyword entirely." },
+                { topic: "Phrase Matching Syntax", front: "What does wrapping search engine input strings in quotation marks (\x22 \x22) accomplish?", back: "It locks the phrase structure, forcing the search engine to return records matching that exact sequence of words in that specific order, without splitting them up." },
+                { topic: "Evaluating Web Sources", front: "Why must digital information streams undergo critical evaluation before deployment?", back: "The open nature of the web allows unverified misinformation, propaganda, and outdated data to look like credible resources." },
+                { topic: "URL Domain TLD Check", front: "What do Top-Level Domain (TLD) extensions like .gov, .edu, and .org generally indicate?", back: ".gov identifies verified official government nodes; .edu specifies accredited academic facilities; .org historically highlights non-profit or organizational entities." },
+                { topic: "Currency Verification", front: "Why is tracking the publication date of a data resource essential?", back: "Rapid technological advancements and shifting operational information spaces render old data inaccurate or obsolete, demanding fresh validation." },
+                { topic: "Source Bias Detection", front: "What is systemic bias in informational content streams?", back: "A one-sided or skewed perspective introduced when a publisher, author, or sponsor lets commercial motives or ideological agendas override objective, factual truth." },
+                { topic: "Fact vs. Opinion", front: "What is the fundamental difference between fact and opinion data vectors?", back: "Facts are objective, verified realities that can be proven with hard evidence; opinions are subjective viewpoints, personal beliefs, or unproven judgments." }
             ]
         },
         l1_lesson4: {
             title: "Lesson 4: Content Creation",
             cards: [
-                {
-                    topic: "Application Types",
-                    front: "What are word processors, spreadsheets, and presentation applications specifically optimized to produce?",
-                    back: "Word Processors optimize text-based files; Spreadsheets process numerical calculations and data tables; Presentation software builds sequential visual slides."
-                },
-                {
-                    topic: "File Extensions",
-                    front: "What do file format extensions like .docx, .xlsx, and .pdf indicate to a operating system?",
-                    back: "They define the internal layout structure of the file and instruct the system which matching software application is required to open it safely."
-                }
+                { topic: "Word Processing Assets", front: "What primary tasks are Word Processing systems (like Microsoft Word) designed to handle?", back: "The creation, structural formatting, editing, layout planning, and physical printing of text-centric document assets like memos, essays, reports, and manuals." },
+                { topic: "Spreadsheet Analytics", front: "What is the fundamental layout model of a Spreadsheet application (like Microsoft Excel)?", back: "An alphanumeric grid organizing columns (letters) and rows (numbers) into intersections called cells, optimized for mathematical calculations, data tracking, and dynamic graphing." },
+                { topic: "Presentation Interfaces", front: "What is the operational objective of Presentation software (like Microsoft PowerPoint)?", back: "To design structural, sequential visual slide decks that support public briefings by combining text outlines, charts, imagery, and video clips." },
+                { topic: "Common File Extensions", front: "What do the file extensions .docx, .xlsx, and .pptx clarify to a computer system?", back: "They specify proprietary Microsoft Office native XML configuration structures (.docx for Word documents, .xlsx for Excel charts, .pptx for PowerPoint slides)." },
+                { topic: "Portable Document Format (.pdf)", front: "What is the technical benefit of exporting document assets into the .pdf format?", back: "It locks document formatting, fonts, layouts, and image positions globally, ensuring the file renders identically across any hardware or operating system platform." },
+                { topic: "Image Format Properties", front: "What distinguishes a .jpg format from a .png file layout?", back: ".jpg uses lossy compression best suited for standard digital photographs; .png uses lossless data structures and supports alpha channels for transparent backgrounds." },
+                { topic: "Local vs. Network File Paths", front: "What is the difference between saving an asset locally versus saving to a network directory?", back: "Local storage saves the data to the device's internal hard drive or SSD. Network storage saves the file to a remote server, making it accessible from any connected machine." },
+                { topic: "The Undo Command shortcut", front: "What universal input shortcut key executes an active text or design rollback?", back: "Ctrl + Z (Windows environment) or Cmd + Z (macOS layout) triggers the system to undo the last action." },
+                { topic: "Cut vs. Copy Mechanics", front: "What is the structural difference between executing a 'Cut' versus a 'Copy' command?", back: "Cut copies the selected item to the system clipboard while completely deleting it from its original spot; Copy duplicates the element to the clipboard while leaving the original intact." },
+                { topic: "Formatting Text Baselines", front: "What parameters establish font formatting controls?", back: "Adjusting visual variables like font family selection, point size values, bold weights, italics, underlines, and foreground color configurations." },
+                { topic: "Cell Referencing Core", front: "What does cell address reference notation 'B5' indicate in a spreadsheet layout?", back: "It points directly to the cell located at the vertical intersection of Column B and horizontal line Row 5." },
+                { topic: "Formula Basics", front: "What mandatory character must initiate every functional calculation sequence inside a spreadsheet system cell?", back: "The equals sign (=) must serve as the leading character to instruct the processing engine to calculate an equation instead of treating the entry as raw text." },
+                { topic: "Slide Transition Actions", front: "What are slide transitions in presentation applications?", back: "The visual animation effects that play when a presenter advances from one slide to the next during a full-screen briefing." },
+                { topic: "File Metadata Fields", front: "What information is captured within a file asset's invisible Metadata block?", back: "Background data elements like the original author identity, exact file creation date, recent modification time, total file size, and application source tags." },
+                { topic: "Draft vs. Master Status", front: "Why are clear file naming conventions critical for project tracking?", back: "Using precise names like 'Project_v1_Draft' vs 'Project_Final_Master' prevents users from overwriting work or deploying outdated files." }
             ]
         },
         l1_lesson5: {
             title: "Lesson 5: Communication",
             cards: [
-                {
-                    topic: "Email Components",
-                    front: "What is the functional difference between the To, Cc, and Bcc fields in an email?",
-                    back: "To is for direct action items; Cc (Carbon Copy) is for keeping stakeholders informed; Bcc (Blind Carbon Copy) keeps recipient email addresses hidden from others."
-                },
-                {
-                    topic: "Synchronous vs Asynchronous",
-                    front: "What is the operational difference between synchronous and asynchronous digital communication channels?",
-                    back: "Synchronous channels happen live in real-time (e.g., video calls). Asynchronous communication elements are time-delayed (e.g., emails or forum posts)."
-                }
+                { topic: "Digital Communications", front: "What are the primary differences between email and instant messaging applications?", back: "Emails are typically formal, structured, asynchronous communications suited for detailed documentation. Instant messaging paths are designed for real-time, conversational chats." },
+                { topic: "Email Structural Fields", front: "What exact information profile belongs within the 'Subject Line' of an email transmission?", back: "A short, professional, and descriptive text summary that gives the recipient clear context about the message content before they open it." },
+                { topic: "Carbon Copy (Cc) Utility", front: "When should an operator use the Cc transmission block?", back: "When adding secondary recipients who need to stay informed about the topic for situational awareness, but aren't the primary targets for direct action." },
+                { topic: "Blind Carbon Copy (Bcc) Masking", front: "What critical privacy function does the Bcc field perform?", back: "It completely hides the identities and email addresses of Bcc recipients from everyone else on the email, preventing mass email harvesting and unauthorized address sharing." },
+                { topic: "Email Signature Standards", front: "What data points construct a professional corporate email signature block?", back: "The sender's full legal name, official job title, organization name, direct contact phone coordinates, and corporate web portal links." },
+                { topic: "Attachment Data Risks", front: "What dangers come with attaching massive file arrays directly to an outbound email?", back: "Large attachments can hit server size limits, bouncing the email back, clogging up inbox space, or exhausting metered data connections." },
+                { topic: "Synchronous Channels", front: "Define Synchronous communication and list two common enterprise examples.", back: "Live, real-time communications that require participants to interact simultaneously (e.g., live phone calls, video conferences via Microsoft Teams or Zoom)." },
+                { topic: "Asynchronous Channels", front: "Define Asynchronous communication and list two network examples.", back: "Time-delayed communications where parties review and respond to messages at their convenience rather than immediately (e.g., standard Emails, corporate forum boards)." },
+                { topic: "Video Conference Etiquette", front: "What baseline behaviors ensure proper digital etiquette during online video meetings?", back: "Muting your microphone when not speaking to block background noise, keeping your camera steady at eye level, dressing professionally, and using the 'Raise Hand' tool to avoid interrupting." },
+                { topic: "SMS vs. MMS Pipelines", front: "What is the technical difference between standard SMS and MMS mobile messaging channels?", back: "SMS (Short Message Service) is limited strictly to plain text blocks up to 160 characters; MMS (Multimedia Messaging Service) expands the pipeline to carry photos, video clips, and audio files." },
+                { topic: "Streaming Audio/Video", front: "What happens technically during a media 'Streaming' process over networks?", back: "The media file plays continuously in real-time as data packets stream from a server to the device, avoiding the need to fully download the file onto local storage first." },
+                { topic: "Digital Communication Tone", front: "Why can the emotional intent behind digital text messages easily be misunderstood?", back: "Written text lacks face-to-face communication cues like vocal inflections, body language, facial expressions, and immediate feedback loops." },
+                { topic: "Professional Messaging", front: "What writing habits should be avoided when sending official business communications?", back: "Using casual text shortcuts, excessive exclamation points, writing sentences in ALL CAPS (which mimics screaming), or using unverified slang." },
+                { topic: "Out of Office (OOO) Rules", front: "What is the purpose of configuring an automated Out of Office (OOO) responder reply?", back: "It automatically notifies incoming senders that you are away from your workstation, sharing the exact dates you are gone and listing an alternate contact for emergencies." },
+                { topic: "Thread Management Control", front: "What is an email communication thread?", back: "A chronological chain of running replies and forwarded messages linked back to an original email topic, keeping historical project conversations neatly organized." }
             ]
         },
         l1_lesson6: {
             title: "Lesson 6: Collaboration",
             cards: [
-                {
-                    topic: "Cloud Collaboration",
-                    front: "What is a major structural benefit of using cloud storage suites like OneDrive or Google Drive for teams?",
-                    back: "It provides a single central source of truth where multiple authorized users can co-author, view, and comment on assets at the same time."
-                }
+                { topic: "Collaboration Platforms", front: "What constitutes a digital Collaboration Platform?", back: "An integrated suite of online tools (like Google Workspace or Microsoft 365) that combines text messaging, file sharing, video calls, and group task trackers into one workspace." },
+                { topic: "Cloud Storage Advantages", front: "Why do enterprise networks favor central Cloud Storage deployment spaces over local storage options?", back: "Cloud storage provides global data access from any device with an internet connection, simplifies team data sharing, includes automatic background file backups, and reduces local storage hardware demands." },
+                { topic: "Real-Time Co-Authoring", front: "How does real-time co-authoring functionality transform document design projects?", back: "It lets multiple authorized users edit, comment on, and review the exact same file at the same time, ending the need to email draft files back and forth." },
+                { topic: "Document Comments System", front: "What is the primary role of the Comments function inside collaborative files?", back: "It lets team members leave feedback, clear queries, and design ideas right next to specific text elements without changing the actual document structure." },
+                { topic: "Shared Digital Calendars", front: "How do shared digital calendars improve scheduling efficiency for project management teams?", back: "They let coordinators check colleagues' real-time work availability, automate meeting invites, block double-booking errors, and map out project milestones in a transparent view." },
+                { topic: "Permissions: View Only", front: "What limitations are applied to a user given 'View Only' access permissions?", back: "The recipient can open, read, and look at the asset contents, but they are blocked from modifying, typing new text, or deleting any data in the file." },
+                { topic: "Permissions: Editing Access", front: "What structural capabilities does 'Can Edit' permission grant a user?", back: "Full access rights to add text, rewrite files, delete data components, modify layouts, or reconfigure styles in the shared asset." },
+                { topic: "Sharing Link Access Control", front: "Why is it critical to check sharing link restrictions before emailing a cloud document link?", back: "Leaving access set wide open can leak private data to unauthorized individuals, while overly restrictive links block valid stakeholders from viewing the file." },
+                { topic: "Virtual Workspace Benefits", front: "What core advantages do virtual collaborative workspaces bring to distributed teams?", back: "They bridge geographical distances, lower travel expenses, keep all team files organized in a single central repository, and boost output through asynchronous teamwork." },
+                { topic: "Version Control Awareness", front: "Why is tracking version histories important during team co-authoring sessions?", back: "It lets administrators see exactly who made specific changes and easily restore an older version of the document if someone accidentally ruins the layout." }
             ]
         },
         l1_lesson7: {
             title: "Lesson 7: Safety and Security",
             cards: [
-                {
-                    topic: "Password Security",
-                    front: "What attributes construct a highly secure administrative credential baseline?",
-                    back: "A length of at least 12–14 characters combining uppercase letters, lowercase letters, numbers, and specialized characters, avoiding any personal identifying details."
-                },
-                {
-                    topic: "Malware Basics",
-                    front: "What defines malicious software (Malware), and what is its goal?",
-                    back: "Any software written to exploit, disrupt, damage, or gain unauthorized administrative access to an endpoint system or network layout."
-                }
+                { topic: "The Threat Baseline", front: "What is the primary objective of implementing comprehensive cyber safety protocols?", back: "To protect private user data, prevent identity theft, block unauthorized access to endpoints, and maintain network stability against digital threats." },
+                { topic: "Password Strength Core", front: "What parameters establish a highly secure password baseline?", back: "A length of at least 12–14 characters that avoids personal information and mixes uppercase letters, lowercase letters, numbers, and special symbols (@, #, $)." },
+                { topic: "Multi-Factor Authentication (MFA)", front: "Explain how Multi-Factor Authentication (MFA) works to protect login credentials.", back: "It requires users to provide two or more separate verification factors to confirm their identity before logging in—typically something you know (password) plus something you have (a code sent to your phone)." },
+                { topic: "Phishing Attack Vector", front: "What defines a digital Phishing attack?", back: "A social engineering trap where attackers send fraudulent emails or messages designed to look like trusted organizations to trick victims into sharing private credentials or downloading malware." },
+                { topic: "Malware Classifications", front: "What is the difference between a Computer Virus and a Trojan Horse?", back: "A virus attaches itself to clean files and spreads automatically across a system by replicating itself; a Trojan hides inside harmless-looking software to trick users into running it." },
+                { topic: "Ransomware Exploit", front: "How does a Ransomware payload attack a victim's terminal?", back: "It covertly encrypts all files on the storage system, locking the user out completely, and demands a cryptocurrency payment in exchange for the decryption key." },
+                { topic: "Spyware Telemetry", front: "What is the primary function of Spyware applications?", back: "Malicious software that runs secretly in the background to log keystrokes, track browsing habits, and harvest personal accounts and data without the user's consent." },
+                { topic: "Firewall Infrastructure", front: "What is the operational purpose of a network Firewall?", back: "A security system that monitors incoming and outgoing network traffic based on custom rules, blocking unauthorized access attempts and data transfers." },
+                { topic: "Antivirus Systems", front: "How do endpoint Antivirus scanner engines protect devices from compromises?", back: "They scan local files and system memory against a database of known threat signatures, block suspicious activities, and quarantine infected files to stop malware in its tracks." },
+                { topic: "Secure Browsing (HTTPS)", front: "What security protection does the 'S' indicate in the HTTPS browser protocol?", back: "It confirms the connection is Secure, meaning all data moving between your web browser and the server is encrypted, blocking network sniffers from reading it." },
+                { topic: "The Padlock Indicator", front: "What does a green or locked Padlock icon in your browser's address bar signify?", back: "It confirms that a valid Secure Sockets Layer (SSL) or Transport Layer Security (TLS) certificate is active, encrypting data transmissions to that site." },
+                { topic: "Public Wi-Fi Vulnerability", front: "Why is entering financial or personal data on open public Wi-Fi networks dangerous?", back: "Public networks usually lack encryption, allowing hackers on the same network to easily intercept and steal unencrypted data packets using packet sniffing software." },
+                { topic: "Software Updates Role", front: "Why is applying operating system and application security patches immediately critical?", back: "Updates contain security fixes that patch known software vulnerabilities before attackers can exploit them to compromise the device." },
+                { topic: "Data Backup Security", front: "Why is maintaining current offline or cloud data backups essential for disaster recovery?", back: "Backups ensure you can fully restore mission-critical data files if local files are corrupted by system crashes, hardware failures, or ransomware attacks." },
+                { topic: "Social Engineering Rules", front: "Define the core premise of Social Engineering tactics.", back: "Psychological manipulation tricks used by cybercriminals to exploit human trust, curiosity, or fear to get users to bypass security rules and share private access credentials." }
             ]
         }
     },
-
-    // ---------------------------------------------------------
+// ---------------------------------------------------------
     // LEVEL 2: WORKING KNOWLEDGE (Lessons 8 - 14)
     // ---------------------------------------------------------
     level2: {
         l2_lesson8: {
-            title: "Lesson 8: Technology Basics",
+            title: "Lesson 8: Advanced Operating System Settings",
             cards: [
-                {
-                    topic: "Audio Routing Paths",
-                    front: "How do you re-route desktop sound feeds when peripherals fail to auto-switch from internal speakers to headphones?",
-                    back: "Navigate to the OS Output Device settings interface and manually select the explicit physical or wireless headphone hardware channel."
-                },
-                {
-                    topic: "Display Configurations",
-                    front: "Which hardware setting directly counters strong solar reflection or screen glare when working outdoors?",
-                    back: "Increasing the output Backlight Brightness configuration manually, which allows the screen illumination to overpower ambient light and lower visual strain."
-                }
+                { topic: "Device Manager Utilities", front: "What is the primary function of the Windows Device Manager?", back: "A centralized administrative console used to monitor, manage, update, roll back, or troubleshoot hardware peripheral drivers and resolve resource conflicts." },
+                { topic: "Driver Signatures", front: "What is a device driver and why should it be digitally signed?", back: "Software that allows the OS to talk to hardware. Digital signatures prove the driver comes from a trusted vendor and hasn't been maliciously modified." },
+                { topic: "System Restore Points", front: "How does a System Restore Point protect an operating environment?", back: "It captures a snapshot of critical system files and registry states, allowing an operator to roll back updates or bad drivers without losing personal user data files." },
+                { topic: "Virtual Memory/Paging", front: "What is Virtual Memory (Paging File) and when is it utilized?", back: "A reserved space on the hard drive/SSD that the OS uses as temporary RAM when physical system memory becomes completely exhausted." },
+                { topic: "File System Architecture", front: "Contrast the core differences between NTFS and FAT32 file systems.", back: "NTFS supports large file sizes (over 4GB), massive volume partitions, file encryption, and advanced access permissions; FAT32 is older and widely compatible but lacks these file-level security configurations." },
+                { topic: "Disk Defragmentation vs. TRIM", front: "Why do Solid-State Drives (SSDs) use the TRIM command instead of Disk Defragmentation?", back: "Defragmentation physically rearranges magnetic platter data, which wears out an SSD. TRIM safely clears out deleted data blocks to maintain fast SSD write speeds." },
+                { topic: "Task Manager Performance Monitoring", front: "What telemetry metrics can be analyzed in real-time via the Task Manager?", back: "Live resource usage percentages for the CPU, System RAM, Storage disks, Network interfaces, and Graphics Processing Unit (GPU)." },
+                { topic: "Environment Variables", front: "What purpose do System Environment Variables serve in an OS?", back: "They act as global system pointers (like %PATH% or %USERPROFILE%) that tell software processes exactly where to look for critical system files and execution directories." },
+                { topic: "Registry Configuration Hazards", front: "What is the System Registry and why is unguided modification dangerous?", back: "A database holding low-level configuration settings for the OS and apps. A single bad edit can corrupt the system and trigger a total crash." },
+                { topic: "Safe Mode Diagnostics", front: "What happens mechanically when an OS is booted into Safe Mode?", back: "The system loads using only the absolute minimum required drivers and core files, isolating third-party software and malware for easier troubleshooting." },
+                { topic: "Power Options Tuning", front: "Differentiate between Sleep Mode and Hibernate Mode behaviors.", back: "Sleep drops the system into a low-power state while keeping active data loaded in volatile RAM; Hibernate saves open apps to the hard drive and shuts down completely, pulling zero power." },
+                { topic: "Local Group Policy Editor", front: "What capability does the Local Group Policy Editor (gpedit.msc) provide?", back: "It allows system administrators to set strict configuration rules and security baselines across user profiles on a single machine." },
+                { topic: "Event Viewer Auditing", front: "How do system administrators leverage the Event Viewer utility?", back: "To review system logs, application errors, and security events to diagnose hidden system issues and trace unauthorized access attempts." },
+                { topic: "Command Line Navigation", front: "What do the command line tools 'dir' and 'cd' execute?", back: "'dir' lists all files and folders in the current working directory; 'cd' changes the command prompt path to a different directory location." },
+                { topic: "Task Scheduler Automation", front: "What is the utility of the built-in Task Scheduler?", back: "It lets administrators automate specific scripts, system updates, maintenance tools, or program launches based on custom times or system triggers." }
             ]
         },
         l2_lesson9: {
-            title: "Lesson 9: Digital Citizenship",
+            title: "Lesson 9: Local and Cloud Network Management",
             cards: [
-                {
-                    topic: "AI Asset Copyright",
-                    front: "Who retains legal intellectual property rights for media assets generated entirely by an AI engine?",
-                    back: "No one. Copyright protection protocols strictly mandate human authorship. Assets designed purely by automated machine models belong to the public domain."
-                },
-                {
-                    topic: "Intellectual Property Rights",
-                    front: "When can an external graphic file found on a public domain portal be re-shared safely?",
-                    back: "When it carries a public domain mark, appropriate Creative Commons licenses, or when explicit permission vectors have been granted by the original creator."
-                }
+                { topic: "IP Address Formatting", front: "What is the structural composition of an IPv4 address?", back: "A 32-bit numerical address written as four octets separated by dots (e.g., 192.168.1.1), used to uniquely identify a device on a TCP/IP network." },
+                { topic: "IPv6 Expansion", front: "Why was the IPv6 format introduced alongside legacy IPv4 setups?", back: "To fix the global shortage of unique IP addresses by moving to a massive 128-bit hexadecimal address layout." },
+                { topic: "DHCP IP Allocation", front: "What is the primary function of a DHCP server on a network?", back: "Dynamic Host Configuration Protocol: Automatically hands out unique temporary IP addresses, subnet masks, and gateway values to devices as they connect to the network." },
+                { topic: "Static IP Deployment", front: "When should an administrator configure a Static IP address instead of using DHCP?", back: "For infrastructure devices that always need to be found at the exact same network address, such as network printers, enterprise servers, and routers." },
+                { topic: "DNS Resolution Routing", front: "What function does the Domain Name System (DNS) perform?", back: "It works like a phonebook for the web, translating human-friendly domain names (like google.com) into machine-readable IP addresses (like 142.250.190.46)." },
+                { topic: "MAC Address Hardwiring", front: "What is a Media Access Control (MAC) address?", back: "A permanent, globally unique 48-bit physical hardware address burned directly into a device's Network Interface Card (NIC) at the factory." },
+                { topic: "Ping Diagnostic Tracing", front: "How does an operator use the 'ping' command line utility?", back: "It sends test ICMP packets to a target IP or domain to verify if a remote device is online and measure network lag times." },
+                { topic: "Tracert Network Routing", front: "What data does the 'tracert' (traceroute) command reveal?", back: "It maps out every router hop a data packet passes through to reach its destination, helping locate exactly where a network connection is failing." },
+                { topic: "IPCONFIG Discovery", front: "What does executing 'ipconfig /all' show on a Windows terminal?", back: "It lists the full network setup for all adapters, including active IP addresses, subnet masks, default gateways, DNS nodes, and physical MAC addresses." },
+                { topic: "LAN Configuration Parameters", front: "Define the boundaries of a Local Area Network (LAN).", back: "A private, high-speed network that connects computers and devices within a small, limited area like a single office, classroom, or building." },
+                { topic: "WAN Interconnections", front: "Define a Wide Area Network (WAN) and name the largest public example.", back: "A massive network that connects smaller local networks across huge geographic distances; the internet is the absolute largest public example." },
+                { topic: "VPN Data Tunneling", front: "How does a Virtual Private Network (VPN) protect corporate data packets?", back: "It builds a secure, encrypted data tunnel over public internet networks, keeping internal company data safe from outside prying eyes." },
+                { topic: "Bandwidth vs. Throughput", front: "What is the difference between network Bandwidth and Throughput?", back: "Bandwidth is the maximum theoretical speed a network link can handle; Throughput is the actual speed achieved during real-world data transfers." },
+                { topic: "SSID Wi-Fi Broadcasting", front: "What is an SSID and what safety precaution can be applied to it?", back: "Service Set Identifier: The public name broadcast by a Wi-Fi router. Hiding the SSID stops it from broadcasting publicly, requiring users to type it in manually to connect." },
+                { topic: "Cloud Deployment Types", front: "Differentiate between Public, Private, and Hybrid cloud models.", back: "Public cloud resources are shared over the internet; Private clouds are locked down for a single company; Hybrid clouds blend both models to share data and apps securely." }
             ]
         },
         l2_lesson10: {
-            title: "Lesson 10: Information Management",
+            title: "Lesson 10: Advanced Software Application Controls",
             cards: [
-                {
-                    topic: "Identifying Biased Sources",
-                    front: "Which evaluation metrics point directly to potential ideological or structural bias in an online article?",
-                    back: "Investigating the explicit corporate or political funding sources of the publisher, and tracking the author's professional ties to lobbying groups."
-                }
+                { topic: "Compatibility Modes", front: "How does Windows Compatibility Mode fix application execution issues?", back: "It tricks older, legacy software apps into thinking they are running on a previous version of the Windows OS." },
+                { topic: "File Associations", front: "What is a Default File Association and how is it managed?", back: "A system rule that links specific file extensions to a chosen program, ensuring that double-clicking a file type opens it in the right app automatically." },
+                { topic: "Software EULA Licensing", front: "What legal boundaries are established by an End User License Agreement (EULA)?", back: "A contract detailing exactly how a user can legally use software, what restrictions apply, and clarifying that the user is purchasing a license to use it rather than owning the code." },
+                { topic: "Open Source vs. Proprietary", front: "Contrast Open Source software licensing models with Proprietary models.", back: "Open Source gives anyone full access to inspect, tweak, and share the raw source code; Proprietary software locks its source code down under strict commercial copyright laws." },
+                { topic: "SaaS Business Deliveries", front: "What defines Software as a Service (SaaS) application deployment?", back: "A cloud delivery model where apps are hosted remotely by a vendor and accessed by users over a web browser, typically using a monthly or yearly subscription plan." },
+                { topic: "Add/Remove Programs Safety", front: "Why should users use the formal 'Apps & Features' settings panel to delete programs?", back: "Simply deleting a program's desktop shortcut or folder leaves behind leftover files and broken registry entries; the formal uninstaller cleans out everything safely." },
+                { topic: "Dynamic Link Libraries (.dll)", front: "What is a .dll file and what happens if one goes missing?", back: "A shared library file filled with code blocks that multiple programs can call on to run tasks. If a .dll file goes missing, dependent applications will crash on startup." },
+                { topic: "Automatic Updates Protocols", front: "What are the security benefits and operational risks of automatic software updates?", back: "They keep systems secure by automatically patching newly found flaws, but run the risk of introducing new bugs that can disrupt custom business apps." },
+                { topic: "Software Piracy Flags", front: "What is software piracy and what technical risks does it bring?", back: "The illegal downloading, sharing, or use of copyrighted software. Cracked pirated software often comes laced with hidden malware, spyware, and backdoors." },
+                { topic: "Database Query Mechanics", front: "What is a Database Management System (DBMS) query?", back: "A precise, structured command string (often using SQL) sent to filter, extract, and display specific data records out of massive database tables." },
+                { topic: "Web App Extensions/Add-ons", front: "What are browser extensions and what security checks do they require?", back: "Mini-programs that add custom features to your web browser. They need regular auditing because bad extensions can track your browsing history and steal web data." },
+                { topic: "Process End Enforcement", front: "When should an operator use the 'End Task' command in Task Manager?", back: "When an application completely freezes up or stops responding, freezing system resources and refusing to close normally." },
+                { topic: "Digital Rights Management (DRM)", front: "What is the engineering objective of Digital Rights Management (DRM)?", back: "Access control systems and encryption applied by media companies to block users from illegally copying, sharing, or converting copyrighted digital media." },
+                { topic: "Adware Payloads", front: "What is Adware and how does it compromise software usability?", back: "Software that automatically serves unwanted, aggressive pop-up advertisements, slowing down the system and clogging the screen with junk." },
+                { topic: "System Reinitialization", front: "What occurs during a factory system reset operation?", back: "It wipes out all personal files, user configurations, and installed applications, rolling the device back to its fresh out-of-the-box factory settings." }
             ]
         },
         l2_lesson11: {
-            title: "Lesson 11: Content Creation",
+            title: "Lesson 11: Data Management and Analysis",
             cards: [
-                {
-                    topic: "Macro Implementations",
-                    front: "What is the main workflow advantage of implementing application macros?",
-                    back: "Macros record and compress repetitive or complex command sequences into a single executable trigger, saving time and removing human input errors."
-                },
-                {
-                    topic: "Version Archives",
-                    front: "What is the technical utility of tracking iterative document versions?",
-                    back: "It creates a historical log of system-state copies, allowing administrators or content creators to safely roll back changes if an edit breaks things."
-                }
+                { topic: "Data Validation Constraints", front: "What is the purpose of Data Validation rules in data tracking databases?", back: "They check user entries before accepting them, ensuring inputs match strict rules (like forcing a phone number box to only accept digits) to prevent broken data entries." },
+                { topic: "Relational Database Foreign Keys", front: "How do primary keys and foreign keys link data in relational databases?", back: "A Primary Key is a unique code that identifies each row in a table; a Foreign Key inside a separate table points back to that primary key to build a clean relationship between tables." },
+                { topic: "CSV Layout Transports", front: "What is a Comma-Separated Values (.csv) file format used for?", back: "A simple text file format that stores table-based data using plain text lines split by commas, making it easy to move data between completely different software apps." },
+                { topic: "Spreadsheet Conditional Formatting", front: "What capability does Conditional Formatting add to analytical data displays?", back: "It automatically changes the color, style, or background of cells based on their value (such as turning negative numbers red) to make trends easy to spot." },
+                { topic: "VLOOKUP/XLOOKUP Operations", front: "What core functions do VLOOKUP or XLOOKUP equations perform?", back: "They look through a specific column or dataset for a target value and pull back matching information from the same row in another column." },
+                { topic: "Data Sorting vs. Filtering", front: "Contrast the analytical output differences between Sorting and Filtering data rows.", back: "Sorting rearranges all your data lines into a chosen order (like alphabetical or largest-to-smallest); Filtering hides rows that don't match your criteria, showing only the records you need." },
+                { topic: "Pivot Table Modeling", front: "What is the primary function of a Pivot Table tool asset?", back: "A data summarizing tool that lets users instantly group, rotate, sum, and analyze thousands of data rows to build clean, summarized reports." },
+                { topic: "Data Deduplication", front: "Why is Data Deduplication necessary before running advanced analysis?", back: "It finds and removes identical duplicate records from a dataset, keeping metrics clean and preventing skewed analytics results." },
+                { topic: "Qualitative vs. Quantitative", front: "Differentiate between Qualitative and Quantitative data points.", back: "Quantitative data deals with measurable numbers and counts; Qualitative data captures descriptive, non-numerical details like reviews, observations, or descriptions." },
+                { topic: "Big Data Definitions", front: "What three core traits define Big Data structures?", back: "Volume (massive amounts of data), Velocity (high-speed data generation), and Variety (mixing structured text, unstructured video, and raw logs)." },
+                { topic: "Data Redundancy Storage", front: "What is data redundancy and how does it protect business databases?", back: "Storing identical data copies across multiple safe storage spots to ensure the business can quickly recover everything if one hard drive fails." },
+                { topic: "Structured Query Language (SQL)", front: "What is SQL and what is its primary industrial application?", back: "Structured Query Language: The universal programming language engineered to communicate with, query, update, and manage relational databases." },
+                { topic: "Data Masking Security", front: "What is Data Masking and when is it deployed?", back: "Hiding sensitive data blocks by replacing private characters with proxy markers (like masking all but the last 4 digits of a credit card number) to keep personal details safe from view." },
+                { topic: "Data Scraping Extraction", front: "What is Web Data Scraping?", back: "Using automated scripts and bots to extract text and data points directly out of web page HTML layouts for research or analysis." },
+                { topic: "Data Governance Policies", front: "What is the objective of enterprise Data Governance frameworks?", back: "A clear set of company rules and responsibilities defining exactly how data is collected, stored, handled, and kept safe to stay compliant with privacy laws." }
             ]
         },
         l2_lesson12: {
-            title: "Lesson 12: Communication",
+            title: "Lesson 12: Professional Communication and Design",
             cards: [
-                {
-                    topic: "Bcc Mass Distributions",
-                    front: "Why do professional organizations mandate using the Bcc field during external mass messaging campaigns?",
-                    back: "To protect user privacy by masking individual email addresses, preventing leaks and stopping recipients from accidentally choosing 'Reply All'."
-                }
+                { topic: "Visual Hierarchy Guidelines", front: "What does Visual Hierarchy mean in professional layout creation?", back: "Using different text sizes, bold weights, contrasting colors, and smart spacing to guide a viewer's eyes to the most important points first." },
+                { topic: "Color Contrast Compliance", front: "Why is stark color contrast essential when designing professional slide decks?", back: "High contrast (like crisp dark text on a clean light background) makes slides easy to read, cuts down on eyestrain, and ensures the content is accessible for everyone in the room." },
+                { topic: "Aspect Ratio Formats", front: "Contrast the presentation layouts of 4:3 Standard and 16:9 Widescreen formats.", back: "4:3 is an older, boxy layout format; 16:9 is the modern widescreen standard used by almost all contemporary monitors, TVs, and modern projectors." },
+                { topic: "Vector vs. Raster Imagery", front: "What is the difference between a Vector image (.svg) and a Raster image (.jpg)?", back: "Raster images use a fixed grid of colored pixels that blur when zoomed in; Vector images use mathematical lines and formulas, allowing them to scale up infinitely without losing sharpness." },
+                { topic: "Typography Rule Sets", front: "When should Serif fonts be deployed over Sans-Serif options?", back: "Serif fonts (with small decorative feet on letters) are best for printed documents; clean Sans-Serif fonts are highly recommended for digital screens and slide decks." },
+                { topic: "Slide Master Templates", front: "How does editing the Slide Master optimize presentation workflows?", back: "Modifying the Slide Master updates the background, font styles, and layouts across every single slide in the deck instantly, keeping the look consistent." },
+                { topic: "The Rule of Thirds", front: "How do you apply the Rule of Thirds to professional design layouts?", back: "Split your canvas into a 3x3 grid with two vertical and two horizontal lines, then place your main focal points right where those lines cross to build a balanced design." },
+                { topic: "CMYK vs. RGB Spaces", front: "Differentiate the operational use cases for CMYK and RGB color modes.", back: "RGB (Red, Green, Blue) is built for digital screens and web layouts; CMYK (Cyan, Magenta, Yellow, Key/Black) is the mandatory color model for professional physical ink printing." },
+                { topic: "Brand Style Guide Controls", front: "What is a Brand Style Guide and why do organizations enforce it?", back: "A rulebook tracking the exact logo uses, fonts, and colors an organization allows, ensuring a unified and professional look across all company materials." },
+                { topic: "White Space Utilization", front: "What is 'White Space' and what benefit does it bring to layouts?", back: "The intentionally empty areas around text and graphics. It gives content room to breathe, keeping layouts clean and easy to scan." },
+                { topic: "Infographic Engineering", front: "What is an Infographic and what is its primary goal?", back: "A clear visual design blending clean data charts, graphics, and short text blurbs to turn complex information or data into a simple, easy-to-understand visual summary." },
+                { topic: "Target Audience Tuning", front: "How does defining your target audience change how you build a presentation?", back: "It shapes the technical depth of your words, tone, and visual styles—briefing top military leadership demands a sharp, professional approach, while teaching students calls for an engaging, breakdown style." },
+                { topic: "Storyboard Outlining", front: "What is a design Storyboard?", back: "A quick series of sketched panels outlining your presentation or video project scene-by-scene before spending time building the final assets." },
+                { topic: "Visual Distraction Risks", front: "Why should designers avoid using heavy text blocks and loud animations on a single slide?", back: "Overloading a slide overwhelms viewers, forcing them to read wall-to-wall text instead of paying attention to what the presenter is actually saying." },
+                { topic: "Image Resolution Density", front: "What does Dots Per Inch (DPI) mean for printing quality?", back: "DPI measures image resolution density. Standard screens use 72–96 DPI, while professional printing demands 300 DPI to avoid looking blurry or pixelated." }
             ]
         },
         l2_lesson13: {
-            title: "Lesson 13: Collaboration",
+            title: "Lesson 13: Digital Project Management and Team Collaboration",
             cards: [
-                {
-                    topic: "Feedback Protocols",
-                    front: "What rules define proper digital critique and review methods in a shared workspace?",
-                    back: "Using proper spelling and grammar, ensuring critiques focus on the objective requirements, and staying constructive while avoiding informal emojis or hostile remarks."
-                }
+                { topic: "Project Lifecycle Phases", front: "What are the four core phases of a standard Project Lifecycle?", back: "1. Initiation (defining the project), 2. Planning (mapping tasks), 3. Execution (doing the actual work), and 4. Closure (reviewing and finalizing)." },
+                { topic: "Gantt Chart Mechanics", front: "What critical tracking view does a Gantt Chart give a project coordinator?", back: "A horizontal bar chart timeline that shows exactly when tasks start, how long they take, and how different jobs overlap over the course of the project." },
+                { topic: "Scope Creep Controls", front: "What is Scope Creep and how does it threaten project deadlines?", back: "When new features, tasks, or demands are constantly added to a project without adding more time, budget, or staff, causing missed deadlines." },
+                { topic: "Kanban Board Workflows", front: "How does a Kanban Board help teams track active workloads?", back: "A visual project board that moves task cards from left to right through clear workflow columns—typically 'To Do', 'In Progress', and 'Done'." },
+                { topic: "Critical Path Method", front: "What is the 'Critical Path' in project scheduling networks?", back: "The longest continuous chain of dependent tasks that must be finished on time to prevent the entire project from being delayed." },
+                { topic: "Milestone Identifiers", front: "What defines a Project Milestone?", back: "A major checkpoint or key event along a project timeline (such as finishing a software beta draft) used to track broad progress." },
+                { topic: "Stakeholder Accountability", front: "Who is considered a Project Stakeholder?", back: "Anyone who has an active interest in or is affected by the project outcome—including team members, project managers, financial sponsors, and final users." },
+                { topic: "RACI Matrix Assignments", front: "What do the letters in a RACI Accountability Matrix stand for?", back: "Responsible (does the task), Accountable (signs off on it), Consulted (provides expert input), and Informed (kept updated on progress)." },
+                { topic: "Agile Scrums Framework", front: "Define the core focus of the Agile project management framework.", back: "An iterative approach that breaks big projects into short, flexible work cycles called 'sprints', letting teams adapt quickly to shifting project needs." },
+                { topic: "Change Management Paths", front: "What is Change Management designed to do inside a company?", back: "A structured process that helps a team smoothly adapt to big changes in tools, workflows, or company roles while keeping downtime to a minimum." },
+                { topic: "Asynchronous Collaboration Tools", front: "How do shared task tools (like Trello or Asana) coordinate teams asynchronously?", back: "They let team members assign jobs, update task statuses, and upload project files on their own time, keeping everyone aligned without needing constant meetings." },
+                { topic: "Risk Mitigation Plans", front: "What is a Risk Mitigation Strategy?", back: "An advance backup plan made to lower the chances of potential problems happening or to soften the blow if an unexpected issue hits the project." },
+                { topic: "Resource Allocation Balancing", front: "What does Resource Allocation mean for a project coordinator?", back: "Smartly managing and assigning your limited assets—like staff hours, budget, hardware terminals, and software licenses—to keep tasks moving smoothly." },
+                { topic: "Post-Mortem Project Reviews", front: "What is the goal of a project Post-Mortem review session?", back: "A final debrief meeting held after a project wraps up to analyze what worked well, what ran off track, and how to improve workflows for the next project." },
+                { topic: "Central File Repositories", front: "Why do collaborating teams use a unified Central File Repository?", back: "It acts as a single, shared source of truth for all current documents, ensuring team members don't waste time working on outdated drafts." }
             ]
         },
         l2_lesson14: {
-            title: "Lesson 14: Safety and Security",
+            title: "Lesson 14: Network and Device Security Hardening",
             cards: [
-                {
-                    topic: "Digital Wallet Safety",
-                    front: "What core mechanism makes mobile payments (like Apple Pay or Google Pay) secure at point-of-sale terminals?",
-                    back: "They enforce two-factor hardware authentication (biometrics/passcodes) and pass temporary cryptographic tokens instead of sharing your actual credit card numbers."
-                }
+                { topic: "Least Privilege Access", front: "Explain the Principal of Least Privilege (PoLP) security configuration.", back: "A strict security rule where users are granted only the absolute minimum system access rights they need to perform their specific job, and nothing more." },
+                { topic: "Zero Trust Framework", front: "What is the foundational rule of a Zero Trust architecture?", back: "Never Trust, Always Verify: The security model assumes every single device and user attempt is a potential threat, requiring full authentication at every step." },
+                { topic: "Social Engineering (Tailgating)", front: "What is a Tailgating security breach and how is it stopped physical?", back: "A physical breach where an unauthorized person slips through a secure door right behind a valid worker. It is blocked using badge check-ins and mantrap doors." },
+                { topic: "Brute Force Cracking", front: "How does a Brute Force attack crack target user passwords?", back: "An automated script attack that tries thousands of character combinations, dictionary words, and common variations a second until it guesses the right password." },
+                { topic: "Account Lockout Throttling", front: "How do Account Lockout Policies stop automated brute-force scripts?", back: "They automatically freeze or lock a user account after a set number of incorrect login attempts (such as 3 bad guesses), stopping automated password crackers in their tracks." },
+                { topic: "Man-in-the-Middle Intercepts", front: "What occurs during a Man-in-the-Middle (MitM) network exploit?", back: "An attacker secretly intercepts and eavesdrops on the live data moving between two communicating devices to steal private accounts or tamper with messages." },
+                { topic: "Biometric Validation Vectors", front: "What physical factors are checked during Biometric Authentication?", back: "Unique physical traits that are incredibly hard to replicate, such as fingerprints, iris scans, or facial structures." },
+                { topic: "Data at Rest vs. In Transit", front: "Contrast the security controls for Data at Rest and Data in Transit.", back: "Data at Rest is encrypted on physical drives using tools like BitLocker; Data in Transit is protected as it moves across networks using secure protocols like HTTPS or TLS." },
+                { topic: "Full Disk Encryption (FDE)", front: "How does Full Disk Encryption (FDE) safeguard hardware if a laptop is stolen?", back: "It completely scrambles every single byte of data on the drive, making it impossible for a thief to read your files even if they yank the hard drive out of the machine." },
+                { topic: "MAC Address Filtering", front: "How does MAC Address Filtering protect a router from outside intruders?", back: "The router is configured with a strict whitelist of hardware MAC addresses, automatically blocking any unauthorized device from joining the network." },
+                { topic: "Wi-Fi Encryption Protocols", front: "Which Wi-Fi encryption protocol should be selected to secure modern wireless networks?", back: "WPA3 (Wi-Fi Protected Access 3) should always be used, as it provides the strongest modern encryption against wireless password cracking tools." },
+                { topic: "BYOD Security Risks", front: "What security risks does a Bring Your Own Device (BYOD) policy introduce?", back: "Personal employee devices might lack security patches, carry hidden malware, or leak sensitive company data if the device is lost or stolen." },
+                { topic: "Mobile Device Management (MDM)", front: "What control capabilities does an MDM system give network administrators?", back: "It lets IT teams remotely configure security rules, track inventory, update apps, and completely wipe company data off smartphones and laptops from a central console." },
+                { topic: "Incident Response Frameworks", front: "What is the immediate first step an operator should take upon finding an active malware infection?", back: "Isolate the infected machine immediately by unplugging its network cable or disconnecting from Wi-Fi to stop the malware from spreading to other computers on the network." },
+                { topic: "Security Awareness Audits", front: "Why are routine phishing simulation tests run on enterprise networks?", back: "To safely test employees' security habits, finding out who needs extra training before a real cybercriminal targets the organization." }
             ]
         }
     },
-
-    // ---------------------------------------------------------
+// ---------------------------------------------------------
     // LEVEL 3: MASTERY & ADVANCED CONTROLS (Lessons 15 - 21)
     // ---------------------------------------------------------
     level3: {
         l3_lesson15: {
-            title: "Lesson 15: Technology Basics",
+            title: "Lesson 15: Infrastructure and Advanced Operating Systems",
             cards: [
-                {
-                    topic: "Advanced File Permissions",
-                    front: "What is the structural difference between Read, Write, and Execute file system permissions?",
-                    back: "Read allows viewing file contents; Write grants rights to modify or overwrite structural code data; Execute lets the operating system run the file as an active process."
-                },
-                {
-                    topic: "Virtualization Principles",
-                    front: "What is the system engineering advantage of implementing Virtual Machines (VMs)?",
-                    back: "VMs isolate multiple guest operating systems on top of a single physical server's hardware, maximizing resource use and keeping environments separate for testing threats."
-                }
+                { topic: "File Access Permissions", front: "What is the security difference between Read, Write, Modify, and Full Control permissions?", back: "Read allows viewing files; Write allows creation and editing; Modify adds deletion capabilities; Full Control grants ownership management, enabling the user to change permissions for others." },
+                { topic: "Inherited Permissions", front: "What are Inherited Permissions in advanced folder structures?", back: "Permissions assigned to a parent directory that automatically trickle down and apply to all child folders and files contained within it, unless inheritance is explicitly broken." },
+                { topic: "Hardware Virtualization", front: "Explain the architectural purpose of a Hypervisor in virtualization.", back: "A software layer that abstracts, isolates, and manages physical server resources (CPU, RAM, storage) to run multiple independent virtual machines (VMs) simultaneously." },
+                { topic: "Active Directory Domain Services", front: "What is the primary function of enterprise Active Directory (AD)?", back: "A centralized database and directory service that authenticates, authorizes, and manages all users, computers, and security policies across a corporate network domain." },
+                { topic: "Command Line Scripting", front: "Contrast the operational capabilities of standard Command Prompt (cmd) with PowerShell.", back: "Command Prompt executes legacy batch commands; PowerShell is a task automation framework utilizing cmdlets and objects, capable of fully configuring operating system and server environments." },
+                { topic: "The ping -t Switch", front: "What does appending the '-t' flag to a ping command accomplish?", back: "It forces the terminal to ping the target destination continuously without stopping until manually interrupted by pressing Ctrl + C, useful for monitoring network drops." },
+                { topic: "NSLOOKUP DNS Auditing", front: "What is the diagnostic value of executing the 'nslookup' command?", back: "It directly queries name servers to verify if a domain name is mapping correctly to its assigned destination IP address, exposing DNS resolution faults." },
+                { topic: "NETSTAT Network Telemetry", front: "What critical monitoring data is displayed by running the 'netstat' command?", back: "It lists all active network connections, listening ports, and routing statistics, helping identify hidden malware phone-homes or unauthorized connections." },
+                { topic: "Linux File System Core", front: "How are storage drives mapped inside a Linux environment compared to Windows?", back: "Windows maps drives to designated letters (C:, D:); Linux organizes everything into a single root directory tree structure starting at a forward slash (/)." },
+                { topic: "SFC System Scans", front: "What does the System File Checker (sfc /scannow) utility execute?", back: "It inspects all critical, protected operating system files, automatically replacing corrupted or missing system files with a cached, clean copy." },
+                { topic: "CHKDSK Sector Repairs", front: "When should an administrator run the 'chkdsk /f /r' command?", back: "When checking hard drives for structural file system errors (/f) and scanning physical disks to locate bad sectors, attempting to recover readable data (/r)." },
+                { topic: "Performance Monitor Logging", front: "How does Performance Monitor differ from Task Manager?", back: "Task Manager shows a snapshot of real-time resource use; Performance Monitor tracks, graphs, and logs detailed system data over time to build performance baselines." },
+                { topic: "Deployment Images (DISM)", front: "What is the role of the DISM command line utility?", back: "Deployment Image Servicing and Management: Used to service, repair, and prepare Windows system images or fix corrupt system files that standard SFC scans cannot repair." },
+                { topic: "The hosts File Redirect", front: "What function does the local operating system 'hosts' file perform?", back: "A plain text file that overrides external DNS servers by mapping hostnames directly to explicit IP addresses locally before the system queries the network." },
+                { topic: "RAID Drive Redundancy", front: "What is the objective of implementing a RAID hard drive array?", back: "Redundant Array of Independent Disks: It combines multiple physical hard drives into a single logical unit to protect against data loss if a drive fails, or to boost performance." }
             ]
         },
         l3_lesson16: {
-            title: "Lesson 16: Digital Citizenship",
+            title: "Lesson 16: Advanced Digital Citizenship and Law",
             cards: [
-                {
-                    topic: "Creative Commons Matrices",
-                    front: "What restrictions do the 'NC' and 'ND' modifiers apply under Creative Commons licensing frameworks?",
-                    back: "NC (Non-Commercial) bans any use that aims for commercial profit or financial gain. ND (No-Derivatives) requires that the work be shared in its original form without any edits or remixes."
-                }
+                { topic: "Creative Commons ND", front: "What strict restriction does the Creative Commons 'NoDerivatives' (ND) license apply?", back: "It allows others to download and share the work, but stipulates that the original content must be kept intact and completely unedited—no remixes or alterations are allowed." },
+                { topic: "Creative Commons SA", front: "Explain the requirement of the Creative Commons 'ShareAlike' (SA) modifier.", back: "It requires anyone who builds upon, remixes, or alters the original work to distribute their new creation under the exact same license terms as the original." },
+                { topic: "GDPR Privacy Compliance", front: "What core user protections are enforced under the General Data Protection Regulation (GDPR)?", back: "It grants individuals strict control over their personal data, mandating clear consent, data protection by design, and the legal 'Right to be Forgotten' (data deletion)." },
+                { topic: "COPPA Regulations", front: "What is the regulatory objective of the Children's Online Privacy Protection Act (COPPA)?", back: "A law enforcing strict rules on operators of websites or online services directed at children under 13, requiring verifiable parental consent before gathering any personal data." },
+                { topic: "Section 508 Accessibility", front: "What accessibility standard is mandated by Section 508 of the Rehabilitation Act?", back: "It requires federal agencies to make all electronic and information technology fully accessible to people with disabilities, ensuring compatibility with screen readers." },
+                { topic: "Digital Millennium Copyright Act", front: "What protection does the DMCA 'Safe Harbor' clause provide to online platforms?", back: "It shields internet service providers and websites from liability for copyright-infringing content uploaded by users, provided they take down the material immediately upon receiving a valid notice." },
+                { topic: "Patent vs. Trademark", front: "Differentiate the legal protections of a Patent versus a Trademark.", back: "A Patent grants exclusive rights to make and sell a new mechanical invention or technical process; a Trademark legally protects commercial brand symbols, names, logos, and slogans." },
+                { topic: "Data Sovereignty Laws", front: "Define the legal concept of Data Sovereignty.", back: "The principle that digital data is fully subject to the explicit privacy, security, and access laws of the country where that physical data server is located." },
+                { topic: "Software End Use Audit", front: "What occurs during a corporate Software Compliance Audit?", back: "A legal check where an organization audits all active software installations to ensure they possess enough valid user licenses to match the number of installations, preventing software piracy fines." },
+                { topic: "Terms of Service Breaches", front: "What is the operational impact of breaching an application's Terms of Service (ToS)?", back: "The service provider retains full legal authority to terminate the user's account, revoke active licenses, and block access to all cloud data stored on their servers." },
+                { topic: "Defamation vs. Free Speech", front: "Where does legal protection for online free speech end regarding online content?", back: "It ends when an individual knowingly publishes false statements that cause measurable financial or reputational damage to another party (libel/defamation)." },
+                { topic: "Creative Commons BY", front: "What requirement does the universal 'BY' element mandate across all Creative Commons licenses?", back: "Attribution: It requires anyone using or distributing the file to give clear, proper credit to the original creator." },
+                { topic: "Corporate Whistleblowing", front: "What digital protections safeguard legal whistleblowers inside enterprise networks?", back: "Secure, anonymous, encrypted submission channels backed by legal whistleblower protection acts to shield workers from retaliation when reporting internal misconduct." },
+                { topic: "Digital Archiving Compliance", front: "Why do regulatory laws force financial and defense networks to keep unalterable data archives?", back: "To ensure a clear, unchangeable audit trail of business and communication logs for legal evidence investigations and regulatory compliance checks." },
+                { topic: "Data Portability Right", front: "What is the legal 'Right to Data Portability'?", back: "The consumer right to request a complete copy of their personal data from a service provider in a structured, machine-readable format to easily move it to a competing service." }
             ]
         },
         l3_lesson17: {
-            title: "Lesson 17: Information Management",
+            title: "Lesson 17: Enterprise Data Architectures and Advanced Queries",
             cards: [
-                {
-                    topic: "Database Queries",
-                    front: "What differentiates a relational database system from flat-file storage layouts?",
-                    back: "Relational databases index data across multiple linked tables using unique keys (Primary/Foreign), whereas flat files store raw entries sequentially in a single plain text array."
-                }
+                { topic: "Relational Database Keys", front: "How does a relational database enforce data integrity using Primary and Foreign keys?", back: "The Primary Key uniquely identifies a record in a main table; the Foreign Key in a secondary table mirrors it to establish an unbroken link between tables and prevent orphan data entries." },
+                { topic: "Structured Query Language Join", front: "What is the programmatic goal of an SQL JOIN statement?", back: "It queries and pulls data from two or more separate database tables simultaneously by matching a shared key column across those tables." },
+                { topic: "Data Warehousing Models", front: "What defines an enterprise Data Warehouse compared to an operational database?", back: "An operational database processes real-time transaction updates; a Data Warehouse consolidates huge amounts of historical data from different parts of the business to run big data analytics." },
+                { topic: "NoSQL Database Engines", front: "When would a system engineer select a NoSQL database over a relational SQL database?", back: "When managing massive streams of unstructured or fluid data (like social media posts or real-time sensor logs) that don't fit into rigid table rows and columns." },
+                { topic: "Data Normalization Goals", front: "What is the purpose of Data Normalization in database design?", back: "The process of organizing data tables to eliminate redundant data entries and safeguard the database from data anomalies during inserts, updates, and deletes." },
+                { topic: "SQL Injection (SQLi) Vulnerabilities", front: "How does an attacker execute an SQL Injection (SQLi) exploit?", back: "By slipping malicious SQL commands into unprotected user input boxes on websites, tricking the backend database into dumping private records or bypassing logins." },
+                { topic: "Database Transaction ACID Rules", front: "What do the ACID properties guarantee in database processing systems?", back: "Atomicity, Consistency, Isolation, and Durability: A set of strict rules ensuring that database transactions process completely and reliably, or don't process at all, preventing data corruption." },
+                { topic: "Data Indexes Optimization", front: "What is the performance trade-off when adding a Data Index to a table?", back: "Indexes dramatically speed up data lookups and search queries, but they slow down data write and insert operations because the index has to update every time." },
+                { topic: "ETL Pipeline Engineering", front: "What tasks occur during the Extract, Transform, Load (ETL) pipeline?", back: "Extract pulls raw data from different sources; Transform cleans and formats it; Load writes the processed data into a central warehouse for business analysis." },
+                { topic: "Data Schema Layouts", front: "What is a Database Schema?", back: "The blueprint design that defines the structural organization of a database, mapping out the tables, columns, data types, and relationships between them." },
+                { topic: "Referential Integrity", front: "What happens if Referential Integrity rules are broken in a database?", back: "It causes database errors by letting users delete records that other tables depend on, leaving broken links and corrupted references in the system." },
+                { topic: "Data Dictionary Records", front: "What information is cataloged within an enterprise Data Dictionary?", back: "Metadata about the database itself, tracking the names, definitions, access permissions, and origins of all data fields used across the system." },
+                { topic: "Database View Virtualization", front: "What is a 'View' in database administration setups?", back: "A virtual, saved query table generated on the fly. It lets administrators show users specific data while hiding sensitive underlying columns from view." },
+                { topic: "Concurrency Control Conflicts", front: "How do Concurrency Control systems stop data conflicts?", back: "They implement record locking, preventing two users from modifying the exact same data cell at the same millisecond, which would cause data to be overwritten." },
+                { topic: "Data Mart Dispersals", front: "What is a Data Mart?", back: "A smaller slice of a data warehouse focused entirely on a single department or business unit (like marketing or accounting) to make data access faster and easier." }
             ]
         },
         l3_lesson18: {
-            title: "Lesson 18: Content Creation",
+            title: "Lesson 18: Advanced Content Creation and Macro Scripting",
             cards: [
-                {
-                    topic: "Advanced Scripting & Functions",
-                    front: "How do nested relational logic lookup functions (like VLOOKUP or XLOOKUP) work inside spreadsheet architectures?",
-                    back: "They evaluate a target search value in one row or column, query down an index array, and pull back the matching value from the same location in a linked row or column."
-                }
+                { topic: "Application Macro Vulnerabilities", front: "Why are application macros restricted on high-security networks?", back: "Macros are executable code scripts (VBA). Cybercriminals can use them to build malicious macro payloads that run automatically when an unverified document is opened." },
+                { topic: "Nested Logical Functions", front: "What is a nested function in spreadsheet modeling?", back: "Placing one calculation formula inside another (such as nesting an IF statement inside another IF statement) to evaluate multiple layers of complex business logic." },
+                { topic: "RegEx Data Parsing", front: "What utility do Regular Expressions (RegEx) bring to text parsing workflows?", back: "They use specialized wildcard text patterns to instantly search for, match, and extract complex text formats (like tracking down every phone number or email address hidden in a huge document)." },
+                { topic: "XLOOKUP Exact Alignment", front: "Name two advantages of XLOOKUP over the older VLOOKUP function.", back: "XLOOKUP can look left or right across tables natively, defaults to an exact match without needing extra arguments, and doesn't break when columns are added or deleted." },
+                { topic: "VBA Programming Modules", front: "What is Visual Basic for Applications (VBA)?", back: "The custom programming language built into Microsoft Office apps, used to write advanced macros, build user forms, and fully automate repetitive office tasks." },
+                { topic: "Document XML Dissection", front: "What does the 'x' in modern extensions like .docx and .xlsx technically signify?", back: "It indicates that the file is saved as a compressed ZIP container holding structured XML text files, making the asset layout open, easy to recover, and small in size." },
+                { topic: "Dynamic Array Formulas", front: "What is a dynamic array formula in modern spreadsheet systems?", back: "A formula that writes values across an entire block of adjacent cells automatically from a single input cell (known as spilling)." },
+                { topic: "Conditional Logic Strings", front: "How does the COUNTIFS function operate differently than standard COUNTIF?", back: "COUNTIF checks a range against a single rule; COUNTIFS lets you check multiple columns against entirely different rules at the same time, counting only rows that match all of them." },
+                { topic: "Advanced Style Sheets", front: "What is the structural benefit of linking cascading style rules to documents?", back: "It completely separates document text from its visual design, letting users update fonts, spacing, and layouts across thousands of pages instantly by changing one style file." },
+                { topic: "Automated Mail Merges", front: "How does a Mail Merge process speed up document production?", back: "It links a standard document template directly to a database, automatically swapping out name and address fields to generate thousands of personalized letters or emails instantly." },
+                { topic: "Tracked Changes Audits", front: "What risks do hidden Tracked Changes introduce when emailing final documents externally?", back: "If the file isn't finalized and stripped before sending, recipients can view the full history of internal edits, deleted text, and private reviewer comments." },
+                { topic: "Document Encryption Protocols", front: "What happens when you apply 'Encrypt with Password' to an Office file?", back: "The software uses strong encryption (like AES-256) to scramble the file, making it completely unreadable to anyone who doesn't have the password." },
+                { topic: "Spreadsheet Array Inputs", front: "What is the purpose of using an Array Formula?", back: "It performs multiple calculations on one or more sets of data values simultaneously, returning either a single result or a whole block of values." },
+                { topic: "PDF/A Archival Layouts", front: "What distinguishes a PDF/A file from a standard PDF file?", back: "PDF/A is an ISO-standardized version tailored specifically for long-term digital archiving. It locks in all fonts and color profiles to guarantee the file opens identically decades later." },
+                { topic: "Data Modeling Power Queries", front: "How does the Power Query tool optimize spreadsheet data preparation?", back: "It builds an automated workflow pipeline that connects to external data sources, cleans and shapes the data, and loads it into a spreadsheet, refreshing automatically." }
             ]
         },
         l3_lesson19: {
-            title: "Lesson 19: Communication",
+            title: "Lesson 19: Asymmetric Encryption and Secure Communications",
             cards: [
-                {
-                    topic: "Encrypted Communication Channels",
-                    front: "How does asymmetric end-to-end encryption (E2EE) protect communication in transit across networks?",
-                    back: "It encrypts data at the source using the recipient's public key, making it unreadable to network sniffers. The message can only be decrypted at the destination using the recipient's matching private key."
-                }
+                { topic: "Asymmetric Cryptography Core", front: "How do Public and Private keys work together in asymmetric encryption?", back: "The Public Key is shared openly for anyone to encrypt data; the matching Private Key is kept top-secret by the recipient, as it is the only key that can decrypt those messages." },
+                { topic: "End-to-End Encryption (E2EE)", front: "What protection does End-to-End Encryption (E2EE) guarantee over public networks?", back: "It encrypts data directly on the sender's device and only decrypts it once it reaches the recipient, preventing internet providers, server hosts, or hackers from reading the data in transit." },
+                { topic: "Digital Signatures Authentication", front: "How does a cryptographic Digital Signature prove identity and integrity?", back: "The sender hashes the file and signs it with their private key; the recipient verifies it using the sender's public key, proving the message genuinely came from them and hasn't been modified." },
+                { topic: "Digital Certificates Roles", front: "What is the role of a Certificate Authority (CA) in network security?", back: "A trusted third-party institution that verifies the identity of an organization and issues digital certificates, confirming that a public cryptographic key belongs to that specific website." },
+                { topic: "TLS/SSL Handshake Sequences", front: "What occurs during a Transport Layer Security (TLS) handshake?", back: "The web browser and server authenticate each other, agree on which encryption rules to use, and generate temporary session keys to secure all data moving between them." },
+                { topic: "Phishing via Spoofed Certificates", front: "Can an active HTTPS padlock icon appear on a malicious phishing website?", back: "Yes. The padlock only means the network connection is encrypted; it does not guarantee the website content is safe. Attackers can easily get valid SSL certificates for fake domains." },
+                { topic: "S/MIME Email Protections", front: "What security features does S/MIME add to corporate email networks?", back: "Secure/Multipurpose Internet Mail Extensions: Uses public-key encryption to digitally sign outbound emails and fully encrypt message contents to protect against email tampering." },
+                { topic: "Perfect Forward Secrecy", front: "What protection does Perfect Forward Secrecy (PFS) add to network sessions?", back: "It generates a brand-new, unique cryptographic key for every single session. If a hacker steals the master private key later on, they still can't decrypt past network traffic." },
+                { topic: "Man-in-the-Middle (MitM) Mitigations", front: "How do digital certificates directly stop Man-in-the-Middle network attacks?", back: "If an attacker tries to intercept the connection and pass off a fake encryption key, the user's browser checks the certificate chain, flags it as untrusted, and blocks the connection." },
+                { topic: "IPsec Network Tunneling", front: "Where is the IPsec protocol stack deployed to protect data?", back: "It operates at the network layer to secure data packets moving across VPN tunnels, encrypting and authenticating all traffic moving between remote offices." },
+                { topic: "Public Key Infrastructure (PKI)", front: "What components construct a Public Key Infrastructure (PKI)?", back: "The complete ecosystem of software, hardware, policies, and certificate authorities required to create, distribute, manage, and revoke digital certificates and public keys safely." },
+                { topic: "Hashing vs. Encryption", front: "What is the operational difference between Hashing and Encryption?", back: "Encryption is a two-way process meant to scramble data so it can be decrypted later; Hashing is a one-way process that turns data into a fixed string to check file integrity, and cannot be reversed." },
+                { topic: "Salting Password Hashes", front: "What does adding a cryptographic 'Salt' to password databases do?", back: "It adds a random string of characters to each password before hashing it, ensuring that identical passwords end up with completely different hashes to stop brute-force attacks." },
+                { topic: "SSH Terminal Operations", front: "What is Secure Shell (SSH) used for in server management?", back: "A secure, encrypted network protocol used by administrators to remotely log in, run commands, and configure backend servers and network hardware safely over text prompts." },
+                { topic: "Symmetric Key Speed", front: "Why do systems use asymmetric encryption to set up a connection, but shift to symmetric encryption for data transfers?", back: "Asymmetric encryption is great for securely exchanging keys over open networks but is slow; symmetric encryption is fast and efficient for moving large amounts of data quickly." }
             ]
         },
         l3_lesson20: {
-            title: "Lesson 20: Collaboration",
+            title: "Lesson 20: Advanced Enterprise Collaboration and Version Control",
             cards: [
-                {
-                    topic: "Version Conflicts & Merges",
-                    front: "How do version control repository engines automatically resolve parallel code modifications?",
-                    back: "By tracking change histories down to the specific line. If changes don't overlap, they merge automatically; if lines collide, the system highlights a merge conflict for manual verification."
-                }
+                { topic: "Version Control Systems (VCS)", front: "What is the difference between Centralized and Distributed Version Control Systems?", back: "Centralized systems store the full history on one main server; Distributed systems (like Git) mirror the entire project history onto every developer's local machine." },
+                { topic: "Merge Conflict Roots", front: "What triggers a Merge Conflict in collaborative development setups?", back: "When two users modify the exact same line of code in a file or project branch independently, and the version control system cannot decide which update takes priority without human review." },
+                { topic: "Branching Design Strategies", front: "Explain the purpose of 'Branching' within a version control repository.", back: "It creates a safe duplicate of the project code, letting developers test new features or fix bugs in isolation without breaking the stable, live production code." },
+                { topic: "Repository Pull Requests", front: "What is a Pull Request (PR) or Merge Request?", back: "A formal submission in code repositories where a developer asks project managers to review their new branch changes and approve merging them into the main project code." },
+                { topic: "Commit Logging Trails", front: "What is a repository 'Commit' and why are detailed commit messages mandatory?", back: "A commit records a permanent snapshot of code changes. Clear commit messages document exactly why changes were made, creating an audit trail for troubleshooting later." },
+                { topic: "CI/CD Pipeline Operations", front: "What do CI and CD stand for in automated development environments?", back: "Continuous Integration (automatically testing code updates as they are checked in) and Continuous Delivery (automatically deploying approved updates directly to live production servers)." },
+                { topic: "Cloud Federated Identity", front: "How does Federated Identity management optimize enterprise user access?", back: "It lets users log in across entirely different corporate networks and cloud apps using a single set of network credentials, removing the need for separate accounts." },
+                { topic: "Access Auditing Matrix", front: "What is the purpose of running regular Collaboration Access Audits?", back: "To check file-sharing links and permissions, making sure that employees who leave or vendors who finish their contracts have their access revoked to prevent data leaks." },
+                { topic: "Regression Testing", front: "Why is Regression Testing necessary after merging team project files?", back: "A safety testing pass run after code updates are merged to verify that new changes didn't accidentally break or destabilize existing, working features." },
+                { topic: "Co-Authoring Overwrite Blocks", front: "How do modern cloud document systems handle real-time co-authoring conflicts?", back: "They use line-by-line lockouts that sync changes every second, locking the specific paragraph or text block one user is actively editing so others can't overwrite it." },
+                { topic: "Data Loss Prevention (DLP)", front: "What is the role of an enterprise Data Loss Prevention (DLP) engine?", back: "DLP software monitors networks to automatically detect and block workers from uploading or sharing sensitive files (like credit card numbers or military secrets) outside the company network." },
+                { topic: "Document Watermarking", front: "How does dynamic document watermarking deter corporate information leaks?", back: "It embeds the reader's username and IP address into the background of files, making users think twice before leaking screenshots or printing sensitive data." },
+                { topic: "Repository Cloning", front: "What does it mean to 'Clone' a remote repository?", back: "It downloads a complete, identical copy of the remote code repository, including its full historical log of past changes, directly onto your local workstation storage." },
+                { topic: "Rollback Configurations", front: "How does version control handle an update that breaks a live system?", back: "It executes a Rollback command, which instantly reverts the live system environment back to the last known stable commit state in the project log." },
+                { topic: "Single Source of Truth", front: "Define the operational goal of the 'Single Source of Truth' (SSOT) data model.", back: "An architecture ensuring all team members pull documents and data from one central, authorized cloud space, completely eliminating confusion from duplicate files." }
             ]
         },
         l3_lesson21: {
-            title: "Lesson 21: Safety and Security",
+            title: "Lesson 21: Advanced Incident Response and Security Operations Center",
             cards: [
-                {
-                    topic: "Incident Escalation Pathways",
-                    front: "To whom should a network endpoint operator immediately report a live phishing attack vector or network intrusion alert?",
-                    back: "To the institutional IT Security Desk or Network Security Operations Center (SOC) to block traffic at the gateway, isolate endpoints, and prevent wider network impact."
-                }
+                { topic: "Incident Response Steps", front: "What are the six phases of the official NIST Incident Response Framework?", back: "1. Preparation, 2. Detection & Analysis, 3. Containment, 4. Eradication, 5. Recovery, and 6. Post-Incident Activity (Lessons Learned)." },
+                { topic: "Network Isolation Triggers", front: "Why is host network isolation the critical first step during an active security compromise?", back: "Disconnecting the infected computer's network cable or Wi-Fi drops its connections instantly, stopping malware from spreading to other systems or letting attackers exfiltrate data." },
+                { topic: "SIEM Log Consolidation", front: "What is the operational function of a SIEM system in a Security Operations Center?", back: "Security Information and Event Management: It gathers, analyzes, and correlates event logs from every server, firewall, and device across the network in real-time to spot threats." },
+                { topic: "Social Engineering (Whaling)", front: "What differentiates a Whaling attack from a standard Phishing attempt?", back: "Whaling is a highly targeted phishing trap aimed specifically at high-ranking individuals, like executives or school commandants, to steal critical administrative data or authorization rights." },
+                { topic: "Zero-Day Exploit Reality", front: "What defines a Zero-Day Vulnerability?", back: "A newly discovered security flaw in software that the vendor has not released a patch for yet, leaving systems defenseless if attackers exploit it." },
+                { topic: "Defense-in-Depth Design", front: "Explain the cyber security concept of Defense-in-Depth.", back: "Layering multiple separate security controls (firewalls, MFA, encryption, endpoint scanning, worker training) across a network so if one defense fails, other layers are there to block the attack." },
+                { topic: "Business Continuity Plans", front: "What is the difference between a Disaster Recovery (DR) plan and a Business Continuity (BC) plan?", back: "A DR plan maps out the technical steps to restore crashed servers and backup data; a BC plan details how the entire organization keeps operating during a crisis." },
+                { topic: "Honeytoken Cyber Decoys", front: "How do security operations centers leverage Honeytokens or Honeypots?", back: "They plant fake accounts, mock databases, or decoy servers on the network to trick hackers. Since valid workers never use them, any interaction triggers an instant intrusion alert." },
+                { topic: "Threat Hunting Procedures", front: "What occurs during a proactive Threat Hunting operation?", back: "Security analysts actively comb through network logs and system memory to hunt down stealthy, advanced threats that managed to sneak past automated firewalls and antivirus tools." },
+                { topic: "Phishing: Spear Phishing", front: "What defines a Spear Phishing attack vector?", back: "A customized phishing attack targeted at a specific person or team, using scraped personal or professional details to make the fraudulent message look highly convincing." },
+                { topic: "DDoS Resource Flooding", front: "How does a Distributed Denial of Service (DDoS) exploit take down enterprise web nodes?", back: "It commands a massive botnet of compromised computers to flood a target website with junk traffic simultaneously, overwhelming its servers and knocking it offline for valid users." },
+                { topic: "Insider Threat Profiles", front: "What is an Insider Threat and why are they exceptionally dangerous?", back: "A security threat originating from a trusted employee, contractor, or student who already possesses valid login credentials and network access permissions, allowing them to steal or sabotage data easily from the inside." },
+                { topic: "Digital Forensic Evidence", front: "Why must computer memory (RAM) be captured before powering off a machine during a forensic investigation?", back: "RAM is volatile memory. Powering down the device wipes it completely, destroying critical forensic evidence like active malware footprints, running processes, and unencrypted keys." },
+                { topic: "Air-Gapped Isolation Security", front: "What is an Air-Gapped system layout?", back: "A high-security isolation setup where a computer or private network is kept physically disconnected from the public internet and all other open networks, making remote hacking attempts impossible." },
+                { topic: "Rootkit Covert Exploits", front: "What makes Rootkit infections uniquely difficult to detect on an endpoint?", back: "Rootkits bury themselves deep inside the operating system's core kernel layers. They load up before the operating system even finishes booting, allowing them to mask their presence from standard antivirus applications." }
             ]
         }
     }
