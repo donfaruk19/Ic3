@@ -339,7 +339,7 @@ level2: {
                     type: "ordering",
                     q: "Put the following digital storage metric sizes in sequence, ordered from smallest to largest capacity.",
                     steps: ["Terabyte", "Kilobyte", "Petabyte", "Gigabyte", "Megabyte"],
-                    cor: [1, 4, 3, 0, 2],
+                    cor: [3, 0, 4, 2, 1],
                     exp: "The proper data capacity progression scale runs: Kilobyte (KB) < Megabyte (MB) < Gigabyte (GB) < Terabyte (TB) < Petabyte (PB)."
                 },
                 {
