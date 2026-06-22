@@ -375,8 +375,8 @@ level2: {
                     q: "Draw a line to match the physical device profile classification on the left to its operational role on the right.",
                     pairs: [
                         { item: "Smartphone", match: "Cellular network connectivity, built-in camera, and voice calls without Wi-Fi." },
-                        { item: "Desktop Computer", match: "Supports heavy computing tasks like high-end graphics rendering and video processing workflows." },
-                        { item: "Tablet", match: "Portable device optimized for document parsing, viewing media, and casual tasks with long battery efficiency." }
+                        { item: "Tablet", match: "Portable device optimized for document parsing, viewing media, and casual tasks with long battery efficiency." },
+                        { item: "Desktop Computer", match: "Supports heavy computing tasks like high-end graphics rendering and video processing workflows." }
                     ],
                     exp: "Desktop nodes manage resource-heavy workloads, smartphones provide modular remote field communications, and tablets serve as mobile access viewpoints."
                 },
