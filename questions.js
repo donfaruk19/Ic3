@@ -307,7 +307,7 @@ level2: {
                         "Verify the resolution of the problem and that no new issues exist.",
                         "Apply each solution systematically."
                     ],
-                    cor: [2, 0, 1, 4, 3],
+                    cor: [1, 2, 0, 4, 3],
                     exp: "Proper diagnostic order requires you to isolate the problem description, map potential points of failure, verify through test actions, rectify, and then double-check system stability."
                 },
                 {
