@@ -5,31 +5,664 @@
 const masterQuestionBank = {
     // ---------------------------------------------------------
     // LEVEL 1: FUNDAMENTALS (Lessons 1 - 7)
-    // ---------------------------------------------------------
-    level1: {
-        l1_lesson1: { title: "Lesson 1: Technology Basics", questions: [
-            // PASTE YOUR LEVEL 1 LESSON 1 QUESTIONS HERE
-        ]},
-        l1_lesson2: { title: "Lesson 2: Digital Citizenship", questions: [
-            // PASTE YOUR LEVEL 1 LESSON 2 QUESTIONS HERE
-        ]},
-        l1_lesson3: { title: "Lesson 3: Information Management", questions: [
-            // PASTE YOUR LEVEL 1 LESSON 3 QUESTIONS HERE
-        ]},
-        l1_lesson4: { title: "Lesson 4: Content Creation", questions: [
-            // PASTE YOUR LEVEL 1 LESSON 4 QUESTIONS HERE
-        ]},
-        l1_lesson5: { title: "Lesson 5: Communication", questions: [
-            // PASTE YOUR LEVEL 1 LESSON 5 QUESTIONS HERE
-        ]},
-        l1_lesson6: { title: "Lesson 6: Collaboration", questions: [
-            // PASTE YOUR LEVEL 1 LESSON 6 QUESTIONS HERE
-        ]},
-        l1_lesson7: { title: "Lesson 7: Safety and Security", questions: [
-            // PASTE YOUR LEVEL 1 LESSON 7 QUESTIONS HERE
-        ]}
-    },
+    // --------------------------------------------------------
+level1: {
+    l1_lesson1: { title: "Lesson 1: Technology Basics", questions: [
+        {
+            type: "mcq",
+            topic: "Hardware vs Software",
+            q: "Which of the following is an example of computer hardware?",
+            a: ["Windows 11", "Microsoft Word", "Keyboard", "Google Chrome"],
+            cor: 2,
+            exp: "Hardware refers to the tangible physical components of a computer system. A keyboard is hardware; the others are examples of software."
+        },
+        {
+            type: "mcq",
+            topic: "Operating System Role",
+            q: "What is the primary purpose of an Operating System (OS)?",
+            a: ["To browse the internet", "To manage hardware and software resources", "To create documents", "To send emails"],
+            cor: 1,
+            exp: "The OS is the master control program that coordinates hardware components, manages memory and storage, and provides a platform for applications to run."
+        },
+        {
+            type: "multi",
+            topic: "Input Devices",
+            q: "Which two of the following are examples of input devices? (Choose 2.)",
+            a: ["Printer", "Microphone", "Monitor", "Keyboard"],
+            required: 2,
+            cor: [1, 3],
+            exp: "Input devices send data INTO the computer (microphone captures audio, keyboard captures keystrokes). Printers and monitors are output devices."
+        },
+        {
+            type: "mcq",
+            topic: "RAM vs Storage",
+            q: "What is the key difference between RAM and a hard drive?",
+            a: [
+                "RAM is non-volatile while a hard drive is volatile",
+                "RAM is temporary and volatile, while a hard drive provides non-volatile long-term storage",
+                "RAM stores more data than a hard drive",
+                "RAM is only found in servers"
+            ],
+            cor: 1,
+            exp: "RAM is volatile and temporary memory used by active processes, wiped on shutdown. A hard drive provides persistent storage that retains data even when powered off."
+        },
+        {
+            type: "ordering",
+            topic: "Storage Capacity Order",
+            q: "Place the following storage capacities in order from smallest to largest.",
+            steps: ["Terabyte", "Megabyte", "Gigabyte", "Kilobyte"],
+            cor: [3, 1, 2, 0],
+            exp: "Correct order: Kilobyte (KB) < Megabyte (MB) < Gigabyte (GB) < Terabyte (TB). Each step is roughly 1,000× the previous unit."
+        },
+        {
+            type: "mcq",
+            topic: "Web Browser Function",
+            q: "What role does a web browser play?",
+            a: [
+                "It manages the operating system's memory",
+                "It renders HTML content and fetches web pages from servers",
+                "It stores files on the local hard drive",
+                "It handles device driver installations"
+            ],
+            cor: 1,
+            exp: "A browser (Chrome, Edge, Firefox) requests HTML documents from web servers, interprets them, and renders the visual page for the user."
+        },
+        {
+            type: "match",
+            topic: "Device Functions",
+            q: "Match each device to its primary function.",
+            pairs: [
+                { item: "Keyboard", match: "Input device used for typing" },
+                { item: "Monitor", match: "Output device for displaying visuals" },
+                { item: "Hard Drive", match: "Non-volatile long-term storage" },
+                { item: "CPU", match: "Processes instructions for the system" }
+            ],
+            cor: [0, 1, 2, 3],
+            exp: "Peripherals serve complementary roles: keyboard (input), monitor (output), hard drive (storage), and CPU (processing)."
+        },
+        {
+            type: "mcq",
+            topic: "USB Standard",
+            q: "Why is USB considered a universal connection standard?",
+            a: [
+                "It only works with specific brands",
+                "It requires a separate power source for each device",
+                "It provides standardized data transfer and power to many device types",
+                "It is limited to desktop computers"
+            ],
+            cor: 2,
+            exp: "USB (Universal Serial Bus) provides a standard interface for both data and power across keyboards, mice, printers, drives, and phones."
+        }
+    ]},
 
+    l1_lesson2: { title: "Lesson 2: Digital Citizenship", questions: [
+        {
+            type: "mcq",
+            topic: "Digital Footprint",
+            q: "What is a digital footprint?",
+            a: [
+                "A digital scan of a person's shoe size",
+                "The trail of data you leave behind when using the internet",
+                "A type of computer virus",
+                "An antivirus protection suite"
+            ],
+            cor: 1,
+            exp: "Every search, post, like, and click contributes to a permanent trail of data — your digital footprint — that can often be traced back to you."
+        },
+        {
+            type: "multi",
+            topic: "Positive Online Reputation",
+            q: "Which two practices help maintain a positive digital footprint? (Choose 2.)",
+            a: [
+                "Sharing personal information publicly",
+                "Using strong privacy settings on social media",
+                "Posting inflammatory or offensive content",
+                "Thinking carefully before posting online"
+            ],
+            required: 2,
+            cor: [1, 3],
+            exp: "Restricting public visibility and pausing before posting both reduce the risk of data being misused or taken out of context."
+        },
+        {
+            type: "mcq",
+            topic: "Copyright Definition",
+            q: "What does copyright protect?",
+            a: [
+                "Only physical objects like books and paintings",
+                "Original creative works fixed in a tangible medium",
+                "Only code and software",
+                "Only government documents"
+            ],
+            cor: 1,
+            exp: "Copyright protects original expression — literature, music, art, software, and more — once it is fixed (e.g., written down or recorded)."
+        },
+        {
+            type: "mcq",
+            topic: "Fair Use",
+            q: "Which of the following is an appropriate use of fair use?",
+            a: [
+                "Selling copies of a textbook chapter to classmates",
+                "Quoting a few lines from a novel in a critical review",
+                "Performing an entire song at a public event for profit",
+                "Using an entire copyrighted manual in a paid course"
+            ],
+            cor: 1,
+            exp: "Fair use permits limited quoting for commentary, criticism, education, or news reporting. Commercial resale or full-work performance for profit does not qualify."
+        },
+        {
+            type: "match",
+            topic: "IP Concepts",
+            q: "Match each concept to its correct description.",
+            pairs: [
+                { item: "Copyright", match: "Legal protection of original creative works" },
+                { item: "Fair Use", match: "Limited use of copyrighted material for education or commentary" },
+                { item: "Public Domain", match: "Works free from copyright restrictions" },
+                { item: "Plagiarism", match: "Presenting someone else's work as your own" }
+            ],
+            cor: [0, 1, 2, 3],
+            exp: "These four concepts form the backbone of digital citizenship — knowing what is protected, what you can reuse, and what constitutes academic dishonesty."
+        },
+        {
+            type: "mcq",
+            topic: "Netiquette",
+            q: "What does the term 'netiquette' refer to?",
+            a: [
+                "The speed of a network connection",
+                "A set of accepted rules for polite online behavior",
+                "A type of network protocol",
+                "A security encryption standard"
+            ],
+            cor: 1,
+            exp: "Netiquette = network etiquette: the informal but widely-shared conventions for respectful, courteous communication online."
+        },
+        {
+            type: "mcq",
+            topic: "Cyberbullying Response",
+            q: "How should you respond if you witness cyberbullying?",
+            a: [
+                "Join in to avoid being targeted",
+                "Ignore the situation and move on",
+                "Save evidence, report it, and support the victim",
+                "Share the content with more people"
+            ],
+            cor: 2,
+            exp: "Documenting evidence, reporting to the platform or an adult, and supporting the target are the safe and ethical responses."
+        },
+        {
+            type: "mcq",
+            topic: "Public Domain",
+            q: "Which type of content falls into the public domain?",
+            a: [
+                "Any content posted on the internet",
+                "Content created within the last year",
+                "Content whose copyright has expired or been waived by the creator",
+                "Only content created by the government"
+            ],
+            cor: 2,
+            exp: "Public domain applies when copyright expires or the creator explicitly dedicates the work to the public, allowing unrestricted use."
+        }
+    ]},
+
+    l1_lesson3: { title: "Lesson 3: Information Management", questions: [
+        {
+            type: "mcq",
+            topic: "Search Engines",
+            q: "What is the primary function of a search engine?",
+            a: [
+                "To send emails and messages",
+                "To find and index information on the web",
+                "To manage computer files",
+                "To create presentations"
+            ],
+            cor: 1,
+            exp: "Search engines crawl the web, build a searchable index of page content, and return ranked results matching user queries."
+        },
+        {
+            type: "multi",
+            topic: "Boolean Operators",
+            q: "Which two are common Boolean operators used in search queries? (Choose 2.)",
+            a: ["AND", "MAYBE", "OR", "PERHAPS"],
+            required: 2,
+            cor: [0, 2],
+            exp: "AND, OR, and NOT are the core Boolean operators. 'MAYBE' and 'PERHAPS' are not recognized by search engines."
+        },
+        {
+            type: "mcq",
+            topic: "NOT Operator",
+            q: "What does the Boolean operator NOT do in a search?",
+            a: [
+                "Adds more results to your search",
+                "Excludes results containing a specific term",
+                "Searches for synonyms",
+                "Sorts results alphabetically"
+            ],
+            cor: 1,
+            exp: "NOT (or a minus sign in many engines) excludes the following term, refining results by removing unwanted pages."
+        },
+        {
+            type: "mcq",
+            topic: "Source Reliability",
+            q: "Which type of website is generally considered most reliable for academic research?",
+            a: ["Personal blogs", "Anonymous social media posts", "Educational institutions (.edu)", "Unverified wiki pages"],
+            cor: 2,
+            exp: ".edu domains are restricted to accredited institutions, making them generally more trustworthy for academic sourcing."
+        },
+        {
+            type: "ordering",
+            topic: "CRAAP Source Evaluation",
+            q: "Place the following CRAAP source-evaluation checks in the order they are typically performed.",
+            steps: [
+                "Compare the information with other sources",
+                "Check the publication date for currency",
+                "Check for bias and the source's purpose",
+                "Verify the author's credentials"
+            ],
+            cor: [2, 0, 3, 1],
+            exp: "Practical order: Currency (date), Authority (author), Accuracy (cross-check), Purpose (bias). Steps listed above must be rearranged to: date → author → compare → bias."
+        },
+        {
+            type: "mcq",
+            topic: "CRAAP Test",
+            q: "What is the primary purpose of the CRAAP test?",
+            a: [
+                "To test a computer's processing speed",
+                "To evaluate the credibility and reliability of information sources",
+                "To measure internet connection bandwidth",
+                "To validate software license agreements"
+            ],
+            cor: 1,
+            exp: "CRAAP = Currency, Relevance, Authority, Accuracy, Purpose. It's a structured rubric for judging source quality."
+        },
+        {
+            type: "multi",
+            topic: "Trustworthy Domains",
+            q: "Which two domain extensions generally indicate more trustworthy sources? (Choose 2.)",
+            a: [".com", ".gov", ".edu", ".biz"],
+            required: 2,
+            cor: [1, 2],
+            exp: ".gov (government) and .edu (accredited education) are moderated extensions; .com and .biz are open to anyone."
+        }
+    ]},
+
+    l1_lesson4: { title: "Lesson 4: Content Creation", questions: [
+        {
+            type: "mcq",
+            topic: "Word Processing",
+            q: "Which type of software is primarily used to create and edit text-based documents?",
+            a: ["Spreadsheet software", "Word processing software", "Presentation software", "Image editing software"],
+            cor: 1,
+            exp: "Word processors (Word, Google Docs) are designed for text-heavy documents such as reports, essays, and memos."
+        },
+        {
+            type: "mcq",
+            topic: "Cell References",
+            q: "What does the cell reference 'B5' mean in a spreadsheet?",
+            a: ["Row B and Column 5", "Column B and Row 5", "A formula reference", "A file extension"],
+            cor: 1,
+            exp: "Columns are lettered and rows are numbered, so B5 refers to the cell in column B, row 5."
+        },
+        {
+            type: "mcq",
+            topic: "Spreadsheet Formulas",
+            q: "What mandatory character must begin every formula in a spreadsheet?",
+            a: ["Plus sign (+)", "Equals sign (=)", "Dollar sign ($)", "Asterisk (*)"],
+            cor: 1,
+            exp: "The equals sign tells the software the entry is a formula to be calculated, not literal text."
+        },
+        {
+            type: "mcq",
+            topic: "Presentation Software",
+            q: "What is the primary purpose of presentation software like Microsoft PowerPoint?",
+            a: [
+                "To create detailed written reports",
+                "To design slide decks for visual presentations",
+                "To calculate complex mathematical formulas",
+                "To manage large databases"
+            ],
+            cor: 1,
+            exp: "Presentation software builds slide decks combining text, graphics, animations, and media for spoken delivery to an audience."
+        },
+        {
+            type: "multi",
+            topic: "Word File Extensions",
+            q: "Which two file extensions indicate Microsoft Word documents? (Choose 2.)",
+            a: [".docx", ".xlsx", ".doc", ".pptx"],
+            required: 2,
+            cor: [0, 2],
+            exp: ".docx is the modern Word format and .doc is its legacy predecessor. .xlsx = Excel, .pptx = PowerPoint."
+        },
+        {
+            type: "mcq",
+            topic: "PDF Benefits",
+            q: "Why is the PDF format often preferred for sharing finalized documents?",
+            a: [
+                "PDF files are the only editable format available",
+                "PDF preserves visual formatting across all platforms",
+                "PDF files use the least storage space",
+                "PDF files automatically update content"
+            ],
+            cor: 1,
+            exp: "PDFs embed fonts, images, and layout so the document displays identically on Windows, macOS, mobile, or print."
+        },
+        {
+            type: "match",
+            topic: "Software Categories",
+            q: "Match each software category to its common application.",
+            pairs: [
+                { item: "Word Processing", match: "Microsoft Word" },
+                { item: "Spreadsheets", match: "Microsoft Excel" },
+                { item: "Presentations", match: "Microsoft PowerPoint" },
+                { item: "Image Editing", match: "Adobe Photoshop" }
+            ],
+            cor: [0, 1, 2, 3],
+            exp: "Each software category maps to its flagship application in a standard office/productivity suite."
+        },
+        {
+            type: "mcq",
+            topic: "Save vs Save As",
+            q: "What is the difference between 'Save' and 'Save As'?",
+            a: [
+                "They are identical in function",
+                "'Save As' lets you save the file with a new name or location",
+                "'Save' creates a backup while 'Save As' deletes the original",
+                "'Save As' only works on new files"
+            ],
+            cor: 1,
+            exp: "Save updates the existing file in place; Save As creates a new file (or new version) while preserving the original."
+        }
+    ]},
+
+    l1_lesson5: { title: "Lesson 5: Communication", questions: [
+        {
+            type: "mcq",
+            topic: "Bcc Field",
+            q: "What is the purpose of the Bcc field in an email?",
+            a: [
+                "To send a copy of the email to additional recipients",
+                "To collect information about someone without their knowledge",
+                "To keep multiple recipients' email addresses private from each other",
+                "To indicate a personal message"
+            ],
+            cor: 2,
+            exp: "Bcc (Blind Carbon Copy) hides recipient addresses from everyone else, preventing address harvesting and accidental exposure."
+        },
+        {
+            type: "mcq",
+            topic: "Subject Line",
+            q: "What should a professional email's Subject Line contain?",
+            a: [
+                "Blank space for the recipient to fill in",
+                "A long descriptive paragraph",
+                "A brief, descriptive summary of the message content",
+                "Only the sender's name"
+            ],
+            cor: 2,
+            exp: "A concise, specific subject line helps recipients prioritize and find emails later in crowded inboxes."
+        },
+        {
+            type: "mcq",
+            topic: "Attachment Limits",
+            q: "What typically happens when you attach a file larger than the email server's limit?",
+            a: [
+                "The email sends without the file",
+                "The file is automatically compressed",
+                "The email is rejected or bounced back to you",
+                "The file is split into multiple attachments"
+            ],
+            cor: 2,
+            exp: "Most email providers reject large attachments — a common workaround is to share a cloud link instead."
+        },
+        {
+            type: "mcq",
+            topic: "Email Signature",
+            q: "What is the primary function of an email signature?",
+            a: [
+                "To encrypt the email contents",
+                "To provide contact information and professional identity",
+                "To automatically delete old messages",
+                "To compress attached files"
+            ],
+            cor: 1,
+            exp: "Signatures typically include the sender's name, title, organization, and contact info, reinforcing professional identity."
+        },
+        {
+            type: "multi",
+            topic: "Professional Email Etiquette",
+            q: "Which two are good professional email practices? (Choose 2.)",
+            a: [
+                "Using ALL CAPS to emphasize important points",
+                "Proofreading for grammar and spelling",
+                "Including a clear purpose and context in the message",
+                "Forwarding chain emails to all contacts"
+            ],
+            required: 2,
+            cor: [1, 2],
+            exp: "Proofreading and stating the purpose clearly keep emails professional and efficient. ALL CAPS reads as shouting; chain emails clutter inboxes."
+        },
+        {
+            type: "match",
+            topic: "Email Header Fields",
+            q: "Match each email field to its function.",
+            pairs: [
+                { item: "To", match: "Primary recipients who will act on the email" },
+                { item: "Cc", match: "Secondary recipients who need to be informed" },
+                { item: "Bcc", match: "Hidden recipients invisible to other recipients" },
+                { item: "Subject", match: "Brief descriptive summary of the message topic" }
+            ],
+            cor: [0, 1, 2, 3],
+            exp: "Each header field controls a different aspect of who receives the message and how it's presented."
+        },
+        {
+            type: "mcq",
+            topic: "Synchronous vs Asynchronous",
+            q: "What is the difference between synchronous and asynchronous communication?",
+            a: [
+                "They are the same thing",
+                "Synchronous requires real-time participation while asynchronous allows delayed responses",
+                "Synchronous requires an internet connection while asynchronous does not",
+                "Asynchronous always involves audio or video"
+            ],
+            cor: 1,
+            exp: "Synchronous = live (phone, video, chat); asynchronous = time-shifted (email, forum posts, shared docs)."
+        }
+    ]},
+
+    l1_lesson6: { title: "Lesson 6: Collaboration", questions: [
+        {
+            type: "mcq",
+            topic: "Cloud Storage",
+            q: "What is the primary advantage of cloud storage for team collaboration?",
+            a: [
+                "It eliminates the need for internet access",
+                "It provides centralized, globally accessible file storage",
+                "It increases the local hard drive speed",
+                "It automatically encrypts files with military-grade security"
+            ],
+            cor: 1,
+            exp: "Cloud storage puts shared files on internet-accessible servers so any authorized team member can access them from anywhere."
+        },
+        {
+            type: "mcq",
+            topic: "Real-Time Co-Authoring",
+            q: "What does real-time co-authoring allow multiple users to do?",
+            a: [
+                "Only view the document without editing",
+                "Edit the same document simultaneously",
+                "Delete other users' edits",
+                "Access the document only offline"
+            ],
+            cor: 1,
+            exp: "Co-authoring tools (Google Docs, Microsoft 365) sync edits live, so teams can collaborate without emailing versions back and forth."
+        },
+        {
+            type: "mcq",
+            topic: "View-Only Permission",
+            q: "What does 'View-Only' access permission allow a user to do?",
+            a: [
+                "Edit the document contents",
+                "Delete the document",
+                "Open and read the document without making changes",
+                "Share the document with anyone"
+            ],
+            cor: 2,
+            exp: "View-Only is a restrictive permission that prevents editing or deletion while still allowing the document to be read."
+        },
+        {
+            type: "multi",
+            topic: "Collaboration Tools",
+            q: "Which two are common digital collaboration tools? (Choose 2.)",
+            a: ["Google Workspace", "Microsoft 365", "Calculator", "Notepad"],
+            required: 2,
+            cor: [0, 1],
+            exp: "Google Workspace and Microsoft 365 bundle shared docs, chat, video, and calendars. Calculator and Notepad are local utilities, not collaboration platforms."
+        },
+        {
+            type: "match",
+            topic: "Collaboration Concepts",
+            q: "Match each collaboration term to its description.",
+            pairs: [
+                { item: "Cloud Storage", match: "Online storage accessible from any device" },
+                { item: "Co-Authoring", match: "Multiple users editing a document simultaneously" },
+                { item: "Version History", match: "Record of document changes over time" },
+                { item: "Permissions", match: "Controls that determine who can view or edit a file" }
+            ],
+            cor: [0, 1, 2, 3],
+            exp: "Together these tools enable secure, version-aware, multi-user collaboration on shared files."
+        },
+        {
+            type: "mcq",
+            topic: "Version History",
+            q: "What is the main benefit of version history in collaborative documents?",
+            a: [
+                "It automatically deletes old versions",
+                "It reduces the file size",
+                "It allows recovery of earlier versions if needed",
+                "It requires more storage space"
+            ],
+            cor: 2,
+            exp: "Version history lets you restore a previous state if a change breaks the document or an edit is accidentally deleted."
+        },
+        {
+            type: "mcq",
+            topic: "Video Conference Etiquette",
+            q: "Which is an example of good video conferencing etiquette?",
+            a: [
+                "Speaking over others to save time",
+                "Muting your microphone when not speaking",
+                "Leaving your camera on while moving around",
+                "Typing loudly during presentations"
+            ],
+            cor: 1,
+            exp: "Muting when not speaking prevents background noise from distracting the whole meeting — a core rule of video call etiquette."
+        }
+    ]},
+
+    l1_lesson7: { title: "Lesson 7: Safety and Security", questions: [
+        {
+            type: "mcq",
+            topic: "Strong Passwords",
+            q: "Which of the following is the strongest password?",
+            a: ["password123", "John1985", "Tr$9#mK!2pL7@qR", "abcdef"],
+            cor: 2,
+            exp: "Strong passwords are long, random, and mix uppercase, lowercase, numbers, and symbols. Personal info (name + birth year) and common words are easily guessed."
+        },
+        {
+            type: "mcq",
+            topic: "Phishing",
+            q: "What is phishing?",
+            a: [
+                "A technique to test network speed",
+                "A fraudulent attempt to obtain sensitive information by disguising as a trustworthy entity",
+                "A method for compressing files",
+                "A type of firewall configuration"
+            ],
+            cor: 1,
+            exp: "Phishing uses fake emails or sites that impersonate banks, employers, or known brands to trick users into giving up credentials or personal info."
+        },
+        {
+            type: "mcq",
+            topic: "Multi-Factor Authentication",
+            q: "What does Multi-Factor Authentication (MFA) require?",
+            a: ["Only a password", "Two or more different verification methods", "Only a fingerprint scan", "Only an email verification"],
+            cor: 1,
+            exp: "MFA combines factors like something you know (password) with something you have (phone code) or are (biometric), dramatically reducing account takeover."
+        },
+        {
+            type: "multi",
+            topic: "Malware Types",
+            q: "Which two are types of malware? (Choose 2.)",
+            a: ["Virus", "Keyboard", "Ransomware", "Monitor"],
+            required: 2,
+            cor: [0, 2],
+            exp: "Viruses and ransomware are malicious software. Keyboards and monitors are hardware peripherals, not malware."
+        },
+        {
+            type: "mcq",
+            topic: "HTTPS",
+            q: "What does the 'S' in HTTPS indicate about a website?",
+            a: [
+                "It is a social media site",
+                "It uses secure, encrypted communication",
+                "It is a scam website",
+                "It is sold by the government"
+            ],
+            cor: 1,
+            exp: "HTTPS adds TLS/SSL encryption to HTTP, protecting data in transit between browser and server from eavesdropping."
+        },
+        {
+            type: "mcq",
+            topic: "Public Wi-Fi Risk",
+            q: "Why should you avoid entering sensitive data on public Wi-Fi networks?",
+            a: [
+                "Public Wi-Fi is always faster than home networks",
+                "Public networks typically lack encryption, allowing data interception",
+                "Public Wi-Fi requires a paid subscription",
+                "Public Wi-Fi blocks all websites"
+            ],
+            cor: 1,
+            exp: "Open Wi-Fi lacks encryption, so nearby attackers on the same network can potentially intercept unencrypted traffic."
+        },
+        {
+            type: "match",
+            topic: "Security Concepts",
+            q: "Match each security concept to its correct description.",
+            pairs: [
+                { item: "Firewall", match: "Monitors and filters network traffic" },
+                { item: "Antivirus", match: "Detects and removes malicious software" },
+                { item: "MFA", match: "Requires multiple verification factors to log in" },
+                { item: "Encryption", match: "Scrambles data to prevent unauthorized access" }
+            ],
+            cor: [0, 1, 2, 3],
+            exp: "These four defenses form layers of defense-in-depth: network filtering, endpoint scanning, identity verification, and data protection."
+        },
+        {
+            type: "mcq",
+            topic: "Ransomware",
+            q: "What is ransomware?",
+            a: [
+                "Software that speeds up your computer",
+                "Malicious software that encrypts files and demands payment for decryption",
+                "A legitimate backup tool",
+                "A type of email attachment"
+            ],
+            cor: 1,
+            exp: "Ransomware encrypts user data and holds it hostage. The correct response is to disconnect from the network, notify IT, and restore from backup — not to pay."
+        },
+        {
+            type: "mcq",
+            topic: "Software Updates",
+            q: "Why are regular software updates important for security?",
+            a: [
+                "They make your computer slower",
+                "They patch known security vulnerabilities",
+                "They only change the visual appearance",
+                "They always require payment"
+            ],
+            cor: 1,
+            exp: "Updates close security holes before attackers exploit them. Skipping updates is one of the most common causes of preventable breaches."
+        }
+    ]}
+}
     // ---------------------------------------------------------
     // LEVEL 2: WORKING KNOWLEDGE (Lessons 8 - 14)
     // ---------------------------------------------------------
