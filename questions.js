@@ -742,16 +742,16 @@ level2: {
         ]},
         l2_lesson10: { title: "Lesson 10: Information Management", questions: [
             {
-                type: "match",
+                type: "binary_group",
                 topic: "Evaluating Source Bias",
                 q: "You need to assess whether the content of an online article is biased. Select Yes if the aspect helps check bias, or No if it does not.",
-                pairs: [
-                    { item: "Article funding source", match: "Yes" },
-                    { item: "Article publication date", match: "No" },
-                    { item: "Education level of the author", match: "No" },
-                    { item: "Connections of the author to political organizations", match: "Yes" }
+                options: ["Yes", "No"],
+                statements: [
+                    { text: "Article funding source", correct: 0 },
+                    { text: "Article publication date", correct: 1 },
+                    { text: "Education level of the author", correct: 1 },
+                    { text: "Connections of the author to political organizations", correct: 0 }
                 ],
-                cor: [0, 1, 1, 0],
                 exp: "Funding sources and external political affiliations directly flag ideological bias. Conversely, timeline checks or specific academic credentials assess validity and domain authority, not direct functional slant."
             }
         ]},
@@ -827,16 +827,16 @@ level2: {
         ]},
         l2_lesson13: { title: "Lesson 13: Collaboration", questions: [
             {
-                type: "match",
+                type: "binary_group",
                 topic: "Digital Feedback Etiquette",
                 q: "A team of people are digitally collaborating on a project and need to provide feedback digitally. Select Yes if the behavior follows digital etiquette standards or No if it does not.",
-                pairs: [
-                    { item: "Correct other people whenever their opinions and ideas are wrong.", match: "No" },
-                    { item: "Give fair criticism and constructive feedback, but phrase it respectfully.", match: "Yes" },
-                    { item: "Use abbreviations, slang, and emojis to give your comments more personality.", match: "No" },
-                    { item: "Use good grammar and spelling so your comments are clear and easy to understand.", match: "Yes" }
+                options: ["Yes", "No"],
+                statements: [
+                    { text: "Correct other people whenever their opinions and ideas are wrong.", correct: 1 },
+                    { text: "Give fair criticism and constructive feedback, but phrase it respectfully.", correct: 0 },
+                    { text: "Use abbreviations, slang, and emojis to give your comments more personality.", correct: 1 },
+                    { text: "Use good grammar and spelling so your comments are clear and easy to understand.", correct: 0 }
                 ],
-                cor: [1, 0, 1, 0],
                 exp: "Professional digital feedback typically requires clear, formal communication rather than informal slang, confrontational corrections, or overused emojis."
             },
             {
@@ -854,15 +854,15 @@ level2: {
                 exp: "Digital meeting etiquette relies on open, interactive features like 'Raise Hand' and resolving technological or experience differences through private onboarding before calls."
             },
             {
-                type: "match",
+                type: "binary_group",
                 topic: "Digital Collaboration Core Concepts",
                 q: "You have become part of a team that uses collaboration. For each statement about collaboration, select True or False.",
-                pairs: [
-                    { item: "Individual input and creative decision-making will be limited.", match: "False" },
-                    { item: "Members share ideas to come up with solutions.", match: "True" },
-                    { item: "Everyone in the group will have the same perspectives for the project.", match: "False" }
+                options: ["True", "False"],
+                statements: [
+                    { text: "Individual input and creative decision-making will be limited.", correct: 1 },
+                    { text: "Members share ideas to come up with solutions.", correct: 0 },
+                    { text: "Everyone in the group will have the same perspectives for the project.", correct: 1 }
                 ],
-                cor: [1, 0, 1],
                 exp: "Collaboration connects varied backgrounds and ideas to find cross-functional answers, supporting individual input instead of limiting it."
             }
         ]},
