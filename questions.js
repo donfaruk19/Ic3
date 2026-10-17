@@ -662,7 +662,7 @@ level1: {
             exp: "Updates close security holes before attackers exploit them. Skipping updates is one of the most common causes of preventable breaches."
         }
     ]}
-}
+},
     // ---------------------------------------------------------
     // LEVEL 2: WORKING KNOWLEDGE (Lessons 8 - 14)
     // ---------------------------------------------------------
