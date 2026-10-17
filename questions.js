@@ -1375,4 +1375,171 @@ level2: {
             ]
         }
     }
+,
+l3_practice2: {
+    title: "Level 3 Practice Bank – 55 Exam-Style Questions",
+    questions: [
+
+// ═══ 1–5 ═══
+{ type:"mcq", topic:"Email Attachments", q:"Which file can you NOT send through a standard email provider like Gmail or Yahoo?", a:["A 30-frame 1080p animated GIF","A 5-minute MP3 podcast","A 1-minute 8K-resolution AVI video","A 400-page plain-text file"], cor:2, exp:"8K AVI video exceeds standard 25 MB attachment limits." },
+{ type:"mcq", topic:"Group Communication", q:"Your group needs to know about a meeting change. Most efficient response?", a:["Post on social media","Email your instructor","Email the whole group","Call each member individually"], cor:2, exp:"A single group email reaches everyone with identical info and creates a written record." },
+{ type:"binary_group", topic:"Marketing Effectiveness", q:"For each statement about digital marketing, select True or False.", options:["True","False"], statements:[
+    { text:"Buttons linking to specific URLs in graphics increase traffic compared to text CTAs.", correct:0 },
+    { text:"A/B testing determines which messaging is most effective for moving audiences to action.", correct:0 },
+    { text:"Built-in analytics tools reveal the effectiveness of a medium at driving traffic.", correct:0 }
+], exp:"All three are correct — visual CTAs outperform text links, A/B testing validates messaging, analytics exposes performance." },
+{ type:"mcq", topic:"Driver Sourcing", q:"Device Manager shows 'unknown device' for a laptop. Best action?", a:["Scan for hardware changes","Use the model number on the manufacturer's Drivers page","Restart and repair Windows","Buy driver software from a store"], cor:1, exp:"The most reliable method is downloading signed drivers from the manufacturer's support site using the exact model number." },
+{ type:"mcq", topic:"Data Remanence", q:"You delete files and empty the Recycle Bin before selling a PC. What data remains?", a:["All of it — reference and data","None — reference and data removed","Only the reference remains","Only the file data remains"], cor:3, exp:"Deleting removes file system pointers; file data stays on disk until overwritten." },
+
+// ═══ 6–10 ═══
+{ type:"mcq", topic:"Intellectual Property", q:"Best action demonstrating IP-guideline understanding?", a:["Provide attribution after adhering to fair use","Credit only in bibliography","Use small portions assuming fair use","Modify slightly and claim as your own"], cor:0, exp:"Attribution combined with fair-use compliance is correct." },
+{ type:"multi", topic:"Customer Support", q:"Which three are appropriate when supporting an app user? (Choose 3.)", a:["Send annotated sequential screenshots","Provide clear, concise instructions","Share video links with useful steps","Notify them it's likely user error","Send positive emojis"], required:3, cor:[0,1,2], exp:"Annotated screenshots, clear instructions, and video links are professional." },
+{ type:"multi", topic:"IP Protection", q:"Which two actions protect IP? (Choose 2.)", a:["Watermark public content","Create a Creative Commons license","Add a disclaimer claiming all content as IP","Create a public portfolio"], required:2, cor:[0,1], exp:"Watermarks deter misuse; CC licenses provide a clear legal framework." },
+{ type:"binary_group", topic:"Cloud Documents", q:"For each statement about cloud documents, select True or False.", options:["True","False"], statements:[
+    { text:"Cloud documents cannot function without internet.", correct:1 },
+    { text:"Cloud documents offer varying security to control viewing.", correct:0 },
+    { text:"Cloud docs can be configured for viewing, commenting, or editing roles.", correct:0 },
+    { text:"Cloud documents must always be actively uploaded.", correct:1 }
+], exp:"Offline sync (False), granular sharing (True), view/comment/edit roles (True), auto-sync (False)." },
+{ type:"binary_group", topic:"Password Sharing", q:"For each statement, select True or False.", options:["True","False"], statements:[
+    { text:"Using someone else's password, your employer can restrict future access.", correct:0 },
+    { text:"Signing a coworker in with their password because they're late is fraud.", correct:0 },
+    { text:"If multiple people know a password and a breach occurs, all could be held responsible.", correct:0 }
+], exp:"All correct — sharing violates policy, can be fraud, and creates shared liability." },
+
+// ═══ 11–15 ═══
+{ type:"multi", topic:"Staying Informed", q:"Which two practices keep you informed about digital threats? (Choose 2.)", a:["Follow independent social accounts about tools","Monitor app update notifications and terms changes","Subscribe to marketing emails","Review the publisher's site yearly"], required:2, cor:[0,1], exp:"Independent sources and official update notifications are proactive." },
+{ type:"binary_group", topic:"E-Waste Facts", q:"For each e-waste statement, select True or False.", options:["True","False"], statements:[
+    { text:"Over 60% of e-waste is recycled.", correct:1 },
+    { text:"E-waste is the slowest growing waste stream.", correct:1 },
+    { text:"E-waste contains recoverable precious metals.", correct:0 },
+    { text:"E-waste contains toxic metals that can leach into groundwater.", correct:0 }
+], exp:"Only ~17–20% recycled (False). It's the fastest-growing stream (False). Precious (True) and toxic metals (True)." },
+{ type:"multi", topic:"Data Visualization", q:"Best chart types to show population growth over time? (Choose 2.)", a:["Map","Bar graph","Line graph","Pie chart"], required:2, cor:[1,2], exp:"Bar and line graphs best show trends over time." },
+{ type:"mcq", topic:"Chrome Reset", q:"How do you return Chrome to default state?", a:["You and Google","Appearance","Default browser","On startup","Reset and clean up"], cor:4, exp:"'Reset and clean up' → 'Restore settings to their original defaults'." },
+{ type:"binary_group", topic:"Deepfake Detection", q:"Select Yes if the action helps detect a deepfake, or No if it does not.", options:["Yes","No"], statements:[
+    { text:"Assume an unlikely statement proves the video is trustworthy.", correct:1 },
+    { text:"Search quotes online for coverage by reputable news organizations.", correct:0 },
+    { text:"Consider the motivations of the originators.", correct:0 },
+    { text:"Check video comments for accusations.", correct:0 }
+], exp:"Trusting blindly is wrong (No). Searching quotes, analyzing motives, checking comments are valid (Yes)." },
+
+// ═══ 16–20 ═══
+{ type:"ordering", topic:"Cyclical Design", q:"Place cyclical design process tasks in order.", steps:["Develop the prototype","Generate ideas","Identify project requirements","Refine the prototype","Test the prototype"], cor:[2,1,0,4,3], exp:"Requirements → Ideas → Prototype → Test → Refine." },
+{ type:"multi", topic:"Logical Fallacies", q:"Which two fallacies does the study-guide story contain? (Choose 2.)", a:["Ad hominem","False dilemma","Appeal to authority","Appeal to tradition"], required:2, cor:[1,2], exp:"False dilemma offers only two options; appeal to authority uses one professor's claim." },
+{ type:"mcq", topic:"Fair Use", q:"Unknown 30-second clip copied. Which use is NOT fair use?", a:["News report","Teaching","Political ad","Parody"], cor:2, exp:"Commercial/political use rarely qualifies as fair use." },
+{ type:"multi", topic:"Video Manipulation", q:"Which two editing methods change original meaning? (Choose 2.)", a:["Add credits","Link credible sources","Edit pieces from different videos together","Show brief clip of a longer segment"], required:2, cor:[2,3], exp:"Recontextualized clips (C) and brief out-of-context clips (D) change meaning." },
+{ type:"mcq", topic:"System Requirements", q:"Laptop: 32GB RAM, 2GB graphics. Minimum: 16GB/1GB. Recommended: 4GB graphics. Which is true?", a:["Meets optimal","Meets recommended","Meets minimum","Does not meet minimum"], cor:2, exp:"RAM and graphics exceed minimum but fall short of recommended 4GB graphics." },
+
+// ═══ 21–25 ═══
+{ type:"binary_group", topic:"Digital Communication", q:"For each statement, select True or False.", options:["True","False"], statements:[
+    { text:"Avoid directly stating the purpose of the message.", correct:1 },
+    { text:"Use bullet points or lists to organize details.", correct:0 },
+    { text:"Use acronyms and abbreviations in all messages.", correct:1 },
+    { text:"Provide multiple options to minimize back-and-forth with clients.", correct:0 }
+], exp:"State purpose clearly (False). Bullets help (True). Overusing acronyms confuses (False). Options reduce round-trips (True)." },
+{ type:"mcq", topic:"Cyclical Design Benefit", q:"A key benefit of cyclical design is:", a:["Fastest possible delivery","Continual testing and improvement","Strict fixed deadline","Independent work without input"], cor:1, exp:"Cyclical design emphasizes repeated testing and iteration." },
+{ type:"mcq", topic:"Cross-Platform Software", q:"Which software works online and on iOS/Android?", a:["Mac OS","Windows 11","Microsoft 365","Chrome OS"], cor:2, exp:"Microsoft 365 is a cloud suite available on all major platforms." },
+{ type:"mcq", topic:"Word AutoCorrect", q:"Where do you change Word's automatic capitalization corrections?", a:["Grammar settings","OS preferences","AutoCorrect Options","Office Language Preferences"], cor:2, exp:"AutoCorrect Options controls automatic capitalization." },
+{ type:"multi", topic:"Productive Group Work", q:"Which three best demonstrate productive group contribution? (Choose 3.)", a:["Set deadlines for accountability","Do extra work to compensate for slackers","Agree with the teacher's recommendations on scope","Delay deliverable format discussion","Agree to norms for online group chat"], required:3, cor:[0,2,4], exp:"Deadlines, agreed scope, and established norms are productive." },
+
+// ═══ 26–30 ═══
+{ type:"mcq", topic:"Browser Troubleshooting", q:"Website not loading properly. First step?", a:["Clear browser cache","Email the owner","Check BIOS","Remove apps"], cor:0, exp:"Clearing the cache is the first and simplest fix." },
+{ type:"binary_group", topic:"Automation Impact", q:"For each automation statement, select True or False.", options:["True","False"], statements:[
+    { text:"Automation displaces some existing job roles.", correct:0 },
+    { text:"Automation creates new job roles.", correct:0 },
+    { text:"Social interaction activities are more likely to be automated.", correct:1 },
+    { text:"Physical tasks in predictable environments are more likely to be automated.", correct:0 }
+], exp:"Automation displaces and creates roles. Social tasks resist automation; predictable physical tasks automate easily." },
+{ type:"multi", topic:"Readability", q:"Which two best improve online document readability? (Choose 2.)", a:["Add closed captions","Minimize excessive punctuation and multi-line sentences","Check grade-level alignment to audience","Use low-contrast type"], required:2, cor:[1,2], exp:"Tighter punctuation/sentences and grade-level checks help." },
+{ type:"multi", topic:"Document Readability", q:"Which two improve readability? (Choose 2.)", a:["Adequate line spacing","Type in all caps","Decorative modern font","Strong color contrast","Compact font size to fit paragraphs"], required:2, cor:[0,3], exp:"Adequate spacing and strong contrast greatly improve readability." },
+{ type:"mcq", topic:"Support First Step", q:"Customer calls about a faulty older laptop. Best first step?", a:["Explain it's too old to fix","Suggest buying a new laptop","Ask about error messages","Tell them to come in for a refund"], cor:2, exp:"The first troubleshooting step is gathering information — ask about error messages." },
+
+// ═══ 31–35 ═══
+{ type:"ordering", topic:"Media Production", q:"Order to match Pre-production → Post-production → Distribution.", steps:["Editing, effects, captions","Uploading to platform","Scripting, storyboarding, scouting"], cor:[2,0,1], exp:"Scripting (pre) → Editing (post) → Uploading (distribution)." },
+{ type:"multi", topic:"Team Success", q:"Which three are good team-member strategies? (Choose 3.)", a:["Share and accept feedback","Use team messaging to collaborate","Use reply-all for updates","Keep discussion light","Never pressure about deadlines","Be prompt and focused in meetings"], required:3, cor:[0,1,5], exp:"Feedback, team messaging, and prompt/focused meetings are constructive." },
+{ type:"mcq", topic:"MFA", q:"Banking app asks for a phone code plus password. This is:", a:["Password reset","Identity monitoring","Multifactor authentication","Phishing"], cor:2, exp:"Phone code + password is classic multifactor authentication." },
+{ type:"mcq", topic:"Secure Passwords", q:"Recommended way to create a memorable secure password?", a:["Use parts of a random phrase","Combine favorite color and animal","Use your social handle","Use a name plus number"], cor:0, exp:"Random phrases are secure and memorable; personal info is guessable." },
+{ type:"binary_group", topic:"Team Constructiveness", q:"Select Yes if appropriate or No if not.", options:["Yes","No"], statements:[
+    { text:"Offer to lead so you can steer the project.", correct:1 },
+    { text:"Avoid conflicts by agreeing with every suggestion.", correct:1 },
+    { text:"Point out teammates' mistakes and offer to fix them.", correct:1 },
+    { text:"Listen carefully to teammates' ideas before feedback.", correct:0 }
+], exp:"Steering, blind agreement, and criticizing mistakes aren't constructive. Listening is (Yes)." },
+
+// ═══ 36–40 ═══
+{ type:"multi", topic:"Data Center Impact", q:"In which two ways do data centers negatively impact the environment? (Choose 2.)", a:["Generate heat that warms nearby water","Built in urban areas, increasing air pollution","Use significant non-renewable electricity","Built in cold climates harming polar bears"], required:2, cor:[0,2], exp:"Data centers warm water and consume huge electricity, often non-renewable." },
+{ type:"multi", topic:"Client Confidence", q:"Which three actions help ensure a client leaves the kickoff confident? (Choose 3.)", a:["Discuss the design applications at length","Tell the client you'll email a draft proposal with deadlines","Discuss your career goals","Paraphrase what the client said","Agree on digital communication forms","Speak casually to put the client at ease"], required:3, cor:[1,3,4], exp:"Proposal with deadlines, paraphrasing, and communication methods build confidence." },
+{ type:"multi", topic:"Client Design Changes", q:"Client requests poster changes. Which three actions should you take? (Choose 3.)", a:["Ask the client to explain reasons and impact","Tell the client you don't want to change","Tell the client their ideas aren't welcome","Remind them your team has the knowledge","Create a mockup with their changes","Focus on design choices, not emotions"], required:3, cor:[0,4,5], exp:"Ask for reasons, produce a mockup, stay design-focused." },
+{ type:"binary_group", topic:"Video Load Speed", q:"Select Yes if the action speeds up loading, or No if not.", options:["Yes","No"], statements:[
+    { text:"Increase the video bitrate.", correct:1 },
+    { text:"Convert the video to HTML5.", correct:0 },
+    { text:"Decrease the video resolution.", correct:0 },
+    { text:"Replace with an uncompressed version.", correct:1 }
+], exp:"Higher bitrate and uncompressed slow loading. HTML5 and lower resolution speed it up." },
+{ type:"multi", topic:"Underutilized Skills", q:"Which three skills can become underutilized due to technology? (Choose 3.)", a:["Eye-hand coordination","Memorization","Mental math","Map navigation","Organization","Dexterity"], required:3, cor:[1,2,3], exp:"Memorization, mental math, and map navigation are often replaced by tech." },
+
+// ═══ 41–45 ═══
+{ type:"mcq", topic:"Desktop vs Cloud", q:"Benefit of a desktop app over a cloud app?", a:["Lower upfront cost","No internet dependency","Uses less disk","Updated more frequently"], cor:1, exp:"Desktop apps work offline; cloud apps require internet." },
+{ type:"binary_group", topic:"Web Credibility", q:"For each statement, select True or False.", options:["True","False"], statements:[
+    { text:"Web pages citing sources are more credible.", correct:0 },
+    { text:"A .org domain guarantees reliability.", correct:1 },
+    { text:"Consulting multiple sources helps verify accuracy.", correct:0 },
+    { text:"First search results are usually the most reliable.", correct:1 }
+], exp:"Citing sources (True), consulting multiple sources (True). .org and search rank aren't reliability indicators (False)." },
+{ type:"multi", topic:"Communication Feedback", q:"Which two improve your team's communication skills? (Choose 2.)", a:["Ask your teacher for feedback on what to improve","Individually text the client to apologize","Continue the same approach for practice","Speak in a positive, respectful tone","Have another team member take over communication"], required:2, cor:[0,3], exp:"Seeking feedback and positive/respectful tone are constructive." },
+{ type:"multi", topic:"Idea Generation", q:"Which two help the idea-generation process? (Choose 2.)", a:["Withhold criticism of peers' ideas","Share only highly confident ideas","Encourage wild ideas","Limit each person to one or two ideas"], required:2, cor:[0,2], exp:"Withholding criticism and encouraging wild ideas foster creativity." },
+{ type:"binary_group", topic:"Alt-Text", q:"Select Yes if the info is necessary in alt-text, or No if not.", options:["Yes","No"], statements:[
+    { text:"The image copyright.", correct:1 },
+    { text:"A brief description of the image.", correct:0 },
+    { text:"Context and details relevant to the image purpose.", correct:0 }
+], exp:"Copyright isn't needed. Description and context are essential for accessibility." },
+
+// ═══ 46–50 ═══
+{ type:"binary_group", topic:"Boolean Search", q:"Select Yes if a Boolean search helps identify relevant results faster, or No if not.", options:["Yes","No"], statements:[
+    { text:"Apple varieties.", correct:1 },
+    { text:"History of apple agriculture.", correct:1 },
+    { text:"Recipes for apple pie OR cake.", correct:0 },
+    { text:"Macintosh apples, but NOT the Macintosh computer.", correct:0 }
+], exp:"Simple topic searches don't need Boolean (No). OR recipes and NOT exclusion (Yes)." },
+{ type:"binary_group", topic:"Staying Current", q:"For each statement, select True or False.", options:["True","False"], statements:[
+    { text:"Understanding monetization gives insight into content motivations.", correct:0 },
+    { text:"Using public beta apps hints at industry trends.", correct:0 },
+    { text:"Broadcast news has the highest coverage accuracy and rigor standards.", correct:1 }
+], exp:"Monetization and betas help stay current (True). Broadcast isn't universally the highest standard (False)." },
+{ type:"mcq", topic:"EULA", q:"Where do you find if lending purchased software to a friend is acceptable?", a:["ACL","CMS","ESRB","EULA"], cor:3, exp:"The EULA specifies terms of use including sharing restrictions." },
+{ type:"multi", topic:"Constructive Traits", q:"Which two are traits of a constructive team member? (Choose 2.)", a:["Confident","Rigorous","Opinionated","Inquisitive"], required:2, cor:[0,3], exp:"Confidence and inquisitiveness are positive traits." },
+{ type:"binary_group", topic:"Web Accessibility", q:"Select True if correct for accessibility standards, or False if not.", options:["True","False"], statements:[
+    { text:"The preferred font style is sans-serif.", correct:0 },
+    { text:"The minimum recommended body font size is 12 points.", correct:1 },
+    { text:"You should maintain low contrast between font and background.", correct:1 }
+], exp:"Sans-serif (True). 16px preferred over 12pt (False). High contrast required, not low (False)." },
+
+// ═══ 51–55 ═══
+{ type:"ordering", topic:"Search Intent", q:"Order topics to match Informational → Navigation → Transactional.", steps:["A specific site","Third-party options to purchase software","Population statistics"], cor:[2,0,1], exp:"Population stats = Informational; specific site = Navigation; purchase options = Transactional." },
+{ type:"binary_group", topic:"Source Bias", q:"For each statement, select True or False.", options:["True","False"], statements:[
+    { text:"Statements from official verified accounts are always trustworthy and unbiased.", correct:1 },
+    { text:"The tone of a source matters — it can create outsized urgency.", correct:0 },
+    { text:"Publisher and media-owner policies should be reported transparently.", correct:0 },
+    { text:"An eyewitness account is more credible than a second-hand source.", correct:1 }
+], exp:"Official accounts can be biased (False). Tone matters (True). Transparency matters (True). Eyewitnesses aren't always more credible (False)." },
+{ type:"binary_group", topic:"Online Privacy", q:"Select Yes if the action contributes to online privacy, or No if not.", options:["Yes","No"], statements:[
+    { text:"Stay logged into websites.", correct:1 },
+    { text:"Delete cookies after using the browser.", correct:0 },
+    { text:"Use the same password across accounts.", correct:1 },
+    { text:"Use Private Browsing to maintain anonymity.", correct:1 }
+], exp:"Staying logged in and reusing passwords hurt privacy. Deleting cookies helps. Private Browsing isn't anonymity." },
+{ type:"binary_group", topic:"Virtual Team Success", q:"For each strategy, select True or False.", options:["True","False"], statements:[
+    { text:"Have team members collect information in a shared document.", correct:0 },
+    { text:"Increase efficiency using only asynchronous communication.", correct:1 },
+    { text:"Create a team discussion board for project conversations.", correct:0 },
+    { text:"Have a central file storage location all team members can access.", correct:0 }
+], exp:"Shared docs, discussion boards, and central storage help. Async-only misses real-time collaboration (False)." },
+{ type:"binary_group", topic:"Online Research", q:"Select Effective or Ineffective for each research strategy.", options:["Effective","Ineffective"], statements:[
+    { text:"Refine your search terms to better match your topic.", correct:0 },
+    { text:"Paste the entire assignment text into a search engine.", correct:1 },
+    { text:"Use Boolean operators with the keywords in your search.", correct:0 }
+], exp:"Refined terms and Boolean operators work (Effective). Pasting whole assignments returns noise (Ineffective)." }
+
+]}
 };
