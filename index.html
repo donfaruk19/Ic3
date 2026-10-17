@@ -4,15 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Certiport IC3 GS6 — Exam Simulator</title>
-<link rel="stylesheet" href="style.css">
+<link rel= "stylesheet" href="style.css"> 
 </head>
 <body>
 
+<!-- DASHBOARD -->
 <div id="dashboard-screen">
     <header class="dashboard-header">
         <div class="dashboard-brand">
             <span class="brand-mark">CERTIPORT</span>
             <span>IC3 GS6 <span class="brand-sub">Exam Simulator</span></span>
+        </div>
+        <div style="display:flex;gap:8px;">
+            <button class="icon-btn" onclick="openSettings()" title="Settings">⚙</button>
         </div>
     </header>
     <div class="dashboard-container">
@@ -46,9 +50,9 @@
     </div>
 </div>
 
+<!-- WORKSPACE -->
 <div id="workspace-screen" class="hidden">
 
-    <!-- SETUP -->
     <section id="setup-screen" class="hidden">
         <div class="setup-wrapper">
             <button class="back-to-dash-btn" onclick="returnToDashboard()">← Dashboard</button>
@@ -66,8 +70,8 @@
                     <div class="form-group">
                         <label for="mode-select">Mode Selection</label>
                         <select id="mode-select">
-                            <option value="training">Training (Immediate Feedback + Reveal)</option>
-                            <option value="testing">Testing (Full Exam Simulation)</option>
+                            <option value="training">Training (Feedback + Reveal + Stats)</option>
+                            <option value="testing">Testing (Randomized + Full Simulation)</option>
                         </select>
                     </div>
                     <div class="form-actions">
@@ -93,6 +97,8 @@
                         <span class="candidate-value" id="exam-candidate-display">Guest Candidate</span>
                     </div>
                     <span class="exam-timer" id="exam-timer">--:--</span>
+                    <button class="icon-btn" onclick="showShortcuts()" title="Keyboard shortcuts">?</button>
+                    <button class="icon-btn" onclick="openSettings()" title="Settings">⚙</button>
                 </div>
             </div>
 
@@ -105,6 +111,17 @@
                     <button class="nav-toggle" id="nav-toggle">☰ Items</button>
                     <button class="nav-toggle" onclick="returnToDashboard()">✕ Exit</button>
                 </div>
+            </div>
+
+            <!-- ACTIONS MOVED TO TOP -->
+            <div class="exam-actions-top">
+                <button id="prev-btn" class="btn-secondary">◀ Back</button>
+                <button id="flag-btn" class="btn-secondary">Mark for Review</button>
+                <button id="pause-btn" class="btn-secondary" style="display:none;">⏸ Pause</button>
+                <div id="training-stats" class="training-stats" style="display:none;"></div>
+                <div class="spacer"></div>
+                <button id="review-all-btn" class="btn-secondary">📋 Review All</button>
+                <button id="next-btn" class="btn-primary">Next ▶</button>
             </div>
 
             <div class="exam-progress-track">
@@ -129,19 +146,10 @@
                     </div>
                 </aside>
             </div>
-
-            <div class="exam-actions">
-                <button id="prev-btn" class="btn-secondary">◀ Back</button>
-                <button id="flag-btn" class="btn-secondary">Mark for Review</button>
-                <button id="pause-btn" class="btn-secondary" style="display:none;">⏸ Pause</button>
-                <div class="spacer"></div>
-                <button id="review-all-btn" class="btn-secondary">📋 Review All</button>
-                <button id="next-btn" class="btn-primary">Next ▶</button>
-            </div>
         </div>
     </div>
 
-    <!-- REVIEW PHASE -->
+    <!-- REVIEW -->
     <div id="review-screen" class="hidden">
         <div class="review-wrapper">
             <div class="review-card">
@@ -183,14 +191,20 @@
                     <div class="results-meta">
                         <div>Duration<strong id="report-time">—</strong></div>
                         <div>Attempted<strong id="report-attempted">—</strong></div>
+                        <div>Avg per Item<strong id="report-peritem">—</strong></div>
                     </div>
                     <div class="section-heading">Objective Breakdown</div>
                     <table class="results-table">
-                        <thead><tr><th>Objective Domain</th><th style="text-align:right;">Score</th></tr></thead>
+                        <thead><tr><th>Objective Domain</th><th style="width:120px;text-align:right;">Score</th></tr></thead>
                         <tbody id="analysisTableBody"></tbody>
                     </table>
 
                     <div class="section-heading">Item Review</div>
+                    <div class="review-filter-bar" id="review-filter-bar" style="display:none;">
+                        <button class="btn-secondary active" data-filter="all">All</button>
+                        <button class="btn-secondary" data-filter="incorrect">Incorrect Only</button>
+                        <button class="btn-secondary" data-filter="flagged">Marked</button>
+                    </div>
                     <div id="review-table-container" class="hidden">
                         <table class="review-table">
                             <thead><tr><th>#</th><th>Item</th><th>Your Response</th><th>Correct Response</th><th></th></tr></thead>
@@ -210,6 +224,59 @@
         </div>
     </div>
 </div>
+
+<!-- SETTINGS DRAWER -->
+<div id="settings-drawer" class="settings-drawer">
+    <div class="settings-drawer-header">
+        <h3>Settings</h3>
+        <button class="icon-btn" onclick="closeSettings()">✕</button>
+    </div>
+    <div class="settings-drawer-body">
+        <div class="settings-group">
+            <h4>Display</h4>
+            <div class="settings-row">
+                <label>Font Size</label>
+                <div class="font-size-controls">
+                    <button data-font="0.9" onclick="setFontScale(0.9)">A-</button>
+                    <button data-font="1" onclick="setFontScale(1)">A</button>
+                    <button data-font="1.15" onclick="setFontScale(1.15)">A+</button>
+                    <button data-font="1.3" onclick="setFontScale(1.3)">A++</button>
+                </div>
+            </div>
+            <div class="settings-row">
+                <label for="toggle-contrast">High Contrast</label>
+                <div class="toggle-switch"><input type="checkbox" id="toggle-contrast" onchange="setHighContrast(this.checked)"><span class="slider"></span></div>
+            </div>
+        </div>
+        <div class="settings-group">
+            <h4>Behavior</h4>
+            <div class="settings-row">
+                <label for="toggle-autoadvance">Auto-advance after correct answer</label>
+                <div class="toggle-switch"><input type="checkbox" id="toggle-autoadvance" onchange="setAutoAdvance(this.checked)"><span class="slider"></span></div>
+            </div>
+            <div class="settings-row">
+                <label for="toggle-sound">Answer sound feedback</label>
+                <div class="toggle-switch"><input type="checkbox" id="toggle-sound" onchange="setSound(this.checked)"><span class="slider"></span></div>
+            </div>
+        </div>
+        <div class="settings-group">
+            <h4>Session</h4>
+            <button class="btn-secondary" onclick="clearSavedSession()" style="width:100%;">🗑 Clear Saved Session</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal-card">
+        <div class="modal-header" id="modal-title">Confirm</div>
+        <div class="modal-body" id="modal-body"></div>
+        <div class="modal-actions" id="modal-actions"></div>
+    </div>
+</div>
+
+<!-- AUTOSAVE INDICATOR -->
+<div class="autosave" id="autosave-indicator">✓ Progress saved</div>
 
 <script src="questions.js"></script>
 <script src="cards.js"></script>
