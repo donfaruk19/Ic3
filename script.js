@@ -223,6 +223,8 @@ function deployExamSandbox() {
     UI.resultScreen.classList.add('hidden');
     UI.navigatorPanel.classList.remove('collapsed');
     if (UI.modeBadge) UI.modeBadge.textContent = session.mode === "testing" ? "Testing" : "Training";
+    const cand = document.getElementById('exam-candidate-display');
+    if (cand && UI.candidateNameInput) cand.textContent = UI.candidateNameInput.value || "Guest Candidate";
 
     clearInterval(session.timerId);
     if (session.mode === "testing") {
@@ -248,10 +250,10 @@ function loadQuestion() {
     const oldFb = document.getElementById("runtime-feedback");
     if (oldFb) oldFb.remove();
 
-    UI.progressIndicator.textContent = `Question ${session.currentIdx + 1} of ${session.questions.length} · ${q.sourceLesson || ''}`;
+    UI.progressIndicator.textContent = `Item ${session.currentIdx + 1} of ${session.questions.length}`;
     UI.progressFill.style.width = `${((session.currentIdx + 1) / session.questions.length) * 100}%`;
 
-    UI.flagBtn.textContent = session.flags[session.currentIdx] ? "★ Flagged" : "🚩 Flag";
+    UI.flagBtn.textContent = session.flags[session.currentIdx] ? "★ Marked for Review" : "Mark for Review";
     UI.flagBtn.classList.toggle('flagged', session.flags[session.currentIdx]);
 
     switch (q.type) {
@@ -265,7 +267,7 @@ function loadQuestion() {
     }
 
     UI.prevBtn.disabled = session.currentIdx === 0;
-    UI.nextBtn.textContent = session.currentIdx === session.questions.length - 1 ? "Submit Exam →" : "Next →";
+    UI.nextBtn.textContent = session.currentIdx === session.questions.length - 1 ? "Finish Test" : "Next ▶";
 
     updateNavigator();
 }
