@@ -1373,9 +1373,7 @@ level2: {
                     exp: "Privacy Policies define the collection, processing, and storage of telemetry, while the EULA handles the runtime legal usage terms."
                 }
             ]
-        }
-    }
-,
+        },
 l3_practice2: {
     title: "Level 3 Practice Bank – 55 Exam-Style Questions",
     questions: [
@@ -1542,4 +1540,5 @@ l3_practice2: {
 ], exp:"Refined terms and Boolean operators work (Effective). Pasting whole assignments returns noise (Ineffective)." }
 
 ]}
+}
 };
