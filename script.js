@@ -374,7 +374,7 @@ function selectTrack(trackId) {
     UI.moduleSelect.innerHTML = "";
     const allOpt = document.createElement('option');
     allOpt.value = 'all';
-    allOpt.textContent = `🎯 ALL LEVEL ${trackId} OBJECTIVES (Combined)`;
+    allOpt.textContent = `ALL LEVEL ${trackId} OBJECTIVES`;
     UI.moduleSelect.appendChild(allOpt);
     Object.keys(levelData).forEach(k => {
         const o = document.createElement('option');
@@ -409,7 +409,7 @@ function deployFlashcards() {
     UI.examContainer.classList.remove('hidden');
     UI.navigatorPanel.classList.add('collapsed');
     document.querySelector('.exam-main')?.classList.add('nav-collapsed');
-    UI.timer.textContent = "🧠 FLASHCARD";
+    UI.timer.textContent = "0FLASHCARD";
     if (UI.modeBadge) UI.modeBadge.textContent = "Study";
     document.querySelector('.exam-actions-top').style.display = 'none';
     renderFlashcard();
@@ -426,7 +426,7 @@ function renderFlashcard() {
     UI.optionsContainer.innerHTML = "";
     UI.interactiveContainer.innerHTML = `
         <div id="flashcard-plate" onclick="flipFlashcard()" style="background:var(--cp-surface-alt);border:2px dashed var(--cp-border);padding:45px 20px;text-align:center;border-radius:10px;cursor:pointer;margin:20px 0;">
-            <p id="flashcard-content" style="margin:0;color:var(--cp-text-muted);">🖱️ Click to reveal the answer</p>
+            <p id="flashcard-content" style="margin:0;color:var(--cp-text-muted);">Reveal answer</p>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;">
             <button id="study-prev-btn" class="btn-secondary" ${currentCardIdx === 0 ? 'disabled' : ''}>← Previous</button>
