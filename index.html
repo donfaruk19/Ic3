@@ -70,13 +70,13 @@
                     <div class="form-group">
                         <label for="mode-select">Mode Selection</label>
                         <select id="mode-select">
-                            <option value="training">Training (Feedback + Reveal + Stats)</option>
-                            <option value="testing">Testing (Randomized + Full Simulation)</option>
+                            <option value="training">Training Mode</option>
+                            <option value="testing">Exam Mode</option>
                         </select>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn-primary">▶ Start Exam</button>
-                        <button type="button" class="btn-secondary" onclick="deployFlashcards()">🧠 Flashcards</button>
+                        <button type="submit" class="btn-primary">▶ Start</button>
+                        <button type="button" class="btn-secondary" onclick="deployFlashcards()">Flashcards</button>
                     </div>
                 </form>
             </div>
@@ -113,14 +113,14 @@
                 </div>
             </div>
 
-            <!-- ACTIONS MOVED TO TOP -->
+            <!-- ACTIONS BTN-->
             <div class="exam-actions-top">
                 <button id="prev-btn" class="btn-secondary">◀ Back</button>
                 <button id="flag-btn" class="btn-secondary">Mark for Review</button>
                 <button id="pause-btn" class="btn-secondary" style="display:none;">⏸ Pause</button>
                 <div id="training-stats" class="training-stats" style="display:none;"></div>
                 <div class="spacer"></div>
-                <button id="review-all-btn" class="btn-secondary">📋 Review All</button>
+                <button id="review-all-btn" class="btn-secondary">Review All</button>
                 <button id="next-btn" class="btn-primary">Next ▶</button>
             </div>
 
@@ -136,7 +136,7 @@
                     <div id="interactive-container"></div>
                 </div>
                 <aside class="exam-navigator" id="exam-navigator">
-                    <div class="navigator-title">Item Navigator</div>
+                    <div class="navigator-title">Navigator</div>
                     <div class="navigator-grid" id="navigator-grid"></div>
                     <div class="navigator-legend">
                         <div><span class="legend-dot answered"></span> Answered</div>
